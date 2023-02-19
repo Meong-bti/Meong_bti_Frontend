@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./css/MyHeader.css";
+import "./css/APILogin.css";
+import "./css/EmailLogin.css";
+import "./css/MyButton.css";
+import "./css/Question.css";
+import "./css/PageAnimation.css";
+import "./css/QuestionBox.css";
+import "./css/MyInput.css";
+import "./css/DogInfo.css";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Test from "./pages/Test";
+import APILogin from "./pages/APILogin";
+import EmailLogin from "./pages/EmailLogin";
+import Question from "./pages/Question";
+import DogInfo from "./pages/DogInfo";
+import Transition from "./components/Transition";
+import Result from "./pages/Result";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<APILogin />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/login" element={<EmailLogin />} />
+          <Route path="/question" element={<Question />} />
+          <Route path="/doginfo" element={<DogInfo />} />
+          <Route path="/result" element={<Result />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+    // <BrowserRouter>
+    //   <div className="App">
+    //     <Transition />
+    //   </div>
+    // </BrowserRouter>
   );
 }
 
