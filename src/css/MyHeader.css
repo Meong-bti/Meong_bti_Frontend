@@ -1,0 +1,38 @@
+/* MyHeader Style */
+
+header {
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head-text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head-icon-left {
+  display: flex;
+  width: 25%;
+  justify-content: flex-start;
+}
+
+header .head-icon-right {
+  display: flex;
+  width: 25%;
+  justify-content: flex-end;
+}
+
+a {
+  font-size: 20px;
+}
+
+.home-icon {
+  text-decoration: none;
+}

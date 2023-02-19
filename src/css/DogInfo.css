@@ -1,0 +1,117 @@
+/* DogInfo */
+
+.dog-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 35px;
+  min-height: 100vh;
+}
+
+.dog-info .main {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  margin-top: 60px;
+}
+
+.dog-info .input-box {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+/* step1 */
+
+.dog-info .d-type-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 35px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+
+  /* color: rgba(102, 86, 69, 0.7); */
+  background-color: #efe7e0;
+  color: gray;
+}
+
+.dog-info .d-type-text {
+  padding-left: 15px;
+  font-size: 13.5px;
+  font-weight: 700;
+  width: 90%;
+}
+
+/* step2 */
+
+.dog-info .input-title {
+  margin: 0px 0px 5px 5px;
+  color: #766b63;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* step2 - check */
+
+.dog-info .check-container {
+  display: flex;
+  width: 100%;
+}
+
+.dog-info .check-box {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+
+  background-color: #efe7e0;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #837e70;
+}
+
+.dog-info .check-container input:checked ~ .check-box {
+  background-color: #665645;
+  color: #efe7e0;
+}
+
+.dog-info .check-container .check-box:hover {
+  background-color: #665645;
+}
+
+/* step2 - weight box */
+
+.dog-info .weight-box {
+  display: flex;
+  justify-content: flex-start;
+  width: 55%;
+}
+
+.dog-info .weight-box input {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* number 화살표 제거 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.dog-info .weight-text {
+  margin-top: auto;
+
+  color: #5d524a;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.dog-info .btn-wrapper {
+  display: flex;
+  margin-bottom: 200px;
+}
