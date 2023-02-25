@@ -21,26 +21,45 @@
 
 /* step1 */
 
-.dog-info .d-type-box {
+.dog-info .input-box .select-wrapper {
   display: flex;
+
   align-items: center;
   width: 100%;
-  height: 35px;
+
+  border-radius: 12px;
+  background-color: #efe7e0;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.dog-info .d-type-box {
+  display: flex;
+
+  align-items: center;
+  width: 97%;
+  height: 35px;
+
+  padding: 10px 10px;
+  border: none;
   border-radius: 12px;
   cursor: pointer;
 
-  /* color: rgba(102, 86, 69, 0.7); */
-  background-color: #efe7e0;
-  color: gray;
-}
-
-.dog-info .d-type-text {
-  padding-left: 15px;
   font-size: 13.5px;
   font-weight: 700;
-  width: 90%;
+
+  background-color: #efe7e0;
+  color: black;
+}
+
+.dog-info .d-type-box option {
+  font-size: 13.5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.dog-info .d-type-box:focus {
+  outline: none;
 }
 
 /* step2 */

@@ -4,6 +4,8 @@ import MyButton from "../components/MyButton";
 import MyHeader from "../components/MyHeader";
 import MyInput from "../components/MyInput";
 
+const DogTypeList = ["리트리버", "말라뮤트", "진돗개", "보더콜리", "웰시코기"];
+
 const DogInfo = () => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
@@ -37,14 +39,17 @@ const DogInfo = () => {
               <MyInput type="text" name="d_name" text="이름" />
             </div>
             <div className="input-box">
-              <div className="d-type-box">
-                <div className="d-type-text">{dogType}</div>
-                <span
-                  className="material-symbols-outlined"
-                  style={{ fontSize: "15px" }}
-                >
-                  arrow_forward_ios
-                </span>
+              <div className="select-wrapper">
+                <select name="dogType" className="d-type-box">
+                  <option value="" disabled hidden selected>
+                    견종
+                  </option>
+                  {DogTypeList.map((it, index) => (
+                    <option key={index} value={it}>
+                      {it}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
