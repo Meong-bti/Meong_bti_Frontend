@@ -65,10 +65,6 @@ const Question = () => {
   const [questList, setQuestList] = useState(quest_list_box.ques1);
   const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
-  // const [score1, setScore1] = useState(0);
-  // const [score2, setScore2] = useState(0);
-  // const [score3, setScore3] = useState(0);
-  // const [score4, setScore4] = useState(0);
 
   const percentIncrease = (num) => {
     if (num % 3 === 0) {

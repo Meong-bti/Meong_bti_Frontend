@@ -1,5 +1,4 @@
 import MyButton from "../components/MyButton";
-import MyInput from "../components/MyInput";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
@@ -30,10 +29,10 @@ const EmailLogin = () => {
       </div>
       <form method="post" action="/login_result" id="email_login">
         <div className="input-box">
-          <MyInput type="text" name="email" text="이메일" />
+          <input className="input input-value" type="text" name="email" placeholder="이메일" />
         </div>
         <div className="input-box">
-          <MyInput type="password" name="password" text="비밀번호" />
+          <input className="input input-value" type="password" name="password" placeholder="비밀번호" />
         </div>
         <div className="login-wrapper">
           <MyButton text="로그인" onClick={handleLogin} />

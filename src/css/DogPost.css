@@ -83,6 +83,7 @@
   display: flex;
   padding: 0px 15px;
   margin-bottom: 20px;
+  align-items: center;
 }
 
 .dog-post .post-content {

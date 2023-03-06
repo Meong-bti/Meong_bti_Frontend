@@ -1,27 +1,27 @@
 /* DogInfo */
 
-.dog-info {
+.pet-info {
   display: flex;
   flex-direction: column;
   padding: 0px 35px;
   min-height: 100vh;
 }
 
-.dog-info .main {
+.pet-info .main {
   display: flex;
   flex-direction: column;
   height: 60vh;
   margin-top: 60px;
 }
 
-.dog-info .input-box {
+.pet-info .input-box {
   display: flex;
   margin-bottom: 15px;
 }
 
 /* step1 */
 
-.dog-info .input-box .select-wrapper {
+.pet-info .input-box .select-wrapper {
   display: flex;
 
   align-items: center;
@@ -33,7 +33,7 @@
   margin-right: 10px;
 }
 
-.dog-info .d-type-box {
+.pet-info .pet-breed-box {
   display: flex;
 
   align-items: center;
@@ -52,19 +52,24 @@
   color: black;
 }
 
-.dog-info .d-type-box option {
+.pet-info .pet-breed-box {
+  color: gray;
+}
+
+.pet-info .pet-breed-box option {
   font-size: 13.5px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
+  color: black;
 }
 
-.dog-info .d-type-box:focus {
+.pet-info .pet-breed-box:focus {
   outline: none;
 }
 
 /* step2 */
 
-.dog-info .input-title {
+.pet-info .input-title {
   margin: 0px 0px 5px 5px;
   color: #766b63;
   font-size: 15px;
@@ -73,12 +78,12 @@
 
 /* step2 - check */
 
-.dog-info .check-container {
+.pet-info .check-container {
   display: flex;
   width: 100%;
 }
 
-.dog-info .check-box {
+.pet-info .check-box {
   margin-left: 10px;
   margin-right: 10px;
   padding: 10px;
@@ -93,24 +98,24 @@
   color: #837e70;
 }
 
-.dog-info .check-container input:checked ~ .check-box {
+.pet-info .check-container input:checked ~ .check-box {
   background-color: #665645;
   color: #efe7e0;
 }
 
-.dog-info .check-container .check-box:hover {
+.pet-info .check-container .check-box:hover {
   background-color: #665645;
 }
 
 /* step2 - weight box */
 
-.dog-info .weight-box {
+.pet-info .weight-box {
   display: flex;
   justify-content: flex-start;
   width: 55%;
 }
 
-.dog-info .weight-box input {
+.pet-info .weight-box input {
   text-align: center;
   font-size: 18px;
   font-weight: 300;
@@ -122,7 +127,7 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.dog-info .weight-text {
+.pet-info .weight-text {
   margin-top: auto;
 
   color: #5d524a;
@@ -130,7 +135,7 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 15px;
 }
 
-.dog-info .btn-wrapper {
+.pet-info .btn-wrapper {
   display: flex;
   margin-bottom: 200px;
 }
