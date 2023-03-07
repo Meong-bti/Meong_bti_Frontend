@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Question = () => {
   const navigate = useNavigate();
 
-  const quest_list_box = {
+  const questListBox = {
     ques1: [
       "우리 반려견은 자기가 사람인 줄 안다",
       "우리 반려견은 자기가 사람인 줄 안다",
@@ -59,12 +59,35 @@ const Question = () => {
       "간식을 너무 좋아한다",
       "간식을 너무 좋아한다",
     ],
-    ques4: ["다른 개와 잘 어울린다", "다른 개와 잘 어울린다"],
+    ques4: [
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+      "다른 개와 잘 어울린다",
+    ],
   };
 
-  const [questList, setQuestList] = useState(quest_list_box.ques1);
+  const [questList, setQuestList] = useState(questListBox.ques1);
   const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
+  const [score, setScore] = useState({
+    step1: 0,
+    step2: 0,
+    step3: 0,
+    step4: 0,
+  })
+  const [state, setState] = useState("question");
 
   const percentIncrease = (num) => {
     if (num % 3 === 0) {
@@ -80,18 +103,38 @@ const Question = () => {
   }, [percent]);
 
   useEffect(() => {
+    if (step === 5) {
+      navigate("/result", {
+        state: {
+          step1: score.step1,
+          step2: score.step2,
+          step3: score.step3,
+          step4: score.step4,
+      }});
+    }
+  }, [state]);
+
+  useEffect(() => {
     const elements = document.querySelectorAll("input:checked");
     var stepScore = 0;
     elements.forEach((it) => {
       stepScore = stepScore + parseInt(it.getAttribute("value"));
     });
 
+    if (step >= 2){
+      setScore((score) =>
+        ({ ...score, [`step${step-1}`]: Math.round((stepScore+45)/90*100) })
+      );
+    }
+    
+
     if (step === 5) {
-      navigate("/result");
+      setState("result");
+      
+      return;
     }
 
-    setQuestList(quest_list_box[`ques${step}`]);
-
+    setQuestList(questListBox[`ques${step}`]);
     setPercent(0);
 
     const allElement = document.getElementsByClassName("check-element");
@@ -102,14 +145,13 @@ const Question = () => {
 
     const firstElement = document.getElementById(`box0`);
     firstElement.style.opacity = 1;
-    // firstElement.scrollIntoView({ behavior: "smooth", block: "center" });
     window.scrollTo(0, 0);
     document
       .getElementsByName(`question0`)
       .forEach((it) => it.removeAttribute("disabled"));
   }, [step]);
 
-  const next_button = () => {
+  const NextButton = () => {
     if (percent !== 100) {
       return (
         <MyButton
@@ -134,6 +176,7 @@ const Question = () => {
         <div className="bar">
           <div className="charge-bar" id="charging" />
         </div>
+        <div className="step">{step}/4</div>
       </div>
       {questList.map((it, index) => (
         <QuestionBox
@@ -146,8 +189,7 @@ const Question = () => {
       ))}
       <div className="btn-wrapper">
         {/* <MyButton type="question-next" onClick={() => setStep(step + 1)} /> */}
-        {next_button()}
-        {/* <MyButton type="question-next" onClick={() => setStep(step + 1)} /> */}
+        <NextButton />
       </div>
     </div>
   );
