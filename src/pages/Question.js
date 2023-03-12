@@ -98,6 +98,7 @@ const Question = () => {
   };
 
   useEffect(() => {
+    // 진행 퍼센트 바
     const charge_bar = document.getElementById("charging");
     charge_bar.style.width = `${percent}%`;
   }, [percent]);
@@ -115,34 +116,37 @@ const Question = () => {
   }, [state]);
 
   useEffect(() => {
+    // 체크된 요소 점수 합산
     const elements = document.querySelectorAll("input:checked");
     var stepScore = 0;
     elements.forEach((it) => {
       stepScore = stepScore + parseInt(it.getAttribute("value"));
     });
 
+    // 해당 스텝에 점수 부여
     if (step >= 2){
       setScore((score) =>
         ({ ...score, [`step${step-1}`]: Math.round((stepScore+45)/90*100) })
       );
     }
     
-
+    // 마지막 스텝일 경우 결과페이지로~
     if (step === 5) {
       setState("result");
-      
       return;
     }
 
     setQuestList(questListBox[`ques${step}`]);
     setPercent(0);
 
+    // 질문 세팅 초기화 -> 체크 된거 해제 및 선택 불가 활성화
     const allElement = document.getElementsByClassName("check-element");
     for (var i = 0; i < allElement.length; i++) {
       allElement[i].checked = false;
       allElement[i].disabled = true;
     }
 
+    // 첫 질문은 선택 가능하도록 세팅 및 페이지 제일 위로 이동
     const firstElement = document.getElementById(`box0`);
     firstElement.style.opacity = 1;
     window.scrollTo(0, 0);
