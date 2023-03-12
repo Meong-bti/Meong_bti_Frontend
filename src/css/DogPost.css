@@ -65,17 +65,65 @@
   color: #b79e84;
 }
 
+.dog-post .post-head .menu-box {
+  /* display: flex; */
+  position: relative;
+  display: inline-block;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  color: #b79e84;
+  cursor: pointer;
+}
+
+.dog-post .post-head .dropdown-content {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dog-post .post-head .dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  
+}
+
+.dog-post .post-head .menu-box:hover .dropdown-content {
+  display: block;
+  background-color: #f2e4d5;
+}
+
 .dog-post .post-date {
   font-size: 12px;
   margin-top: auto;
 }
 
 /* post-image */
+
 .dog-post .post-image {
-  background-color: aqua;
-  height: 350px;
-  border-radius: 6%;
+  height: 380px;
   margin-bottom: 20px;
+}
+
+.dog-post .post-image .pet-post-image{
+  height: 380px;
+  border-radius: 6%;
+}
+
+.dog-post .post-image .heart-sticker {
+  /* display: none; */
+  position: relative;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -250%);
+  width: 100px;
+  height: 100px;
 }
 
 /* post-content */
