@@ -7,16 +7,17 @@ function Home() {
     const goLink = () => {
         navigate('/DogSelect', {
                 state: {
-                    dInfo: "미미",
+                   dNum1: "미미",
+                   dNum2: "쥬쥬",
                 }
             }
         );
     };
     return (
         <div id="Main">
-            <div className="main_box" onClick={goLink}>
-                <div className="main_logo">멍BTI LOGO</div>
-                <div className="main_img_box"></div>
+            <div className="main-box" onClick={goLink}>
+                <div className="main-logo">멍BTI LOGO</div>
+                <div className="main-img-box"></div>
             </div>
         </div>
     );

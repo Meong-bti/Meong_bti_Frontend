@@ -10,6 +10,11 @@ import "./css/MyInput.css";
 import "./css/DogInfo.css";
 import './css/Reset.css';
 import './css/Home.css';
+import './css/TopNavigation.css';
+import './css/DogSelect.css';
+import './css/DogMbtiResult.css';
+import './css/TopNavigation2.css';
+import './css/DogExplanation.css';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -22,6 +27,8 @@ import Transition from "./components/Transition";
 import Result from "./pages/Result";
 import Home from './pages/Home.js';
 import DogSelect from './pages/DogSelect.js';
+import DogMbtiResult from './pages/DogMbtiResult.js';
+import DogExplanation from './pages/DogExplanation.js';
 
 function App() {
   return (
@@ -36,6 +43,8 @@ function App() {
           <Route path="/result" element={<Result />} />
           <Route path="/DogSelect" element={<DogSelect />} />
           <Route path="/Home" element={<Home />} />
+          <Route path="/DogMbtiResult" element={<DogMbtiResult />} />
+          <Route path="/DogExplanation" element={<DogExplanation />} />
         </Routes>
       </div>
     </BrowserRouter>

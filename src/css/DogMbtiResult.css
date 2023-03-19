@@ -1,0 +1,182 @@
+.result-box {
+    min-height: 100vh;
+    background-color: #f5f3f2;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-left: 20px;
+}
+.result-box > p {
+    font-size: 25px;
+    font-weight: 600;
+    color: #665645;
+    margin: 20px;
+}
+.result-box .result-top {
+    width: 100%;
+    height: auto;
+    background-color: #B79E84;
+    padding: 25px 25px 0;
+    box-sizing: border-box;
+}
+.result-box .result-top .result-word {
+    font-size: 23px;
+    color: #665645;
+    margin-bottom: 20px;
+}
+.result-box .result-top .result-container {
+    display: flex;
+    justify-content: space-around;
+}
+.result-box .result-top .result-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+.result-box .result-top .result-container  .result-left {
+    color: #ffffff;
+}
+.result-box .result-top .result-container  .result-left h3 {
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px #2e2a27;
+    margin-bottom: 15px;
+}
+.result-box .result-top .result-container  .result-left p {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.result-box .result-top .result-container .result-left .detail-img {
+    width: 100%;
+    margin-bottom: 25px;
+}
+.result-box .result-top .result-container .result-left .detail-img img {
+    width: 70%;
+}
+.result-box .result-top .result-container .result-right {
+    background-color: #f5f3f2;
+    border-radius: 30px 30px 0 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.result-box .result-top .result-container .result-right ul {
+
+}
+.result-box .result-top .result-container .result-right ul li {
+
+}
+.result-box .result-top .result-container .result-right ul li p {
+
+}
+
+.result-box .result-detail {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+.result-box .result-detail>div {
+    width: 100%;
+}
+.result-box .result-detail .detail-top {
+    text-align: center;
+    color:#665645;
+}
+.result-box .result-detail .detail-top>* {
+    margin-bottom: 20px;
+}
+.result-box .result-detail .detail-top h4 {
+    font-size: 40px;
+    font-weight: bold;  
+}
+.result-box .result-detail .detail-content {
+    text-align: center;
+    line-height: 24px;
+}
+.result-box .mbti-all-explanation {
+    margin-bottom: 35px;
+    box-sizing: border-box;
+}
+.result-box .mbti-all-explanation a {
+    text-align: right;
+    display: block;
+    font-size: 16px;
+    padding: 25px;
+    padding-right: 20%;
+    position: relative;
+    cursor: pointer;
+}
+.result-box .mbti-all-explanation a::after {
+    content: "→";
+    display: block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+    background-color: #212020;
+    color: #fff;
+    border-radius: 50px;
+    right: 5%;
+    top: 9px;
+    box-shadow: 3px 3px 5px rgb(0 0 0 / 70%);
+}
+.result-box .mbit-btn-group {
+    padding: 0 25px;
+}
+.result-box .mbit-btn-group ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.result-box .mbit-btn-group ul li {
+    width: 48%;
+    border-radius: 20px;
+    background-color: #B79E84;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 50%);
+}
+.result-box .mbit-btn-group ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 60px;
+    box-sizing: border-box;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}
+.result-box .share-box {
+    padding: 50px 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    position: relative;
+}
+.result-box .share-box span {
+    position: absolute;
+    font-size: 30px;
+    display: block;
+    left: 40px;
+    top: calc(50% - 15px);
+}
+.result-box .share-box input {
+    height: 40px;
+    border: 3px solid #665645;
+    width: 65%;
+    font-size: 18px;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+.result-box .share-box button {
+    width: 20%;
+    background-color: #665645;
+    color: #ffffff;
+    font-size: 15px;
+    border: none;
+}
+.result-box .share-box input:focus {outline: none;}
+.result-box .share-box button:focus {outline: none;border: none;}
