@@ -9,6 +9,7 @@ import "./css/QuestionBox.css";
 import "./css/MyInput.css";
 import "./css/DogInfo.css";
 import "./css/Reset.css";
+import "./css/DogPost.css";
 import "./css/Home.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
