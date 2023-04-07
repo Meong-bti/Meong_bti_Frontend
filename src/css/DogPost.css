@@ -1,0 +1,141 @@
+/* dog-post */
+
+.dog-post {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #f5f3f2;
+  min-height: 100vh;
+  margin-left: 20px;
+  padding: 0px 15px;
+}
+
+.dog-post .btn-wrapper {
+  margin: 30px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dog-post .btn-wrapper button {
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  background-color: #d9d9d9;
+  padding: 10px;
+}
+
+.dog-post .post-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 20px;
+  border-bottom: 1px solid gray;
+  margin: 10px 0px 25px;
+}
+
+/* post-head */
+.dog-post .post-head {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 15px 20px;
+}
+
+/* 임시 이미지 */
+.dog-post .post-head .person-img {
+  background-color: #373636;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.dog-post .post-head .post-info {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.dog-post .post-head .person-name {
+  font-size: 18px;
+}
+
+.dog-post .post-head .dog-name {
+  margin-left: 10px;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #b79e84;
+}
+
+.dog-post .post-head .menu-box {
+  /* display: flex; */
+  position: relative;
+  display: inline-block;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  color: #b79e84;
+  cursor: pointer;
+}
+
+.dog-post .post-head .dropdown-content {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dog-post .post-head .dropdown-content span {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  
+}
+
+.dog-post .post-head .menu-box:hover .dropdown-content {
+  display: block;
+  background-color: #f2e4d5;
+}
+
+.dog-post .post-date {
+  font-size: 12px;
+  margin-top: auto;
+}
+
+/* post-image */
+
+.dog-post .post-image {
+  height: 380px;
+  margin-bottom: 20px;
+}
+
+.dog-post .post-image .pet-post-image{
+  height: 380px;
+  border-radius: 6%;
+}
+
+.dog-post .post-image .heart-sticker {
+  /* display: none; */
+  position: relative;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -250%);
+  width: 100px;
+  height: 100px;
+}
+
+/* post-content */
+.dog-post .post-like {
+  display: flex;
+  padding: 0px 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.dog-post .post-content {
+  display: flex;
+  padding: 0px 15px;
+  margin-bottom: 50px;
+}

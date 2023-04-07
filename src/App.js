@@ -16,6 +16,7 @@ import './css/DogMbtiResult.css';
 import './css/TopNavigation2.css';
 import './css/DogExplanation.css';
 
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Test from "./pages/Test";
@@ -25,7 +26,9 @@ import Question from "./pages/Question";
 import DogInfo from "./pages/DogInfo";
 import Transition from "./components/Transition";
 import Result from "./pages/Result";
-import Home from './pages/Home.js';
+import Home from "./pages/Home.js";
+import DogSelect from "./pages/DogSelect.js";
+import DogPost from "./pages/DogPost";
 import DogSelect from './pages/DogSelect.js';
 import DogMbtiResult from './pages/DogMbtiResult.js';
 import DogExplanation from './pages/DogExplanation.js';
@@ -45,6 +48,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/DogMbtiResult" element={<DogMbtiResult />} />
           <Route path="/DogExplanation" element={<DogExplanation />} />
+          <Route path="/dogpost" element={<DogPost />} />
         </Routes>
       </div>
     </BrowserRouter>
