@@ -29,7 +29,6 @@ import Result from "./pages/Result";
 import Home from "./pages/Home.js";
 import DogSelect from "./pages/DogSelect.js";
 import DogPost from "./pages/DogPost";
-import DogSelect from './pages/DogSelect.js';
 import DogMbtiResult from './pages/DogMbtiResult.js';
 import DogExplanation from './pages/DogExplanation.js';
 
