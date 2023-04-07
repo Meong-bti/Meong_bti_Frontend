@@ -15,6 +15,7 @@ import './css/DogSelect.css';
 import './css/DogMbtiResult.css';
 import './css/TopNavigation2.css';
 import './css/DogExplanation.css';
+import './css/DogBoast.css';
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -29,6 +30,7 @@ import Home from './pages/Home.js';
 import DogSelect from './pages/DogSelect.js';
 import DogMbtiResult from './pages/DogMbtiResult.js';
 import DogExplanation from './pages/DogExplanation.js';
+import DogBoast from "./pages/DogBoast";
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
           <Route path="/Home" element={<Home />} />
           <Route path="/DogMbtiResult" element={<DogMbtiResult />} />
           <Route path="/DogExplanation" element={<DogExplanation />} />
+          <Route path="/DogBoast" element={<DogBoast />} />
         </Routes>
       </div>
     </BrowserRouter>

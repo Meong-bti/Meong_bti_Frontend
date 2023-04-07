@@ -1,43 +1,49 @@
+import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate} from "react-router-dom";
 
 const TopNavigation = () => {
-    const [choice, setChoice] = useState(0);
     const navigate = useNavigate();  
 
+    // 토글메뉴 오픈
+    const [isOpen, setNav] = (useState(false));
     const openMenu = () => {
+      setNav(isOpen => !isOpen);
+    };
 
-    }
-
-    const goLink = (props) => {
-        console.log(props.value);
-        // if (choice === 1){
-
-        // }
-        // else if (choice === 2) {
-
-            
-        // }
-        // else{
-        //     console.log("선택안함");
-        // }
+    const goHome = () => {
+      navigate('/Home');
+    };
+    const goBack = () => {
+      navigate(-1);
     };
     return (
-      <header className="top-nav">
-        <a className="nav-back" onClick={goLink} value="1">
-            <span className="material-symbols-outlined">arrow_back_ios</span>
-            back
-        </a>
-        <a className="nav-home" onClick={goLink} value="2">
-            <span className="material-symbols-outlined">home</span>    
-            home
-        </a>    
-        <a className="nav-menu" onClick={openMenu}>
-            <span className="material-symbols-outlined">menu</span>
-            menu
-        </a>    
-      </header>
+      <>
+        <header className="top-nav">
+          <button className="nav-back" onClick={goBack}>
+              <span className="material-symbols-outlined">arrow_back_ios</span>
+              back
+          </button>
+          <button className="nav-home" onClick={goHome}>
+              <span className="material-symbols-outlined">home</span>    
+              home
+          </button>    
+          <button className="nav-menu" onClick={openMenu}>
+              <span className="material-symbols-outlined">menu</span>
+              menu
+          </button>    
+        </header>
+        <div className={isOpen ? `toggle-menu show-menu` : `toggle-menu`}>
+          <div className="toggle-menu-top">
+            <button className="menu-close-btn" onClick={openMenu}><span className="material-symbols-outlined">arrow_back_ios</span>닫힘</button>
+          </div>
+          <div className="toggle-menu-content">
+              <div className="user-box">
+                ooo 보호자님
+              </div>
+          </div>
+        </div>
+      </>
     );
   };
   
