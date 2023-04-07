@@ -2,14 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate();
-
+    const navigate = useNavigate();
+    const dogArr = [{idx:"dNum1",name:"미미", url:"assets/dogImg0.jpg"},{idx:"dNum2", name:"쥬쥬", url:"assets/dogImg2.jpg"},{idx:"dNum3", name:"뽀삐", url:"assets/dogImg3.jpg"}];
+    // const dogArr = [];
     const goLink = () => {
         navigate('/DogSelect', {
-                state: {
-                   dNum1: "미미",
-                   dNum2: "쥬쥬",
-                }
+                state: dogArr,
             }
         );
     };

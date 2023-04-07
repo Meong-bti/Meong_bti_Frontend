@@ -1,121 +1,113 @@
-import React from 'react';
-import { useState } from "react";
+import React, {useEffect} from 'react';
+// import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import TopNavigation from '../components/TopNavigation';
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-let curPos = 0;
-let postion = 0;
-let start_x, end_x;
-const IMAGE_WIDTH = 220;
-const images = document.querySelector(".img-box") 
- 
-// images.addEventListener('touchstart', touch_start);
-// images.addEventListener('touchend', touch_end);
- 
-function prev(){
-  if(curPos > 0){
-    postion += IMAGE_WIDTH;
-    images.style.transform = `translateX(${postion}px)`;
-    curPos = curPos - 1;
-  }
-}
-function next(){
-  if(curPos < 3){
-    postion -= IMAGE_WIDTH;
-    images.style.transform = `translateX(${postion}px)`;
-    curPos = curPos + 1;
-  }
-}
- 
-function touch_start(event) {
-  start_x = event.touches[0].pageX
-}
- 
-function touch_end(event) {
-  end_x = event.changedTouches[0].pageX;
-  if(start_x > end_x){
-    next();
-  }else{
-    prev();
-  }
-}
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
-
-const DogList = (props) => {
-    return (
-        <li className='img-box' onTouchStart={touch_start} onTouchEnd={touch_end} num={props.num} name={props.name}>
-            <a>
-                <img src=''/>
-            </a>
-            <span className="material-symbols-outlined">add_circle</span>
-        </li>
-    )
-}
 
 const DogSelect = () => {
+
     const navigate = useNavigate();
     const location = useLocation();
-    const [dogList, setDogList] = useState(null);
-    let dNumList;
-    let dNameList;
-    let dogInfoList;
+    const {state} = useLocation();
+    // const [dogList, setDogList] = useState(null);
 
-    if(location.state === null){
-        console.log("강아지없다.");
-        alert("강아지 등록을 먼저 해주세요!");
-        navigate(`/DogInfo`);
-    }
-    else{
-        dogInfoList = location.state;
-        dNumList = Object.keys(dogInfoList);
-        dNameList = Object.values(dogInfoList);
+    // 메뉴 이동 navigater
+    const goDogAdd = () => {
+        navigate('/doginfo');
+    };
+    const goMbti = () => {
+        navigate('/Question');
+    };
+    
+    // 이미지 에러시 띄워줄 기본 이미지
+    const handleImgError = (e) => {
+        e.target.src = "assets/dog.jpg";
+    };
 
-        const getEntries = Object.entries(dogInfoList).map((entrie, idx) => {
-            return console.log(entrie, idx);
-        });
+    // 강아지 정보 있는지 확인
+    useEffect(() => {
+        if(state === null || state.length === 0){
+            console.log("강아지없다.");
+            alert("강아지 등록을 먼저 해주세요!");
+            navigate('/doginfo');
+        }
+    }, [state, navigate]);
 
-        const List = () => { 
-            return getEntries.map((v) => (<DogList num={v[0]} name={v[1]}/>));
-        };
-        console.log(<List/>);
-        return (
-            <>
-                <TopNavigation />
-                <div className="dog-select-warp">
-                    <div className="dog-select-list">
-                        <p>MBTI를 검사할 우리 아이를 선택해주세요.</p>
-                        <ul>                        
-                            <li className='img-box' onTouchStart={touch_start} onTouchEnd={touch_end}>
-                                <a>
-                                    <img src=''/>
-                                </a>
-                                <span className="material-symbols-outlined">add_circle</span>
-                            </li>
-                            <li className='img-box' onTouchStart={touch_start} onTouchEnd={touch_end}>
-                                <a>
-                                    <img src=''/>
-                                </a>
-                                <span className="material-symbols-outlined">add_circle</span>
-                            </li>                        
-                        </ul>
-                    </div>
-                    <div className="dog-menu-list">
-                        <ul>
-                            <li className="dbti-link">
-                                <a>MBTI 분석하기</a>
-                                <span className="material-symbols-outlined">arrow_forward_ios</span>
-                            </li>
-                            <p>4가지 분석 기준에 따라 분류되어 있어요.</p>
-                            <li className="dog-show-link">
-                                <a>반려견 자랑하기</a>
-                                <span className="material-symbols-outlined">arrow_forward_ios</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </>
+    // 강아지 정보 있을 때 이미지 슬라이드 추가
+    const dogInfoList = location.state;
+
+    // 강아지 정보 로케이션
+    const goBoast = () => {
+        navigate('/DogBoast', {
+                state: dogInfoList,
+            }
         );
-    }
+    };
+
+    // 있는 강아지 등록 정보 리스트
+    const dogArr = dogInfoList.map((item) => {
+        return <SwiperSlide key={item.idx} className="dog-slide">
+                    <img src={item.url} 
+                        alt={item.name} 
+                        onError={handleImgError}/>
+                    <span className='dog-name'>{item.name}</span>
+            </SwiperSlide>;
+    });  
+
+    return (
+        <>
+            {/* 탑 네비 */}
+            <TopNavigation />
+
+            {/* 중간 컨텐츠 */}
+            <div className="dog-select-warp">
+                <div className="dog-select-list">
+                    <p>MBTI를 검사할 우리 아이를 선택해주세요.</p>
+                
+                {/* 이미지 슬라이드 */}
+                    <Swiper
+                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={25}
+                            //간격
+                        slidesPerView={1.5}
+                            //보여질 컨텐츠 수
+                        scrollbar={{ draggable: true }}
+                            //드래그
+                        className="dog-select-list"
+                        >
+
+                        {/* 기존에 있는 강아지 리스트 */}
+                        {dogArr} 
+
+                        {/* 새로 추가할 강아지 리스트 */}
+                        <SwiperSlide className='new-dog-slide' onClick={goDogAdd}><div><span className="material-symbols-outlined">add_circle</span></div></SwiperSlide> 
+                    </Swiper>
+                </div>
+                <div className="dog-menu-list">
+                    <ul>
+                        <li className="dbti-link" onClick={goMbti}>
+                            <button>MBTI 분석하기</button>
+                            <span className="material-symbols-outlined">arrow_forward_ios</span>
+                        </li>
+                        <p>4가지 분석 기준에 따라 분류되어 있어요.</p>
+                        <li className="dog-show-link" onClick={goBoast}>
+                            <button>반려견 자랑하기</button>
+                            <span className="material-symbols-outlined">arrow_forward_ios</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </>
+    );
    
 }
 
