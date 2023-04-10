@@ -30,10 +30,16 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
+html, body {
+	/* min-height: 100%; */
+}
+
 html,
 /* body {
   height: 100%;
 } */
+
 body {
   line-height: 1;
 }
@@ -53,6 +59,11 @@ q:after {
   content: none;
 }
 table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+#root {
+	/* height: 100%; */
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -60,9 +71,10 @@ table {
   height: 100%;
 } */
 #Main {
-  max-width: 476px;
-  height: 100%;
-  background-color: #f5f3f2;
-  margin: auto;
-  position: relative;
+    max-width: 476px;
+    min-height: 100vh;
+    height: 100%;
+    background-color: #F5F3F2;
+    margin: auto;
+    position: relative;
 }

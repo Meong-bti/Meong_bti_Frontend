@@ -1,0 +1,95 @@
+@charset "utf-8";
+
+.top-nav {
+    max-width: 436px;
+    width: 90%;
+    height: 60px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #EFE7E0;
+    box-sizing: border-box;
+}
+.top-nav button {
+    display: block;
+    width: calc(436px/3);
+    height: 60px;
+    text-indent: -9999px;
+    position: relative;
+    color: #2E2A27;
+    background: none;
+    border: none;
+}
+.top-nav button span {
+    display: block;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    position: absolute;
+    top: calc(50% - 17px);
+    text-indent: 0;
+    font-size: 34px;
+    cursor: pointer;
+}
+.top-nav button:first-child span {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    top: calc(50% - 12px);
+    left: 0;
+    text-indent: calc(12px/2);
+}
+.top-nav button:nth-child(2) span {
+    left: calc(50% - 17px);
+}
+.top-nav button:last-child span {
+    right: 9px;
+}
+.toggle-menu {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    background-color: #b79e84;
+    right: -300px;
+    top: 0;
+    border-radius: 0 0 30px 0;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px rgb(46,42,39,30%);
+    /* transition: var(--mainTransition); */
+    transition: all .5s;
+}
+.show-menu {
+    max-width: 300px;
+    right: 0;
+    width: 60%;
+}
+.toggle-menu .toggle-menu-top {
+    padding: 20px;
+    min-height: 60px;
+    box-sizing: border-box;
+}
+.toggle-menu .toggle-menu-top button {
+    background: none;
+    border: none;
+    text-indent: -9999px;
+    color: transparent;
+}
+.toggle-menu .toggle-menu-top button span{
+    text-indent: 9999px;
+    color: black;
+    font-size: 25px;
+}
+.toggle-menu .toggle-menu-content {
+    height: auto;
+    min-height: 100px;
+}
+.toggle-menu .toggle-menu-content .user-box {
+    margin: 20px;
+    border-radius: 20px;
+    border: 2px solid #EFE7E0;
+    padding: 25px;
+    box-sizing: border-box;
+    font-size: 18px;
+}
