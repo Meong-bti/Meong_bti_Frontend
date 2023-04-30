@@ -8,6 +8,10 @@ const APILogin = () => {
     navigate(`/login`);
   };
 
+  const goRegister = () => {
+    navigate(`/register`);
+  }
+
   return (
     <div className="api-login">
       <div className="login-img-wrapper">
@@ -23,7 +27,7 @@ const APILogin = () => {
         <button className="api-button">카카오 로그인</button>
       </div>
       <div className="btn-wrapper">
-        <MyButton text="회원가입"></MyButton>
+        <MyButton text="회원가입" onClick={goRegister}></MyButton>
         <MyButton text="로그인" onClick={goEmailLogin}></MyButton>
       </div>
     </div>

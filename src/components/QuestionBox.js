@@ -5,7 +5,7 @@ const QuestionBox = ({ text, num, percentIncrease, step }) => {
 
   return (
     <div className={`question-box boxs${num}`} id={`box${num}`}>
-      <h2>{text}</h2>
+      <h2 style={{marginBottom: "10px"}}>{text}</h2>
       <div className="check-list" style={{ display: "flex" }}>
         {score.map((score) => (
           <MyCheck

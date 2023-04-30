@@ -11,17 +11,20 @@
 }
 
 .dog-post .btn-wrapper {
-  margin: 30px 20px;
+  margin: 20px 20px;
   display: flex;
   justify-content: flex-end;
 }
 
-.dog-post .btn-wrapper button {
+.dog-post .btn-wrapper .post-button {
   border: none;
   font-size: 15px;
   font-weight: 700;
-  background-color: #d9d9d9;
+  color: #fff3e7;
+  background-color: #b79e84;
   padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
 }
 
 .dog-post .post-box {
@@ -79,7 +82,7 @@
 .dog-post .post-head .dropdown-content {
   display: none;
   position: absolute;
-  left: 50%;
+  left: -50%;
   transform: translate(-50%);
   
   min-width: 100px;
@@ -87,16 +90,27 @@
 }
 
 .dog-post .post-head .dropdown-content span {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
   display: block;
-  
+  /* text-decoration: none; */
+
+  color: #b79e84;
+  background-color: #f5f3f2;
+
+  padding: 12px 16px;
+  border: 1px solid #b79e84;
+  border-radius: 50px;
+  margin: 5px;
+
+  text-align: center;
+}
+
+.dog-post .post-head .dropdown-content span:hover {
+  color: #f5f3f2;
+  background-color: #b79e84;
 }
 
 .dog-post .post-head .menu-box:hover .dropdown-content {
   display: block;
-  background-color: #f2e4d5;
 }
 
 .dog-post .post-date {

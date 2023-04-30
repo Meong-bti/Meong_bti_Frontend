@@ -24,10 +24,14 @@ const TopNavigation = () => {
               <span className="material-symbols-outlined">arrow_back_ios</span>
               back
           </button>
-          <button className="nav-home" onClick={goHome}>
+          <button className="nav-logo" onClick={goHome} value="2">
+              <img src="assets/LOGO.png" alt="MbtiLogo"/>
+              MbtiLogo
+          </button>
+          {/* <button className="nav-home" onClick={goHome}>
               <span className="material-symbols-outlined">home</span>    
               home
-          </button>    
+          </button>     */}
           <button className="nav-menu" onClick={openMenu}>
               <span className="material-symbols-outlined">menu</span>
               menu

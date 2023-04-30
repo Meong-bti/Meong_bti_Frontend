@@ -17,7 +17,7 @@ const EmailLogin = () => {
       pw_input.focus();
     } else {
       // document.getElementById("email_login").submit();
-      navigate("/doginfo");
+      navigate("/Home");
     }
     event.preventDefault();
   };

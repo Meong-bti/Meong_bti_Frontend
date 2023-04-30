@@ -30,10 +30,10 @@ const TopNavigation2 = () => {
                 <img src="assets/LOGO.png" alt="MbtiLogo"/>
                 MbtiLogo
             </button>
-            <button className="nav-home" onClick={goHome} value="3">
+            {/* <button className="nav-home" onClick={goHome} value="3">
                 <span className="material-symbols-outlined">home</span>    
                 home
-            </button>    
+            </button>     */}
             <button className="nav-menu" onClick={openMenu}>
                 <span className="material-symbols-outlined">menu</span>
                 menu

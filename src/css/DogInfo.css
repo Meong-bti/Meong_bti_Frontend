@@ -139,3 +139,88 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   margin-bottom: 200px;
 }
+
+/* step3 */
+
+.pet-info .pet-info-box {
+  background-color: #efe7e0;
+  margin: 3px;
+  padding: 10px 20px;
+  border-radius: 8px;
+
+  color: #837E70;
+  font-size: 15px;
+  /* font-weight: 600; */
+}
+
+.pet-info .pet-name-box {
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.pet-info .pet-info-box .pet-detail-info {
+  display: flex;
+  margin: 8px 0px;
+}
+
+.pet-info .pet-info-box .pet-image {
+  width: 100px;
+  height: 120px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.pet-info .pet-info-box .no-pet-image {
+  width: 100px;
+  height: 120px;
+  border-radius: 20px;
+  margin-right: 15px;
+
+  background-color: #5d524a;
+}
+
+.pet-info .pet-info-box .pet-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* height: 110px; */
+}
+
+.pet-info .pet-info-box .pet-info-value {
+  font-size: 15px;
+  color: #5d524a;
+  font-weight: 700;
+}
+
+/* check-message */
+
+.pet-info .check-message {
+  display: flex;
+  justify-content: center;
+
+  color: #efe7e0;
+  font-size: 14px;
+}
+
+/* input-image */
+
+/* input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: none;
+  appearance: none;
+} */
+
+/* 파일 선택 버튼 숨기기 */
+/* input[type="file"]::-webkit-file-upload-button {
+  display: none;
+}
+
+input[type="file"]::-moz-file-upload-button {
+  display: none;
+} */

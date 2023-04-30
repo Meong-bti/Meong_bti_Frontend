@@ -17,6 +17,7 @@ import "./css/TopNavigation.css";
 import "./css/DogSelect.css";
 import "./css/DogExplanation.css";
 import "./css/DogBoast.css";
+import "./css/RegisterMember.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -33,6 +34,7 @@ import DogPost from "./pages/DogPost";
 import DogMbtiResult from './pages/DogMbtiResult.js';
 import DogExplanation from './pages/DogExplanation.js';
 import DogBoast from "./pages/DogBoast";
+import RegisterMember from "./pages/RegisterMember";
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function App() {
           <Route path="/DogExplanation" element={<DogExplanation />} />
           <Route path="/dogpost" element={<DogPost />} />
           <Route path="/DogBoast" element={<DogBoast />} />
+          <Route path="/register" element={<RegisterMember />} />
         </Routes>
       </div>
     </BrowserRouter>

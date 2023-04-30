@@ -10,7 +10,7 @@
 }
 
 /* header */
-.question .header {
+.question .top-nav {
   position: sticky;
   top: 0;
   /* align-self: flex-start; */
@@ -22,7 +22,7 @@
 .process-bar {
   display: flex;
   position: sticky;
-  top: 70px;
+  top: 60px;
   padding: 15px;
   align-items: center;
   background-color: #f5f3f2;
@@ -48,6 +48,12 @@
   width: 0%;
   height: 5px;
   border-radius: 3px;
+}
+
+.process-bar .step {
+  margin-left: 18px;
+  font-weight: 700;
+  color: #665645;
 }
 
 /* next-button */

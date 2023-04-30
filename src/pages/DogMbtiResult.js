@@ -4,8 +4,10 @@ import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 // import ImageMap from "image-map";
 // import ImageMapper from 'react-img-mapper';
+import { useLocation } from 'react-router-dom'
 
 const DogMbtiResult = () => {
+    const location = useLocation();
     const navigate = useNavigate();
 
     const goDetail = () => {
@@ -21,10 +23,10 @@ const DogMbtiResult = () => {
         type:"ctil", 
         typeEx:"모범견계의 엄친아형", 
         img:"assets/ffgg1.png",
-        detail1:"30", 
-        detail2:"50", 
-        detail3:"90", 
-        detail4: "70", 
+        detail1:location.state.step1, 
+        detail2:location.state.step2, 
+        detail3:location.state.step3, 
+        detail4:location.state.step4, 
         content: `CTIL 설명 ㅁㄴㅇㅁㄴㅇㅁㄴ
         ㅇㅁㄴㅇㅁㄴ ㅇㅁㄴㅇㅁㄴㅇ
         ㅁㄴㅇ ㅁㄴㅇ ㅁㄴ

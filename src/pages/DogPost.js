@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import MyHeader from "../components/MyHeader";
+import TopNavigation from "../components/TopNavigation";
 // import HeartImg from "../assets/heart.png";
 
 const Post = () => {
   const [postData, setPostData] = useState({
-    memberName: "",
-    petName: "",
-    petMbti: "",
-    like: 0,
+    memberName: "사랑이누나",
+    petName: "사랑이",
+    petMbti: "CTWL",
+    like: 30,
     postDate: "",
-    postContent: "",
+    postContent: "사랑이랑 산책!",
   })
   const [likeClick, setLikeClick] = useState(false);
   const [like, setLike] = useState(0);
   const [heartImg, setHeartImg] = useState("heart_empty");
   const [heartSticker, setHeartSticker] = useState("none");
+  const [contentEdit, setContentEdit] = useState(false);
 
   const clickHeart = () => {
     if (likeClick === true) {
@@ -49,16 +50,16 @@ const Post = () => {
         <div className="person-img"></div>
         <div className="post-info">
           <div className="post-writer">
-            <span className="person-name">라꿍이누나</span>
-            <span className="dog-name">멍순이 &nbsp;CTEA</span>
+            <span className="person-name">{postData.memberName }</span>
+            <span className="dog-name">{postData.petName} &nbsp;{postData.petMbti}</span>
           </div>
           <div className="post-date">10분 전</div>
         </div>
         <div className="menu-box">
           <span className="material-symbols-outlined menu" onClick={clickMenu} style={{marginTop: "10px"}}>more_vert</span>
           <div className="dropdown-content">
-            <span>수정하기</span>
-            <span>삭제하기</span>
+            <span>수정</span>
+            <span>삭제</span>
           </div>
         </div>
       </div>
@@ -75,20 +76,21 @@ const Post = () => {
           {like}
         </div>
       </div>
-      <div className="post-content">사랑이 우리강아지너모귀여엉옹귀여어귀여워위귀여우어귀여우엉닝닝ㅁㄹㅇ날ㄴㅇ님니이라ㅇ라ㅣㅇㄴ랑ㄴㄹ오라.</div>
+      {contentEdit ? (
+        <div className="post-content"><textarea value={postData.postContent}></textarea></div>
+      ): (
+        <div className="post-content">{postData.postContent}</div>
+      )}
     </div>
   );
 };
 
-const DogPost = () => {
-
-  const [likeClick, setLikeClick] = useState(false);
-
+const DogPost = () => { 
   return (
     <div className="dog-post">
-      <MyHeader />
+      <TopNavigation />
       <div className="btn-wrapper">
-        <button>자랑하기</button>
+        <button className="post-button">자랑하기</button>
       </div>
       <Post />
       <Post />
