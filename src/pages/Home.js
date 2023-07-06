@@ -17,7 +17,7 @@ function Home() {
   return (
     <div id="Main">
       <div className="main-box" onClick={goLink}>
-        <div className="main-logo"><img src="assets/LOGO.png" style={{"width" : "120px"}} alt="MbtiLogo"/></div>
+        <div className="main-logo"><img src="assets/BIGLOGO.png" style={{"width" : "120px"}} alt="MbtiLogo"/></div>
         <div className="main-img-box"></div>
       </div>
     </div>
