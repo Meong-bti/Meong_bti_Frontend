@@ -149,11 +149,11 @@ const APILogin = () => {
       </div>
       <div className="api-btn-wrapper">
         <button className="api-button" onClick={handleGoogleLogin}>구글 로그인</button>
-        <button className="api-button" onClick={requestGoogleAccessToken}>구글 토큰 획득</button>
-        <button className="api-button" onClick={getGoogleAccessToken}>구글 정보 확인</button>
+        {/* <button className="api-button" onClick={requestGoogleAccessToken}>구글 토큰 획득</button>
+        <button className="api-button" onClick={getGoogleAccessToken}>구글 정보 확인</button> */}
         <button className="api-button" onClick={handleKakaoLogin}>카카오 로그인</button>
-        <button className="api-button" onClick={requestKakaoAccessToken}>카카오 토큰 획득</button>
-        <button className="api-button" onClick={getKakaoAccessToken}>카카오 이메일 확인</button>
+        {/* <button className="api-button" onClick={requestKakaoAccessToken}>카카오 토큰 획득</button>
+        <button className="api-button" onClick={getKakaoAccessToken}>카카오 이메일 확인</button> */}
       </div>
       <div className="btn-wrapper">
         <MyButton text="회원가입" onClick={goRegister} />
