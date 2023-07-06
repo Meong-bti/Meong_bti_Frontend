@@ -192,7 +192,7 @@ const RegisterMember = () => {
     <div className="register-member">
       <div className="login-img-wrapper">
         {/* <div>멍BTI LOGO</div> */}
-        <img src="assets/LOGO.png" alt="MbtiLogo" width="150px" />
+        <img src="assets/BIGLOGO.png" alt="MbtiLogo" width="150px" />
       </div>
       <form onSubmit={handleSubmit} id="email_login">
         <div className="input-box">
