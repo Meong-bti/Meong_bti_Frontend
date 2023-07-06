@@ -1,7 +1,6 @@
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Route, Routes, useLocation } from "react-router-dom";
 import APILogin from "../pages/APILogin";
-import Test from "../pages/Test";
 import EmailLogin from "../pages/EmailLogin";
 import Question from "../pages/Question";
 import DogInfo from "../pages/DogInfo";
@@ -14,7 +13,6 @@ const Transition = () => {
       <CSSTransition key={location.pathname} classNames="fade" timeout={0}>
         <Routes location={location}>
           <Route path="/" element={<APILogin />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/login" element={<EmailLogin />} />
           <Route path="/question" element={<Question />} />
           <Route path="/doginfo" element={<DogInfo />} />

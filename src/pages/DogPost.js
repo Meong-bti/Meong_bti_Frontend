@@ -1,102 +1,103 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import TopNavigation from "../components/TopNavigation";
-// import HeartImg from "../assets/heart.png";
-
-const Post = () => {
-  const [postData, setPostData] = useState({
-    memberName: "사랑이누나",
-    petName: "사랑이",
-    petMbti: "CTWL",
-    like: 30,
-    postDate: "",
-    postContent: "사랑이랑 산책!",
-  })
-  const [likeClick, setLikeClick] = useState(false);
-  const [like, setLike] = useState(0);
-  const [heartImg, setHeartImg] = useState("heart_empty");
-  const [heartSticker, setHeartSticker] = useState("none");
-  const [contentEdit, setContentEdit] = useState(false);
-
-  const clickHeart = () => {
-    if (likeClick === true) {
-      setHeartImg("heart_empty");
-      setLikeClick(false);
-      setLike(like - 1);
-    } else {
-      setLike(like + 1);
-      setLikeClick(true);
-      setHeartImg("heart");
-      setHeartSticker("flex");
-      setTimeout(() => { setHeartSticker("none") }, 1000);
-    }
-  };
-
-  const clickMenu = () => {
-    
-  }
-  
-  useEffect(() => {
-    if (likeClick === true) {
-      setHeartImg("heart");
-    } else {
-      setHeartImg("heart_empty");
-    }
-  }, []);
-  
-  return (
-    <div className="post-box">
-      <div className="post-head">
-        <div className="person-img"></div>
-        <div className="post-info">
-          <div className="post-writer">
-            <span className="person-name">{postData.memberName }</span>
-            <span className="dog-name">{postData.petName} &nbsp;{postData.petMbti}</span>
-          </div>
-          <div className="post-date">10분 전</div>
-        </div>
-        <div className="menu-box">
-          <span className="material-symbols-outlined menu" onClick={clickMenu} style={{marginTop: "10px"}}>more_vert</span>
-          <div className="dropdown-content">
-            <span>수정</span>
-            <span>삭제</span>
-          </div>
-        </div>
-      </div>
-      <div className="post-image">
-        <img className="pet-post-image" src="assets/petpostimg.jpg" alt="강아지이미지" width="380px" />
-        <img className="heart-sticker" src="assets/heart_stick.png" alt="하트 스티커" style={{ display: `${heartSticker}`}} />
-      </div>
-      <div className="post-like">
-        <img src={`assets/${heartImg}.png`} alt="heart" onClick={clickHeart} style={{ width: "30px" }} />
-        <div
-          className="like-number"
-          style={{ fontSize: "25px", fontWeight: "100", marginLeft: "10px" }}
-        >
-          {like}
-        </div>
-      </div>
-      {contentEdit ? (
-        <div className="post-content"><textarea value={postData.postContent}></textarea></div>
-      ): (
-        <div className="post-content">{postData.postContent}</div>
-      )}
-    </div>
-  );
-};
+import { useNavigate } from "react-router-dom";
+import Post from '../components/Post';
+import { AuthContext } from "../components/AuthContext";
 
 const DogPost = () => { 
+
+  const [posts, setPosts] = useState([]);
+  const [change, setChange] = useState(true);
+  const nickname = localStorage.getItem('nickname');
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
+
+  useEffect(() => {
+    // if (!login) {
+    //   alert('로그인이 필요합니다');
+    //   navigate('/login');
+    // }
+
+     const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollTop + windowHeight >= documentHeight) {
+        // 스크롤이 끝까지 내려갔을 때 실행될 함수
+        // 여기에 원하는 동작을 추가하세요.
+        // console.log('스크롤이 끝까지 내려갔습니다.');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [document.documentElement.scrollHeight])
+
+  const getPostData = async () => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${domain}/post/list`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      
+      setPosts([]);
+      for (let post of result.data.posts) {
+        setPosts(prevPost => ([...prevPost, {
+          postId: post.postId,
+          petId: post.petId,
+          content: post.content,
+          imageUrl: post.postImageUrl,
+          like: post.likeCount,
+          createdAt: post.createdAt,
+          createdDate: post.createdDate,
+          memberId: post.memberId,
+          userName: post.nickname,
+          likeClick: post.isPostLiked,
+          petImg: post.petImageUrl,
+          petDbti: post.petDbti,
+        }]))
+      }
+    } else {
+      alert('실패');
+    }
+  }
+
+  useEffect(() => {
+    if (change === true) {
+      getPostData();
+      setChange(false);
+    }
+  }, [change])
+
+  const goBoast = () => {
+    navigate('/dogBoast');
+  };
+
   return (
-    <div className="dog-post">
-      <TopNavigation />
-      <div className="btn-wrapper">
-        <button className="post-button">자랑하기</button>
+    <>
+      <div className="dog-post">
+        <TopNavigation />
+        <div className="btn-wrapper">
+          <button className="post-button" onClick={goBoast}>자랑하기</button>
+        </div>
+        <div className="post-content">
+          {posts.map((it, index) => (
+            <Post postData={it} key={index} user={nickname} onChange={setChange} />
+          ))}
+        </div>
       </div>
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-    </div>
+    </>
   );
 };
 

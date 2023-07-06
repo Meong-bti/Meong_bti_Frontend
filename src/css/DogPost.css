@@ -3,14 +3,24 @@
 .dog-post {
   display: flex;
   flex-direction: column;
-
   background-color: #f5f3f2;
   min-height: 100vh;
   margin-left: 20px;
-  padding: 0px 15px;
+  /* padding: 0px 15px; */
+  padding: 0px 0px;
+}
+
+.dog-post .top-nav {
+  position: sticky;
+  top: 0;
+  background-color: #f5f3f2;
 }
 
 .dog-post .btn-wrapper {
+  position: sticky;
+  /* width: 80px; */
+  top: 80px;
+  /* left: 900px; */
   margin: 20px 20px;
   display: flex;
   justify-content: flex-end;
@@ -27,9 +37,12 @@
   cursor: pointer;
 }
 
-.dog-post .post-box {
+.dog-post .post-content {
   display: flex;
   flex-direction: column;
+}
+
+.dog-post .post-box {
   padding: 0px 20px;
   border-bottom: 1px solid gray;
   margin: 10px 0px 25px;
@@ -43,7 +56,7 @@
 }
 
 /* 임시 이미지 */
-.dog-post .post-head .person-img {
+.dog-post .post-head .pet-img {
   background-color: #373636;
   width: 45px;
   height: 45px;
@@ -152,4 +165,46 @@
   display: flex;
   padding: 0px 15px;
   margin-bottom: 50px;
+}
+
+.dog-post .post-content .edit-btn {
+  background-color: #b79e84;
+  color: white;
+  border-radius: 10px;
+  display: inline;
+  width: 50px;
+  text-align: center;
+  padding: 5px;
+  margin-top: 15px;
+  align-self: end;
+  cursor: pointer;
+}
+
+.dog-post .post-content textarea {
+    width: 100%;
+    height: 300px;
+    border-radius: 30px;
+    border: 1px solid #373636;
+    border: none;
+    background: #ddd;
+    resize: none;
+    padding: 50px 30px;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dog-post .post-content textarea ::placeholder {
+    color: #ddd;
+}
+.dog-post .post-content textarea:focus {
+    outline: none;
+}
+.dog-post .post-content .post-content-img {
+    width: 45px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    /* top: -34px;
+    left: 20px; */
 }

@@ -2,21 +2,14 @@
     padding: 25px;
     margin-bottom: 30px;
 }
-.result-box .explain-mbti-detail-box {
 
-}
 .result-box .explain-mbti-detail-box img{
     width: 80%;
     margin: auto;
     display: block;
     margin-bottom: 20px;
 }
-.result-box .explain-mbti-detail-box:first-child {
 
-}
-.result-box .explain-mbti-detail-box:nth-child(2) {
-
-}
 .result-box .explain-mbti-detail-box .explain-mbti-detail {
     padding: 25px;
     margin-bottom: 20px;

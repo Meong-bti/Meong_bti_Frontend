@@ -1,17 +1,18 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ImageMap from "image-map";
-import ImageMapper from 'react-img-mapper';
 import TopNavigation2 from '../components/TopNavigation2.js';
 
 
 const DogExplanation = () => {
-
+    const location = useLocation();
     const navigate = useNavigate();
     // 네비게이션
     const goBack = () => {
-        navigate('/DogMbtiResult');
+        navigate('/DogMbtiResult', {
+            state: location.state
+        });
     };
 
     const dogExContent = [
@@ -80,7 +81,7 @@ const DogExplanation = () => {
                 <p>MBTI 멍비티아이란?</p>
                 <div className="explain-mbti">
                     <h3>MBTI 설명</h3>
-                    <p>ㅁㅇㅇㅇㄴsㄻㄹㄴㄹㅇㄴㅁㅁㄴㅇㄹㄴㅇㄻㄹㄴㄹㄴㅁㄴㄹㄴㅁㄴㄹㄴㅇㄹㄴㅁㄹㄴㅇㄻㄴㄹㄴㄹㅇㅇㄻㄴㅇㄻㄴ</p>
+                    <p>ㅁㅇㅇㅇㄴsㄻㄹㄴㄹㅇㄴㅁㅁㄴㅇㄹㄴㅇㄻㄹㄴㄹㄴㅁㄴㄹㄴㅁㄴㄹㄴㅇㄹㄴㅁㄹㄴㅇㄻㄴㄹㄴㄹㅇㅇㄻㄴㅇㄻㄴ. DBTI를 눌러서 설명을 읽어보세요</p>
                 </div>
                 <div className="explain-mbti-detail-box">
                     <img src="assets/image18.png" alt="전체 mbti 설명 표" useMap="#imageMap" onLoad={handleImageLoad}/>
