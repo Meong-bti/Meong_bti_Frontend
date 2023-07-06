@@ -140,7 +140,7 @@ const APILogin = () => {
     <div className="api-login">
       <div className="login-img-wrapper">
         {/* <div>멍BTI LOGO</div> */}
-        <img src="assets/LOGO.png" alt="MbtiLogo" width="150px" />
+        <img src="assets/BIGLOGO.png" alt="MbtiLogo" width="150px" />
         <img
           alt="개"
           src={process.env.PUBLIC_URL + `assets/dog.jpg`}

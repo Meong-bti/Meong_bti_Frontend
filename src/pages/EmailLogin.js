@@ -84,7 +84,7 @@ const EmailLogin = () => {
   return (
     <div className="email-login">
       <div className="login-img-wrapper">
-        <img src="assets/LOGO.png" alt="MbtiLogo" width="150px" />
+        <img src="assets/BIGLOGO.png" alt="MbtiLogo" width="150px" />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="input-box">
