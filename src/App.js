@@ -40,7 +40,6 @@ import DogBoast from "./pages/DogBoast";
 import RegisterMember from "./pages/RegisterMember";
 import DogDetail from "./pages/DogDetail";
 import UpdatePassword from "./pages/UpdatePassword";
-import Test from "./pages/test";
 
 import { createContext, useState } from "react";
 
@@ -89,7 +88,6 @@ function App() {
               <Route path="/register" element={<RegisterMember />} />
               <Route path="/updatePassword" element={<UpdatePassword />} />
               <Route path="/DogSelect" element={<DogSelect />} />
-              <Route path="/test" element={<Test />} />
             </Routes>
           </AuthProvider>
         </PetContext.Provider>
