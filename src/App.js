@@ -30,7 +30,6 @@ import ForgetPw from "./pages/ForgetPw";
 import Question from "./pages/Question";
 import DogSelect from './pages/DogSelect.js';
 import DogInfo from "./pages/DogInfo";
-// import Transition from "./components/Transition";
 import Home from "./pages/Home.js";
 import Main from "./pages/Main.js";
 import DogPost from "./pages/DogPost";
@@ -46,7 +45,6 @@ import { createContext, useState } from "react";
 import { AuthProvider } from "./components/AuthContext";
 import EditDogInfo from "./pages/EditDogInfo";
 import AuthKakao from "./pages/AuthKakao";
-
 
 export const PetContext = createContext();
 
@@ -93,11 +91,6 @@ function App() {
         </PetContext.Provider>
       </div>
     </BrowserRouter>
-    // <BrowserRouter>
-    //   <div className="App">
-    //     <Transition />
-    //   </div>
-    // </BrowserRouter>
   );
 }
 

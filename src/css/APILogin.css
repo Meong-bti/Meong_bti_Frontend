@@ -14,7 +14,7 @@
   align-items: center;
   /* justify-content: center; */
 
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   font-size: 30px;
   color: white;
@@ -25,19 +25,16 @@
   flex-direction: column;
   align-items: center;
   padding: 5px;
+  margin-bottom: 10px;
 }
 
 .api-login .api-button {
   cursor: pointer;
-  border: none;
-  border-radius: 12px;
   width: 100%;
 
-  background-color: #ffffff;
   color: black;
 
-  padding: 8px 0px;
-  margin: 8px;
+  margin: 5px;
 
   font-size: 13px;
   font-weight: 400;
