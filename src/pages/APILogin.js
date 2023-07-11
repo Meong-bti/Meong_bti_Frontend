@@ -139,7 +139,6 @@ const APILogin = () => {
   return (
     <div className="api-login">
       <div className="login-img-wrapper">
-        {/* <div>멍BTI LOGO</div> */}
         <img src="assets/BIGLOGO.png" alt="MbtiLogo" width="150px" />
         <img
           alt="개"
@@ -148,10 +147,10 @@ const APILogin = () => {
         />
       </div>
       <div className="api-btn-wrapper">
-        <button className="api-button" onClick={handleGoogleLogin}>구글 로그인</button>
+        <img src="assets/googleLogin.png" className="api-button" onClick={handleGoogleLogin} />
         {/* <button className="api-button" onClick={requestGoogleAccessToken}>구글 토큰 획득</button>
         <button className="api-button" onClick={getGoogleAccessToken}>구글 정보 확인</button> */}
-        <button className="api-button" onClick={handleKakaoLogin}>카카오 로그인</button>
+        <img src="assets/kakaoLogin.png" className="api-button" onClick={handleKakaoLogin} />
         {/* <button className="api-button" onClick={requestKakaoAccessToken}>카카오 토큰 획득</button>
         <button className="api-button" onClick={getKakaoAccessToken}>카카오 이메일 확인</button> */}
       </div>
