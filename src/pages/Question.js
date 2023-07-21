@@ -4,12 +4,12 @@ import MyButton from "../components/MyButton";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import questListBox from "../components/QuestListBox"; // 질문 모음
+import { updateDbti } from "../api/dbti/DbtiApi";
 
 const Question = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { petId, petName } = state;
-  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
 
   const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
@@ -22,7 +22,7 @@ const Question = () => {
     step3: 0,
     step4: 0,
     protoDog: "C", // W
-    dependency: "T", // N
+    dependence: "T", // N
     relationship: "E", // I
     activity: "A" // L
   });
@@ -36,7 +36,7 @@ const Question = () => {
   };
 
   useEffect(() => {
-    // 진행 퍼센트 바
+    // 퍼센트바 반영
     const charge_bar = document.getElementById("charging");
     charge_bar.style.width = `${percent}%`;
   }, [percent]);
@@ -71,7 +71,7 @@ const Question = () => {
       if (dbti.step2 > 50) {
         setDbti(prevDbti => ({
           ...prevDbti,
-          dependency: "N"
+          dependence: "N"
         }))
       }
       if (dbti.step3 > 50) {
@@ -110,37 +110,7 @@ const Question = () => {
 
   useEffect(() => {
     if (finished) {
-      const dbtiDetail = {
-        dbtiName: dbti.protoDog + dbti.dependency + dbti.relationship + dbti.activity
-        // ...dbti,
-        // petName: petName
-      }
-      
-      console.log(dbtiDetail)
-
-      const updateDbti = async () => {
-        const token = localStorage.getItem('token');
-
-        const response = await fetch(`${domain}/pet/${petId}/dbti`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(dbtiDetail)
-        })
-        if (response.ok) {
-          alert('성공')
-          navigate(`/DogMbtiResult?dbtiId=${petId}`, {
-            state: { petName: petName, dbti: dbti }
-          });
-        } else {
-          console.log(response)
-          alert('실패');
-        }
-      }
-
-      updateDbti();
+      updateDbti(petId, petName, dbti, navigate);
     }
   }, [finished])
 

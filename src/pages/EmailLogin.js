@@ -31,26 +31,26 @@ const EmailLogin = () => {
     setPassword(event.target.value);
   };
 
-  // const getNickname = async () => {
-  //   const token = localStorage.getItem('token');
-  //   const responseNick = await fetch(`${domain}/member/profile`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   })
+  const getNickname = async () => {
+    const token = localStorage.getItem('token');
+    const responseNick = await fetch(`${domain}/member/profile`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
 
-  //   if (responseNick.ok) {
-  //     const result = await responseNick.json();
-  //     localStorage.setItem('nickname', result.data.memberNick);
-  //   } else {
-  //     console.log(responseNick.status);
-  //   }
-  // }
-
-  const getNickname = () => {
-    localStorage.setItem('nickname', 'abc');
+    if (responseNick.ok) {
+      const result = await responseNick.json();
+      localStorage.setItem('nickname', result.data.memberNick);
+    } else {
+      console.log(responseNick.status);
+    }
   }
+
+  // const getNickname = () => {
+  //   localStorage.setItem('nickname', 'abc');
+  // }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
