@@ -3,7 +3,7 @@ import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
 import dbtiConnection from '../components/DbtiConnection.js';
-import { getTestResult } from "../api/dbti/DbtiApi.js";
+import { getResult } from "../api/dbti/index.js";
 
 const DogMbtiResult = () => {
   const location = useLocation();
@@ -22,15 +22,55 @@ const DogMbtiResult = () => {
   const queryParams = new URLSearchParams(location.search);
   const dbtiId = queryParams.get('dbtiId');
   const [dbtiResult, setDbtiResult] = useState('')
+  const [resultTest, setResultTest] = useState({
+    idx:"dNum1",
+    name: "", 
+    type: "",
+    typeEx: "", 
+    img: "",
+    sideImg: "",
+    detail1: 0, 
+    detail2: 0, 
+    detail3: 0, 
+    detail4: 0, 
+    content: ""
+  })
 
   useEffect(() => {
-    setDbtiResult(location.state.dbtiName)
-    setDbtiResult("CNIA")
-    // if (dbtiResult === "") {
-    //   const data = getTestResult(dbtiId)
-    //   console.log(data)
-    //   setDbtiResult(data)
-    // }
+    if (location.state) {
+      setDbtiResult(location.state.dbtiName)
+      const { step1, step2, step3, step4 } = location.state.dbti;
+      setResultTest({
+        idx:"dNum1",
+        name: location.state.petName, 
+        type: dbtiResult,
+        typeEx: dbtiConnection.simpleDes[dbtiResult], 
+        img: `assets/dbti/main/${dbtiResult}.png`,
+        sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
+        detail1: step1, 
+        detail2: step2, 
+        detail3: step3, 
+        detail4: step4, 
+        content: dbtiConnection.dbtiDes[dbtiResult]
+      });
+    } else {
+      const getData = getResult(dbtiId).then((data) => {
+        console.log(data)
+        setResultTest({
+          idx:"dNum1",
+          name: data.dbtiName, 
+          type: data.dbtiName,
+          typeEx: dbtiConnection.simpleDes[data.dbtiName], 
+          img: `assets/dbti/main/${data.dbtiName}.png`,
+          sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
+          detail1: data.protoDog, 
+          detail2: data.relationship, 
+          detail3: data.dependence, 
+          detail4: data.activity, 
+          content: dbtiConnection.dbtiDes[data.dbtiName]
+        })
+      })
+    }
   }, [dbtiResult])
 
   const [friendList, setFriendList] = useState(null);
@@ -95,24 +135,13 @@ const DogMbtiResult = () => {
     }
   }
 
-  const { step1, step2, step3, step4 } = location.state.dbti;
-  const dogResultTest = {
-    idx:"dNum1",
-    name: location.state.petName, 
-    type: dbtiResult,
-    typeEx: dbtiConnection.simpleDes[dbtiResult], 
-    img: `assets/dbti/main/${dbtiResult}.png`,
-    sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
-    detail1: step1, 
-    detail2: step2, 
-    detail3: step3, 
-    detail4: step4, 
-    content: dbtiConnection.dbtiDes[dbtiResult]
-  };
+  const currentUrl = window.location.href;
+  const copyUrl = () => {
+    navigator.clipboard.writeText(currentUrl);
+  }
 
   // 강아지 mbti 결과
-  const {idx,name,type,typeEx,img,sideImg,detail1,detail2,detail3,detail4,content} = dogResultTest;
-
+  const {idx,name,type,typeEx,img,sideImg,detail1,detail2,detail3,detail4,content} = resultTest;
   // 프로그레스바 설정
   useEffect(() => {
     const progress_bar1 = document.getElementById("detail1");
@@ -130,12 +159,6 @@ const DogMbtiResult = () => {
     progress_bar3.style.backgroundColor = "#FB7237";    
     progress_bar4.style.backgroundColor = "#5186F3";
   }, [detail1]);
-
-  const currentUrl = window.location.href;
-
-  const copyUrl = () => {
-    navigator.clipboard.writeText(currentUrl);
-  }
 
   return ( 
     <>

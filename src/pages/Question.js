@@ -4,7 +4,7 @@ import MyButton from "../components/MyButton";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import questListBox from "../components/QuestListBox"; // 질문 모음
-import { updateDbti } from "../api/dbti/DbtiApi";
+import { setResult } from "../api/dbti/index.js";
 
 const Question = () => {
   const navigate = useNavigate();
@@ -110,7 +110,7 @@ const Question = () => {
 
   useEffect(() => {
     if (finished) {
-      updateDbti(petId, petName, dbti, navigate);
+      setResult(petId, petName, dbti, navigate);
     }
   }, [finished])
 
