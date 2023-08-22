@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import { useState } from "react";
-import { checkingEmail, checkingNickname, registerMember } from '../api/member/index.js'
+import { checkingEmail, checkingNickname, registerMember, confirmEmail } from '../api/member/index.js'
 
 const RegisterMember = () => {
   const navigate = useNavigate();
+  const [certNumber, setCertNumber] = useState()
   const [memberInfo, setMemberInfo] = useState({
     nickname: "",
     email: "",
@@ -15,6 +16,7 @@ const RegisterMember = () => {
   const [defaultCheck, setDefaultCheck] = useState({
     nickname: false,
     email: false,
+    emailCheck: false,
     pw1Check: false,
     pw2Check: false
   })
@@ -38,7 +40,7 @@ const RegisterMember = () => {
     event.preventDefault();
 
     if (memberInfo.nickname) {
-      checkingNickname(memberInfo.nickname, setDefaultCheck, setValueCheck)
+      checkingNickname(memberInfo.nickname, setDefaultCheck, setValueCheck, valueCheck)
     } else {
       alert("닉네임을 입력해주세요");
     }
@@ -48,10 +50,25 @@ const RegisterMember = () => {
     event.preventDefault();
     validateEmail(memberInfo.email);
     if(valueCheck.email) {
-      checkingEmail(memberInfo.email, setDefaultCheck, setValueCheck)
+      checkingEmail(memberInfo.email, setDefaultCheck, setValueCheck, valueCheck)
     } else {
       alert("유효하지 않은 이메일입니다.");
     }
+  }
+
+  const checkEmail2 = async (event) => {
+    event.preventDefault();
+    validateEmail(memberInfo.email);
+    if (valueCheck.email) {
+      confirmEmail({email: memberInfo.email, setDefaultCheck, setValueCheck, defaultCheck, valueCheck})
+    } else {
+      alert("유효하지 않은 이메일입니다.");
+    }
+  }
+
+  const checkCertNumber = async (event) => {
+    event.preventDefault();
+    
   }
 
   const changeEmail = (e) => {
@@ -60,6 +77,10 @@ const RegisterMember = () => {
       ...prev,
       email: false
     }));
+  }
+
+  const changeCertNumber = (e) => {
+    setCertNumber(e.target.value)
   }
 
   // 이메일 유효성 검사
@@ -150,16 +171,7 @@ const RegisterMember = () => {
             onChange={changeNickname}
             placeholder="닉네임"
           />
-          <button className="nickname-check-btn" onClick={checkNickname}>중복 확인</button>
-          {!defaultCheck.nickname ? null : ( valueCheck.nickname ? (
-            <span className="material-symbols-outlined check-icon">done</span>
-          ) : (
-            <span className="material-symbols-outlined bad-check-icon">close</span>    
-          ))}
         </div>
-        {defaultCheck.nickname && !valueCheck.nickname && (
-          <div className="check-message">사용 중인 닉네임입니다.</div>
-        )}
         <div className="input-box">
           <input
             className="input input-value"
@@ -169,13 +181,23 @@ const RegisterMember = () => {
             onBlur={(e) => validateEmail(e.target.value)}
             placeholder="이메일"
           />
-          <button className="nickname-check-btn" onClick={checkEmail}>중복 확인</button>
-          {!defaultCheck.email ? null : ( valueCheck.email ? (
-            <span className="material-symbols-outlined check-icon">done</span>
+          {!defaultCheck.email ? (
+            <button className="nickname-check-btn" onClick={checkEmail}>중복 확인</button>
+          ) : (valueCheck.email ? (
+            <>
+              <button className="nickname-check-btn" onClick={checkEmail2}>인증</button>
+              <span className="material-symbols-outlined check-icon">done</span>
+            </>
           ) : (
             <span className="material-symbols-outlined bad-check-icon">close</span>    
           ))}
         </div>
+        {defaultCheck.emailCheck && (
+          <div className="input-box">
+            <input className="input input-value" type="text" value={certNumber} onChange={changeCertNumber} placeholder="인증번호" />
+            <button className="nickname-check-btn" onClick={checkEmail2}>인증번호 확인</button>
+          </div>
+        )}
         {defaultCheck.email && !valueCheck.email && (
           <div className="check-message">사용 중인 이메일입니다.</div>
         )}

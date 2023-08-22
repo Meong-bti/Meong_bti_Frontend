@@ -1,3 +1,7 @@
 export * from './getNickname.js'
 export * from './emailLogin.js'
 export * from './register.js'
+export * from './updatePw.js'
+export * from './tempPw.js'
+export * from './confirmEmail.js'
+export * from './logout.js'

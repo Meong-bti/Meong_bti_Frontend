@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 // import { LoginStateContext } from "../App";
 import { AuthContext } from "./AuthContext";
+import { logoutMember } from "../api/member";
 
 const TopNavigation = () => {
   const navigate = useNavigate();  
@@ -46,9 +47,7 @@ const TopNavigation = () => {
   // }
 
   const logout = () => {
-    localStorage.removeItem('token');
-    loginUpdate();
-    navigate('/');
+    logoutMember({navigate, loginUpdate})
   }
 
   // 토글메뉴 오픈

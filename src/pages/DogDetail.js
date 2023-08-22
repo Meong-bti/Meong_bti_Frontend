@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { PetContext } from "../App";
 import TopNavigation from "../components/TopNavigation";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { getPetInfo, deletePet } from "../api/pet";
 
 const DogDetail = () => {
   const navigate = useNavigate();
@@ -10,54 +10,12 @@ const DogDetail = () => {
   const petId = location.state;
   const { petList, petInfo, setPetInfo } = useContext(PetContext);
 
-  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
-
   const goEditDogInfo = () => {
     navigate('/editdoginfo')
   }
 
-  const getPetDetail = async () => {
-    const token = localStorage.getItem('token');
-
-    const response = await fetch(`${domain}/pet/${petId}/detailInfo`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    if (response.ok) {
-      const result = await response.json();
-      setPetInfo({ ...result.data, petId: petId })
-    } else {
-      console.log('pet 상세불러오기 실패');
-    }
-  }
-
-  const deletePet = async () => {
-    const petId = petInfo.petId;
-    const token = localStorage.getItem('token');
-
-    const response = await fetch(`${domain}/pet/${petId}/deletePet`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    if (response.ok) {
-      navigate('/main')
-      if (petList.length === 1) {
-        alert('남은 강아지가 없습니다. 강아지를 등록해주세요');
-        navigate('/doginfo');
-      }
-    } else {
-      console.log("삭제 실패");
-    }
-  }
-
   useEffect(() => {
-    getPetDetail();
+    getPetInfo({petId, setPetInfo});
   }, [])
 
   return (
@@ -72,7 +30,7 @@ const DogDetail = () => {
               </div>
               <div className="btn-box">
                 <div className="control-button" onClick={goEditDogInfo}>수정하기</div>
-                <div className="control-button" onClick={deletePet}>삭제하기</div>
+                <div className="control-button" onClick={() => {deletePet({petId, petList, navigate})}}>삭제하기</div>
               </div>
             </div>
             <div className="pet-detail-info">

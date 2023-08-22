@@ -1,4 +1,4 @@
-const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
+import { domain } from "../domain"
 
 export const registerMember = async ({nickname, email, pw1, pw2, navigate }) => {
   const response = await fetch(`${domain}/member/signup`, {
@@ -17,37 +17,39 @@ export const registerMember = async ({nickname, email, pw1, pw2, navigate }) => 
   }
 }
 
-export const checkingNickname = async (nickname, setDefaultCheck, setNicknameCheck) => {
-  const response = await fetch(`${domain}/member/checkNickname`, {
+export const checkingNickname = async (nickname, setDefaultCheck, setValueCheck, valueCheck) => {
+  const response = await fetch(`${domain}/member/nickname/duplicate-check`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ nickname })
+    body: JSON.stringify({ memberNick: nickname })
   })
 
   if (response.ok) {
+    alert("닉네임 중복 확인 성공")
     setDefaultCheck(prev => ({
       ...prev,
       nickname: true
     }));
-    setNicknameCheck(true);
+    setValueCheck({...valueCheck, nickname: true});
   } else {
+    alert("닉네임 중복 확인 실패")
     setDefaultCheck(prev => ({
       ...prev,
       nickname: true
     }));
-    setNicknameCheck(false);
+    setValueCheck({...valueCheck, nickname: false});
   }
 }
 
-export const checkingEmail = async (email, setDefaultCheck, setEmailCheck) => {
-  const response = await fetch(`${domain}/member/checkEmail`, {
+export const checkingEmail = async (email, setDefaultCheck, setValueCheck, valueCheck) => {
+  const response = await fetch(`${domain}/member/email/duplicate-check`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ email })
+    body: JSON.stringify({ memberEmail: email })
   })
 
   if (response.ok) {
@@ -55,12 +57,13 @@ export const checkingEmail = async (email, setDefaultCheck, setEmailCheck) => {
       ...prev,
       email: true
     }));
-    setEmailCheck(true);
+    setValueCheck({...valueCheck, email: true});
   } else {
+    alert("이메일 중복 확인 실패")
     setDefaultCheck(prev => ({
       ...prev,
       email: true
     }));
-    setEmailCheck(false);
+    setValueCheck({...valueCheck, email: false});
   }
 }

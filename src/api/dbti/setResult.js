@@ -1,4 +1,4 @@
-const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
+import { domain } from "../domain"
 
 export const setResult = async (petId, petName, dbti, navigate) => {
   const token = localStorage.getItem('token')

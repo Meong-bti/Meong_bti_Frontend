@@ -4,6 +4,7 @@
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   margin-left: 20px;
+  white-space: pre-wrap;
 }
 .result-box > p {
   font-size: 20px;

@@ -3,10 +3,9 @@ import TopNavigation from "../components/TopNavigation";
 import MyButton from "../components/MyButton";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
+import { updatePw } from "../api/member/index.js";
 
 const UpdatePassword = () => {
-  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
-
   const navigate = useNavigate();
   const { loginUpdate } = useContext(AuthContext)
   const [pw1, setPw1] = useState("");
@@ -68,29 +67,10 @@ const UpdatePassword = () => {
 
   const changeNewPw = async () => {
     if (pw1Check && pw2Check) {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${domain}/member/updatePw`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }, 
-        body: JSON.stringify({memberPw: pw1, checkPw: pw2})
-      });
-
-      if (response.ok) {
-        localStorage.removeItem('token');
-        loginUpdate();
-        navigate('/');
-      } else {
-        const result = await response.json();
-        console.log(result);
-        alert("실패");
-      }
+      updatePw({pw1, pw2, navigate, loginUpdate})
     } else {
       alert("비밀번호를 확인해주세요");
     }
-    
   }
 
   return (
