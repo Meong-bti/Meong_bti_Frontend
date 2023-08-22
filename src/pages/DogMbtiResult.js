@@ -3,9 +3,9 @@ import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
 import dbtiConnection from '../components/DbtiConnection.js';
+import { getResult } from "../api/dbti/index.js";
 
 const DogMbtiResult = () => {
-  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,26 +22,54 @@ const DogMbtiResult = () => {
   const queryParams = new URLSearchParams(location.search);
   const dbtiId = queryParams.get('dbtiId');
   const [dbtiResult, setDbtiResult] = useState('')
-  
-  const getTestResult = async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${domain}/pet/${dbtiId}/dbtiInfo`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    if (response.ok) {
-      const result = await response.json();
-      setDbtiResult(result.data.dbtiName)
-    }
-  }
+  const [resultTest, setResultTest] = useState({
+    idx:"dNum1",
+    name: "", 
+    type: "",
+    typeEx: "", 
+    img: "",
+    sideImg: "",
+    detail1: 0, 
+    detail2: 0, 
+    detail3: 0, 
+    detail4: 0, 
+    content: ""
+  })
 
   useEffect(() => {
-    if (dbtiResult === "") {
-      getTestResult()
+    if (location.state) {
+      setDbtiResult(location.state.dbtiName)
+      const { step1, step2, step3, step4 } = location.state.dbti;
+      setResultTest({
+        idx:"dNum1",
+        name: location.state.petName, 
+        type: dbtiResult,
+        typeEx: dbtiConnection.simpleDes[dbtiResult], 
+        img: `assets/dbti/main/${dbtiResult}.png`,
+        sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
+        detail1: step1, 
+        detail2: step2, 
+        detail3: step3, 
+        detail4: step4, 
+        content: dbtiConnection.dbtiDes[dbtiResult]
+      });
+    } else {
+      const getData = getResult(dbtiId).then((data) => {
+        console.log(data)
+        setResultTest({
+          idx:"dNum1",
+          name: data.dbtiName, 
+          type: data.dbtiName,
+          typeEx: dbtiConnection.simpleDes[data.dbtiName], 
+          img: `assets/dbti/main/${data.dbtiName}.png`,
+          sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
+          detail1: data.protoDog, 
+          detail2: data.relationship, 
+          detail3: data.dependence, 
+          detail4: data.activity, 
+          content: dbtiConnection.dbtiDes[data.dbtiName]
+        })
+      })
     }
   }, [dbtiResult])
 
@@ -107,56 +135,13 @@ const DogMbtiResult = () => {
     }
   }
 
-  // const { step1, step2, step3, step4, ...remaining } = location.state.dbti;
-  // const dbti = Object.values(remaining).join("");
-  // const dogResultTest = {
-  //   idx:"dNum1",
-  //   name: location.state.petName, 
-  //   type: dbti,
-  //   typeEx:dbtiConnection[dbti], 
-  //   img:`assets/dbti/${dbti}.jpg`,
-  //   detail1: step1, 
-  //   detail2: step2, 
-  //   detail3: step3, 
-  //   detail4: step4, 
-  //   content: `CTIL 설명 ㅁㄴㅇㅁㄴㅇㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴ ㅇㅁㄴㅇㅁㄴㅇ
-  //     ㅁㄴㅇ ㅁㄴㅇ ㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ ㅇㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅀㅁㄴ
-  //     ㅇㅀㄴㅇㅀㄴ
-  //     ㅇㅀㅗㅇㄹ홍ㄹ홍ㅀ
-  //     ㅗㅇㄹ홍ㄹ홍ㄹ호
-  //     ㅇㄹ홍ㄹ홍ㄹ홍
-  //     CTIL 설명 ㅁㄴㅇㅁㄴㅇㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴ ㅇㅁㄴㅇㅁㄴㅇ
-  //     ㅁㄴㅇ ㅁㄴㅇ ㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴ ㅇㅁㄴ
-  //     ㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅀㅁㄴ
-  //     ㅇㅀ ㄴㅇㅀㄴ
-  //     ㅇㅀ ㅗㅇㄹ홍ㄹ홍ㅀ
-  //     ㅗㅇㄹ홍ㄹ홍ㄹ호
-  //     ㅇㄹ홍ㄹ홍ㄹ홍ㄹ호`
-  // };
-  const dbti = "CTIA"
-  
-  const dogResultTest = {
-    idx:"dNum1",
-    name: "크리미", 
-    type: dbtiResult,
-    typeEx:dbtiConnection.simpleDes[dbtiResult], 
-    img: `assets/dbti/${dbtiResult}.jpg`,
-    sideImg: `assets/dbti/side${dbtiResult}.png`,
-    detail1: 20, 
-    detail2: 30, 
-    detail3: 40, 
-    detail4: 50, 
-    content: dbtiConnection.dbtiDes[dbtiResult]
-  };
+  const currentUrl = window.location.href;
+  const copyUrl = () => {
+    navigator.clipboard.writeText(currentUrl);
+  }
 
   // 강아지 mbti 결과
-  const {idx,name,type,typeEx,img,sideImg,detail1,detail2,detail3,detail4,content} = dogResultTest;
-
+  const {idx,name,type,typeEx,img,sideImg,detail1,detail2,detail3,detail4,content} = resultTest;
   // 프로그레스바 설정
   useEffect(() => {
     const progress_bar1 = document.getElementById("detail1");
@@ -175,24 +160,24 @@ const DogMbtiResult = () => {
     progress_bar4.style.backgroundColor = "#5186F3";
   }, [detail1]);
 
-  const currentUrl = window.location.href;
-
-  const copyUrl = () => {
-    navigator.clipboard.writeText(currentUrl);
-  }
-
   return ( 
     <>
       <div className="result-box">
         <TopNavigation2 />
         {/* <p>MBTI 분석 완료!</p> */}
-        <p className="result-word" key={idx}>[{name}] 의 성격유형은 :</p>
+        <p className="result-word">DBTI 분석 완료!</p>
+        {/* <p className="result-word" key={idx}>[{name}] 의 성격유형은 :</p> */}
         <div className="result-top">
           <div className="result-container">
-            <div className="result-detail">
+            <div className="result-detail-left">
+              <p className="result-word">[{name}] 의 성격 유형은 :</p>
+              <p className="result-dbti-name">{dbtiResult}</p>
+              <p className="result-dbti-simpleDes">{typeEx}</p>
               <div className="detail-img">
-                <img src={img} alt="dogDetail img"/>
+                <img src={img} alt="dogDetailImg"/>
               </div>
+            </div>
+            <div className="result-detail-right">
               <div className="progress-container">
                 <ul>
                   <li>

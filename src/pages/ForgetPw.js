@@ -1,13 +1,16 @@
 import MyButton from "../components/MyButton";
 import { useRef, useState } from "react";
+import { tempPw } from '../api/member/index.js'
+import { useNavigate } from "react-router-dom";
 
 const ForgetPw = () => {
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const emailInputRef = useRef(null);
 
-  const getPw = () => {
-    
+  const getPw = async (event) => {
+    event.preventDefault();
+    tempPw({email, navigate});
   }
 
   const handleEmailChange = (event) => {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import TopNavigation from '../components/TopNavigation';
 import { FaCheck } from 'react-icons/fa'
 import { PetContext } from '../App';
+import { createPost } from '../api/post';
 
 const DogBoast = () => {
 	const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
@@ -41,31 +42,7 @@ const DogBoast = () => {
 			setSelectedImage(file);
 			setImageUrl(URL.createObjectURL(file))
     }
-  };
-
-	const createPost = async () => {
-		const token = localStorage.getItem('token');
-		const formData = new FormData();
-    formData.append('petId', clickedPet);
-    formData.append('postImageFile', selectedImage);
-    formData.append('content',  content);
-
-		const response = await fetch(`${domain}/post/${clickedPet}/register`, {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer ${token}`
-			},
-			body: formData
-		});
-
-		if (response.ok) {
-			alert('create post good');
-		} else {
-			alert('create post bad')
-		}
-
-		navigate('/dogpost');
-	}
+	};
 
 	if(page === 1){
 		return (
@@ -124,7 +101,7 @@ const DogBoast = () => {
 						<textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder='50자 이내로 작성해주세요.'></textarea>
 					</div>
 					<div className='boast-submit dog-select-btn'>
-						<button type="button" onClick={createPost}>자랑하기</button>
+						<button type="button" onClick={() => createPost({clickedPet, selectedImage, content, navigate})}>자랑하기</button>
 					</div>
 				</form>
 			</>
