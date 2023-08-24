@@ -3,12 +3,12 @@ import { domain } from "../domain"
 export const logoutMember = async ({navigate, loginUpdate}) => {
 
   const token = localStorage.getItem('token');
-  
+
   const response = await fetch(`${domain}/auth/logout`, {
     method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`
-    }
+    // headers: {
+    //   'Authorization': `Bearer ${token}`
+    // }
   });
 
   if (response.ok) {
