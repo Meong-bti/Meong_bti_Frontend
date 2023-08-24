@@ -2,7 +2,7 @@ import React , {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
-import dbtiConnection from '../components/DbtiConnection.js';
+import dbtiConnection from '../components/DbtiConnection copy.js';
 import { getResult } from "../api/dbti/index.js";
 
 const DogMbtiResult = () => {
@@ -32,8 +32,9 @@ const DogMbtiResult = () => {
     detail1: 0, 
     detail2: 0, 
     detail3: 0, 
-    detail4: 0, 
-    content: ""
+    detail4: 0,
+    subTitle: [],
+    content: []
   })
 
   useEffect(() => {
@@ -55,7 +56,10 @@ const DogMbtiResult = () => {
       });
     } else {
       const getData = getResult(dbtiId).then((data) => {
-        console.log(data)
+        let dataObject = dbtiConnection.dbtiDes[data.dbtiName]
+        for (let i = 0; i < dataObject.subTitle.length; i++){
+          
+        }
         setResultTest({
           idx:"dNum1",
           name: data.dbtiName, 
@@ -67,7 +71,8 @@ const DogMbtiResult = () => {
           detail2: data.relationship, 
           detail3: data.dependence, 
           detail4: data.activity, 
-          content: dbtiConnection.dbtiDes[data.dbtiName]
+          subTitle: dataObject.subTitle,
+          content: dataObject.content
         })
       })
     }
@@ -164,9 +169,7 @@ const DogMbtiResult = () => {
     <>
       <div className="result-box">
         <TopNavigation2 />
-        {/* <p>MBTI 분석 완료!</p> */}
         <p className="result-word">DBTI 분석 완료!</p>
-        {/* <p className="result-word" key={idx}>[{name}] 의 성격유형은 :</p> */}
         <div className="result-top">
           <div className="result-container">
             <div className="result-detail-left">
