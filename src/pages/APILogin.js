@@ -40,16 +40,14 @@ const APILogin = () => {
     navigate(`/register`);
   }
 
-  const redirectUri = 'http://localhost:3000/login'; // 리다이렉트 URI  
+  const redirectUri = 'https://www.mungbti.com/login'; // 리다이렉트 URI  
   const kakaoClientId = '0aae94045a35d65feef8a14ff7e1b4b7'
+  const googleClientId = '1061443135750-pinrgokprfe3m9gs8ev41t3ecrvv7vvo.apps.googleusercontent.com'; // 클라이언트 ID
 
   const handleKakaoLogin = () => {
     localStorage.setItem('OAuthLogin', 'kakao')
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${redirectUri}&response_type=code&scope=account_email`;
   };
-
-
-  const googleClientId = '1061443135750-pinrgokprfe3m9gs8ev41t3ecrvv7vvo.apps.googleusercontent.com'; // 클라이언트 ID
 
   const handleGoogleLogin = () => {
     localStorage.setItem('OAuthLogin', 'google')
