@@ -2,7 +2,7 @@ import React , {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
-import dbtiConnection from '../components/DbtiConnection copy.js';
+import dbtiConnection from '../components/DbtiConnection.js';
 import { getResult } from "../api/dbti/index.js";
 
 const DogMbtiResult = () => {
