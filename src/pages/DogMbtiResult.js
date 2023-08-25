@@ -2,7 +2,7 @@ import React , {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
-import dbtiConnection from '../components/DbtiConnection.js';
+import dbtiDes from '../components/DbtiConnection.js';
 import { getResult } from "../api/dbti/index.js";
 
 const DogMbtiResult = () => {
@@ -38,25 +38,41 @@ const DogMbtiResult = () => {
   })
 
   useEffect(() => {
+    
+    // if (location.state) {
+    //   setDbtiResult(location.state.dbtiName)
+    //   const { step1, step2, step3, step4 } = location.state.dbti;
+    //   setResultTest({
+    //     idx:"dNum1",
+    //     name: location.state.petName, 
+    //     type: dbtiResult,
+    //     typeEx: dbtiDes.simpleDes[dbtiResult], 
+    //     img: `assets/dbti/main/${dbtiResult}.png`,
+    //     sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
+    //     detail1: step1, 
+    //     detail2: step2, 
+    //     detail3: step3, 
+    //     detail4: step4, 
+    //     content: dbtiDes[dbtiResult]
+    //   });
     if (location.state) {
-      setDbtiResult(location.state.dbtiName)
-      const { step1, step2, step3, step4 } = location.state.dbti;
+      setDbtiResult("CNEA")
       setResultTest({
         idx:"dNum1",
         name: location.state.petName, 
         type: dbtiResult,
-        typeEx: dbtiConnection.simpleDes[dbtiResult], 
+        typeEx: dbtiDes.simpleDes[dbtiResult], 
         img: `assets/dbti/main/${dbtiResult}.png`,
         sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
-        detail1: step1, 
-        detail2: step2, 
-        detail3: step3, 
-        detail4: step4, 
-        content: dbtiConnection.dbtiDes[dbtiResult]
+        detail1: 11, 
+        detail2: 20, 
+        detail3: 70, 
+        detail4: 90, 
+        content: dbtiDes[dbtiResult]
       });
     } else {
       const getData = getResult(dbtiId).then((data) => {
-        let dataObject = dbtiConnection.dbtiDes[data.dbtiName]
+        let dataObject = dbtiDes[data.dbtiName]
         for (let i = 0; i < dataObject.subTitle.length; i++){
           
         }
@@ -64,7 +80,7 @@ const DogMbtiResult = () => {
           idx:"dNum1",
           name: data.dbtiName, 
           type: data.dbtiName,
-          typeEx: dbtiConnection.simpleDes[data.dbtiName], 
+          typeEx: dbtiDes[data.dbtiName].simpleDes, 
           img: `assets/dbti/main/${data.dbtiName}.png`,
           sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
           detail1: data.protoDog, 
