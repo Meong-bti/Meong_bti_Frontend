@@ -7,11 +7,11 @@
   min-height: 100vh;
   margin-left: 20px;
   /* padding: 0px 15px; */
-  padding: 0px 0px;
+  padding: 0px 20px;
 }
 
 .dog-post .top-nav {
-  position: sticky;
+  position: absolute;
   top: 0;
   background-color: #f5f3f2;
 }
