@@ -70,11 +70,9 @@ const TopNavigation = () => {
       <header className="top-nav">
         <button className="nav-back" >
           <span className="material-symbols-outlined" onClick={goBack}>arrow_back_ios</span>
-            back
         </button>
         <button className="nav-logo" value="2">
             <img src="assets/LOGO.png" onClick={goHome} alt="MbtiLogo"/>
-            MbtiLogo
         </button>
         {/* <button className="nav-home" onClick={goHome}>
             <span className="material-symbols-outlined">home</span>    
@@ -82,7 +80,6 @@ const TopNavigation = () => {
         </button>     */}
         <button className="nav-menu" >
           <span className="material-symbols-outlined" onClick={openMenu}>menu</span>
-            menu
         </button>    
       </header>
       <div className={isOpen ? `toggle-menu show-menu` : `toggle-menu`}>

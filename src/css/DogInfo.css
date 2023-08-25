@@ -88,6 +88,13 @@
   font-weight: 600;
 }
 
+/* 2023-8-26 */
+.pet-info .input-box .input {
+  text-align: center;
+}
+
+/* datepicker */
+
 /* step2 - check */
 
 .pet-info .check-container {
@@ -263,7 +270,6 @@ input[type="file"]::-moz-file-upload-button {
   display: none;
 } */
 
-
 .react-datepicker-wrapper,
 .react-datepicker-wrapper > * {
   width: 0px !important;
@@ -294,4 +300,16 @@ input[type="file"]::-moz-file-upload-button {
 .react-datepicker {
   right: 130px;
   bottom: 10px;
+}
+
+.custom-react-datepicker__select-wrapper {
+  display: flex;
+  font-display: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-react-datepicker__select-wrapper button {
+  border: none;
+  margin-left: 10px;
 }
