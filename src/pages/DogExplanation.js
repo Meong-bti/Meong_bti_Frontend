@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ImageMap from "image-map";
 import TopNavigation2 from '../components/TopNavigation2.js';
+import dbtiDes from "../components/DbtiConnection.js";
 
 
 const DogExplanation = () => {
@@ -16,22 +17,22 @@ const DogExplanation = () => {
     };
 
     const dogExContent = [
-        {mbti: "WTIL", explanation: "WTIL설명WTIL설명WTIL설명WTIL설명WTIL설명WTIL설명WTIL설명"},
-        {mbti: "WTIA", explanation: "WTIA설명WTIA설명WTIA설명WTIA설명WTIA설명WTIA설명WTIA설명"},
-        {mbti: "WNIA", explanation: "WNIA설명WNIA설명WNIA설명WNIA설명WNIA설명WNIA설명WNIA설명"},
-        {mbti: "WNIL", explanation: "WNIL설명WNIL설명WNIL설명WNIL설명WNIL설명WNIL설명WNIL설명"},
-        {mbti: "WTEL", explanation: "WTEL설명WTEL설명WTEL설명WTEL설명WTEL설명WTEL설명WTEL설명"},
-        {mbti: "WTEA", explanation: "WTEA설명WTEA설명WTEA설명WTEA설명WTEA설명WTEA설명WTEA설명"},
-        {mbti: "WNEA", explanation: "WNEA설명WNEA설명WNEA설명WNEA설명WNEA설명WNEA설명WNEA설명"},
-        {mbti: "WNEL", explanation: "WNEL설명WNEL설명WNEL설명WNEL설명WNEL설명WNEL설명WNEL설명"},
-        {mbti: "CTEL", explanation: "CTEL설명CTEL설명CTEL설명CTEL설명CTEL설명CTEL설명CTEL설명"},
-        {mbti: "CTEA", explanation: "CTEA설명CTEA설명CTEA설명CTEA설명CTEA설명CTEA설명CTEA설명"},
-        {mbti: "CNEA", explanation: "CNEA설명CNEA설명CNEA설명CNEA설명CNEA설명CNEA설명CNEA설명"},
-        {mbti: "CNEL", explanation: "CNEL설명CNEL설명CNEL설명CNEL설명CNEL설명CNEL설명CNEL설명"},
-        {mbti: "CTIA", explanation: "CTIA설명CTIA설명CTIA설명CTIA설명CTIA설명CTIA설명CTIA설명"},
-        {mbti: "CTIL", explanation: "CTIL설명CTIL설명CTIL설명CTIL설명CTIL설명CTIL설명CTIL설명"},
-        {mbti: "CNIA", explanation: "CNIA설명CNIA설명CNIA설명CNIA설명CNIA설명CNIA설명CNIA설명"},
-        {mbti: "CNIL", explanation: "CNIL설명CNIL설명CNIL설명CNIL설명CNIL설명CNIL설명CNIL설명"}
+        {mbti: "WTIL", explanation: dbtiDes["WTIL"].plusDes},
+        {mbti: "WTIA", explanation: dbtiDes["WTIA"].plusDes},
+        {mbti: "WNIA", explanation: dbtiDes["WNIA"].plusDes},
+        {mbti: "WNIL", explanation: dbtiDes["WNIL"].plusDes},
+        {mbti: "WTEL", explanation: dbtiDes["WTEL"].plusDes},
+        {mbti: "WTEA", explanation: dbtiDes["WTEA"].plusDes},
+        {mbti: "WNEA", explanation: dbtiDes["WNEA"].plusDes},
+        {mbti: "WNEL", explanation: dbtiDes["WNEL"].plusDes},
+        {mbti: "CTEL", explanation: dbtiDes["CTEL"].plusDes},
+        {mbti: "CTEA", explanation: dbtiDes["CTEA"].plusDes},
+        {mbti: "CNEA", explanation: dbtiDes["CNEA"].plusDes},
+        {mbti: "CNEL", explanation: dbtiDes["CNEL"].plusDes},
+        {mbti: "CTIA", explanation: dbtiDes["CTIA"].plusDes},
+        {mbti: "CTIL", explanation: dbtiDes["CTIL"].plusDes},
+        {mbti: "CNIA", explanation: dbtiDes["CNIA"].plusDes},
+        {mbti: "CNIL", explanation: dbtiDes["CNIL"].plusDes}
     ];
 
     const mapRef = useRef(null);
@@ -48,26 +49,31 @@ const DogExplanation = () => {
         setIsLoaded(true);
     };
 
-    const [mbti, setMbti] = useState("");
+    const [mbti, setMbti] = useState([]);
     const [title, setTitle] = useState();
     // const [mbEx, setMbEx] = useState();
     
     const imageClick = (title) => {
         
         const fill = dogExContent.filter(ex => ex.mbti === title);
-        console.log(fill[0].explanation);
         setMbti(fill[0].explanation);
         setTitle(fill[0].mbti);
     }
 
     const DogExBox = () => {
+        console.log(mbti)
         if(mbti === null || mbti === ""){
             return <p></p>;
         }
         else{
             return (
                 <>
-                    <h4>{title} 설명</h4><p>{mbti}</p>
+                    <h4>{title} 설명</h4>
+                    <div>{mbti.map((it, index) => (
+                        <div className="des-box" key={index}>
+                            {it}
+                        </div>
+                    ))}</div>
                 </>
             );
         }
