@@ -224,9 +224,9 @@ const DogInfo = () => {
               />
             </div>
             <div className="input-box text-left" onClick={handleIconClick}>
-              <input className="input input-value" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(0,4)) : ""} placeholder="년" readOnly />
-              <input className="input input-value" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(5,7)) : ""} placeholder="월" readOnly />
-              <input className="input input-value" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(8,10)) : ""} placeholder="일" readOnly />
+              <input className="input input-value input-date" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(0,4)) : ""} placeholder="년" readOnly />
+              <input className="input input-value input-date" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(5,7)) : ""} placeholder="월" readOnly />
+              <input className="input input-value input-date" type="number" value={petInfo.petBday ? parseInt(petInfo.petBday.slice(8,10)) : ""} placeholder="일" readOnly />
             </div>
             <div className="input-title">성별</div>
             <div className="input-box">
