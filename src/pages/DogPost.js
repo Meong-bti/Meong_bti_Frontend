@@ -20,15 +20,13 @@ const DogPost = () => {
     //   navigate('/login');
     // }
 
-     const handleScroll = () => {
+    const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight || document.documentElement.clientHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollTop + windowHeight >= documentHeight) {
-        // 스크롤이 끝까지 내려갔을 때 실행될 함수
-        // 여기에 원하는 동작을 추가하세요.
-        // console.log('스크롤이 끝까지 내려갔습니다.');
+        getPost({setPosts, posts})
       }
     };
 
