@@ -11,7 +11,7 @@ export const getPost = async ({setPosts, posts}) => {
 
   if (response.ok) {
     const result = await response.json();   
-    setPosts([]);
+    setPosts(posts);
     for (let post of result.data.posts) {
       setPosts(prevPost => ([...prevPost, {
         postId: post.postId,

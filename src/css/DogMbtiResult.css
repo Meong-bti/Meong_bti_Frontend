@@ -158,10 +158,24 @@
   font-weight: bold;  
 }
 .result-box .result-content .detail-content {
+  /* text-align: left; */
   text-align: center;
   line-height: 24px;
   padding: 0 30px;
   box-sizing: border-box;
+}
+
+.result-box .result-content .detail-content .content-simpleDes {
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-weight: bolder;
+}
+
+.result-box .result-content .detail-content .content-mainDes {
+  font-size: 16px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px dashed #665645; 
 }
 .result-box .mbti-all-explanation {
   margin-bottom: 35px;
