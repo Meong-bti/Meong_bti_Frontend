@@ -16,9 +16,10 @@ export const emailLogin = async ({email, password, loginUpdate, navigate}) => {
     localStorage.setItem('token', res.data.accessToken);
     loginUpdate();
     getNickname();
-    navigate('/main');
+    // navigate('/main');
   } else if (response.status === 401) {
     const err = await response.text();
+    console.log("실패....")
     alert(err)
   } else alert('로그인 실패');
 };

@@ -87,8 +87,7 @@ const DogExplanation = () => {
                 <TopNavigation2 />
                 <p>MBTI 멍비티아이란?</p>
                 <div className="explain-mbti">
-                    <h3>MBTI 설명</h3>
-                    <p>ㅁㅇㅇㅇㄴsㄻㄹㄴㄹㅇㄴㅁㅁㄴㅇㄹㄴㅇㄻㄹㄴㄹㄴㅁㄴㄹㄴㅁㄴㄹㄴㅇㄹㄴㅁㄹㄴㅇㄻㄴㄹㄴㄹㅇㅇㄻㄴㅇㄻㄴ. DBTI를 눌러서 설명을 읽어보세요</p>
+                    <p>{dbtiDes.dbtiDes}</p>
                 </div>
                 <div className="explain-mbti-detail-box">
                     <img src="assets/image18.png" alt="전체 mbti 설명 표" useMap="#imageMap" onLoad={handleImageLoad}/>
