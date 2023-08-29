@@ -39,7 +39,7 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     if (true) {
-      setDbtiResult("CNEA")
+      setDbtiResult("CTIA")
       setResultTest({
         idx:"dNum1",
         name: "사랑이", 
