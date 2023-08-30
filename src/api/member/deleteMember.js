@@ -5,9 +5,9 @@ export const deleteMember = async ({loginUpdate, navigate}) => {
 
     const response = await fetch(`${domain}/member/delete`, {
       method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
+      // headers: {
+      //   'Authorization': `Bearer ${token}`
+      // }
     });
 
     if (response.ok) {
