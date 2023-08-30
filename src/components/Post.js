@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import 'moment/locale/ko';
+import { clickLike, cancelLike, updatePost, deletePost } from "../api/post/index.js";
 
 const Post = ({ postData, user, onChange }) => {
 
@@ -21,102 +22,6 @@ const Post = ({ postData, user, onChange }) => {
   const [contentEdit, setContentEdit] = useState(false);
   const [content, setContent] = useState(postData.content);
   // const navigate = useNavigate();
-  const domain = "http://ec2-3-36-140-165.ap-northeast-2.compute.amazonaws.com/api"
-  const clickLike = async () => {
-    const token = localStorage.getItem('token');
-
-    const response = await fetch(`${domain}/post/${postData.postId}/like`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    if (response.ok) {
-      postData.like = postData.like + 1;
-      setLikeClick(true);
-      setHeartImg("heart");
-      setHeartSticker("flex");
-      setTimeout(() => { setHeartSticker("none") }, 1000);
-    } else {
-      console.log("좋아요 누르기 실패");
-    }
-  }
-
-  const cancelLike = async () => {
-    const token = localStorage.getItem('token');
-
-    const response = await fetch(`${domain}/post/${postData.postId}/dislike`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-
-    if (response.ok) {
-      postData.like = postData.like - 1;
-      setHeartImg("heart_empty");
-      setLikeClick(false);
-    } else {
-      console.log("좋아요 취소하기 실패");
-    }
-  }
-
-  const updatePost = async () => {
-    const formData = new FormData();
-    const imageUrl = postData.petImageFile;
-    const imageResponse = await fetch(imageUrl, {
-      method: 'GET',
-    });
-    if (!imageResponse.ok) {
-      console.log("이미지 불러오기 에러(게시물 수정)")
-    }
-    const blob = await imageResponse.blob();
-    const file = new File([blob], "postImage.jpg", { type: blob.type });
-
-    formData.append('petId', postData.petId)
-    formData.append('postImageFile', file)
-    formData.append('content', content)
-
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${domain}/post/${postData.petId}/edit`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      body: formData
-    })
-
-    if (response.ok) {
-      setContentEdit(false);
-    } else {
-      console.log("수정 실패");
-    }
-  }
-
-  const deletePost = async () => {
-    const token = localStorage.getItem('token');
-    const response = await fetch(`${domain}/post/${postData.postId}/deletePost`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }    
-    })
-    if (response.ok) {
-      alert("삭제 성공");
-      onChange(true);
-    } else {
-      console.log("삭제 실패")
-    }
-  }
-
-  const clickHeart = () => {
-    if (likeClick === true) {
-      cancelLike();
-    } else {
-      clickLike();
-    }
-  };
   
   useEffect(() => {
     if (likeClick === true) {
@@ -125,6 +30,14 @@ const Post = ({ postData, user, onChange }) => {
       setHeartImg("heart_empty");
     }
   }, [likeClick]);
+
+  const clickHeart = () => {
+    if (likeClick === true) {
+      cancelLike({postData, setHeartImg, setLikeClick});
+    } else {
+      clickLike({postData, setLikeClick, setHeartImg, setHeartSticker});
+    }
+  };
   
   return (
     <div className="post-box">
@@ -143,7 +56,7 @@ const Post = ({ postData, user, onChange }) => {
           <div className="dropdown-content">
             {postData.userName === user
                 ? (<><span onClick={() => setContentEdit(true)}>수정</span>
-                  <span onClick={deletePost}>삭제</span></>)
+                  <span onClick={() => deletePost({postData, onChange})}>삭제</span></>)
                 : (<>
                     <span>공유</span>
               </>)
@@ -167,7 +80,7 @@ const Post = ({ postData, user, onChange }) => {
       {contentEdit ? (
         <div className="post-content">
           <textarea value={content} placeholder="50자 이내로 작성해주세요." onChange={(e) => setContent(e.target.value)} />
-          <div className="edit-btn" onClick={updatePost}>완료</div>
+          <div className="edit-btn" onClick={() => updatePost({postData, content, setContentEdit})}>완료</div>
         </div>
       ): (
         <div className="post-content">{content}</div>
