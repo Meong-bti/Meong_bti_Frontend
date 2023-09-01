@@ -53,13 +53,13 @@ const DogPost = () => {
     <>
       <div className="dog-post">
         <TopNavigation />
-        <div className="btn-wrapper">
-          <button className="post-button" onClick={goBoast}>자랑하기</button>
-        </div>
         <div className="post-content">
           {posts.map((it, index) => (
             <Post postData={it} key={index} user={nickname} onChange={setChange} />
           ))}
+        </div>
+        <div className="btn-wrapper">
+          <button className="post-button" onClick={goBoast}>자랑하기</button>
         </div>
       </div>
     </>
