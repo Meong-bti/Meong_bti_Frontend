@@ -4,7 +4,7 @@ import moment from "moment";
 import 'moment/locale/ko';
 import { clickLike, cancelLike, updatePost, deletePost } from "../api/post/index.js";
 
-const Post = ({ postData, user, onChange }) => {
+const Post = ({ postData, user, setChange }) => {
 
   const regex = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.\d{5}/;
   const createdAt = postData.createdAt.match(regex).slice(1).join('');
@@ -56,7 +56,7 @@ const Post = ({ postData, user, onChange }) => {
           <div className="dropdown-content">
             {postData.userName === user
                 ? (<><span onClick={() => setContentEdit(true)}>수정</span>
-                  <span onClick={() => deletePost({postData, onChange})}>삭제</span></>)
+                  <span onClick={() => deletePost({postData, setChange})}>삭제</span></>)
                 : (<>
                     <span>공유</span>
               </>)
@@ -65,7 +65,7 @@ const Post = ({ postData, user, onChange }) => {
         </div>
       </div>
       <div className="post-image">
-        <img className="pet-post-image" src={postData.imageUrl} alt="강아지이미지" width="380px" />
+        <img className="pet-post-image" src={postData.imageUrl} alt="강아지이미지" width="350px" height="350px" />
         <img className="heart-sticker" src="assets/heart_stick.png" alt="하트 스티커" style={{ display: `${heartSticker}`}} />
       </div>
       <div className="post-like">

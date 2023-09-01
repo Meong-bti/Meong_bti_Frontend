@@ -21,7 +21,7 @@ const DogMbtiResult = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const dbtiId = queryParams.get('dbtiId');
-  const [dbtiResult, setDbtiResult] = useState('CNEA')
+  const [dbtiResult, setDbtiResult] = useState('CTIL')
   const [resultTest, setResultTest] = useState({
     idx:"dNum1",
     name: "", 
@@ -39,7 +39,7 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     if (true) {
-      setDbtiResult("CTIA")
+      setDbtiResult("WNIL")
       setResultTest({
         idx:"dNum1",
         name: "사랑이", 
