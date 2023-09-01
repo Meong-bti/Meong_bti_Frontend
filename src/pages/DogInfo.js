@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import MyRadio from "../components/MyRadio";
@@ -51,9 +51,9 @@ const DogInfo = () => {
     }))
   }
 
-  const [showCalendar, setShowCalendar] = useState(false);
   const handleIconClick = () => {
-    setShowCalendar(!showCalendar);
+    const inputDateElement = document.querySelector('#date-picker');
+    inputDateElement.focus()
   }
 
   const handleDateChange = (date) => {
@@ -221,6 +221,7 @@ const DogInfo = () => {
                 maxDate={new Date()}
                 onChange={handleDateChange}
                 dateFormat="yyyy/MM/dd"
+                id="date-picker"
               />
             </div>
             <div className="input-box text-left" onClick={handleIconClick}>
