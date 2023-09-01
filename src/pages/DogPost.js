@@ -35,7 +35,7 @@ const DogPost = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [document.documentElement.scrollHeight])
+  }, [document.documentElement.scrollHeight, posts])
 
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const DogPost = () => {
         <TopNavigation />
         <div className="post-content">
           {posts.map((it, index) => (
-            <Post postData={it} key={index} user={nickname} onChange={setChange} />
+            <Post postData={it} key={index} user={nickname} setChange={setChange} />
           ))}
         </div>
         <div className="btn-wrapper">
