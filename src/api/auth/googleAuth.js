@@ -12,10 +12,9 @@ export const authGoogle = async ({ code, loginUpdate, navigate }) => {
   })
 
   if (response.ok) {
-    console.log("google Auth API 성공")
     const res = await response.json();
-    console.log(res)
     localStorage.setItem('token', res.accessToken);
+    localStorage.setItem('authType', "google");
     loginUpdate();
     getNickname();
     navigate('/main');

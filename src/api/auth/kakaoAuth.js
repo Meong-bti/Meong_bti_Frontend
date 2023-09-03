@@ -14,8 +14,8 @@ export const authKakao = async ({ code, loginUpdate, navigate }) => {
   if (response.ok) {
     console.log("kakao Auth API 성공")
     const res = await response.json();
-    console.log(res)
     localStorage.setItem('token', res.accessToken);
+    localStorage.setItem('authType', "kakao");
     loginUpdate();
     getNickname();
     navigate('/main');

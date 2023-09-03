@@ -24,11 +24,11 @@ export const getPet = async ({setPetList, loginUpdate, navigate, setLoaded}) => 
     setPetList([]);
   } else if (response.status === 401) {
     alert("로그인이 만료되었습니다.")
-    console.log(token)
     localStorage.removeItem('token')
     loginUpdate()
     navigate('/')
   } else {
+    // 수정
     console.log(response.status);
   }
 }

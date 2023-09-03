@@ -14,6 +14,7 @@ export const emailLogin = async ({email, password, loginUpdate, navigate}) => {
     const res = await response.json();
     console.log(res.data.accessToken)
     localStorage.setItem('token', res.data.accessToken);
+    localStorage.setItem('authType', "email");
     loginUpdate();
     getNickname();
     navigate('/main');

@@ -9,7 +9,6 @@ import { getPost } from "../api/post/getPost";
 const DogPost = () => { 
 
   const [posts, setPosts] = useState([]);
-  const [change, setChange] = useState(true);
   const nickname = localStorage.getItem('nickname');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -39,11 +38,8 @@ const DogPost = () => {
 
 
   useEffect(() => {
-    if (change === true) {
-      getPost({setPosts, posts});
-      setChange(false);
-    }
-  }, [change])
+    getPost({setPosts, posts});
+  }, [])
 
   const goBoast = () => {
     navigate('/dogBoast');
@@ -55,7 +51,7 @@ const DogPost = () => {
         <TopNavigation />
         <div className="post-content">
           {posts.map((it, index) => (
-            <Post postData={it} key={index} user={nickname} setChange={setChange} />
+            <Post postData={it} key={index} user={nickname}  />
           ))}
         </div>
         <div className="btn-wrapper">

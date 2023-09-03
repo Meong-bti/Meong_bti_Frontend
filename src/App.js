@@ -44,7 +44,6 @@ import { createContext, useState } from "react";
 
 import { AuthProvider } from "./components/AuthContext";
 import EditDogInfo from "./pages/EditDogInfo";
-import AuthKakao from "./pages/AuthKakao";
 import TestPage from "./pages/TestPage";
 
 export const PetContext = createContext();
@@ -71,7 +70,6 @@ function App() {
           <AuthProvider >
             <Routes>
               <Route path="/login" element={<APILogin />} />
-              <Route path="/auth" element={<AuthKakao />} />
               <Route path="/loginEmail" element={<EmailLogin />} />
               <Route path="/forgetPw" element={<ForgetPw />} />
               <Route path="/question" element={<Question />} />
