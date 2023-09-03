@@ -3,11 +3,11 @@ import { domain } from "../domain";
 export const deleteMember = async ({loginUpdate, navigate}) => {
     const token = localStorage.getItem('token');
 
-    const response = await fetch(`${domain}/member/delete`, {
+    const response = await fetch(`${domain}/member/`, {
       method: 'DELETE',
-      // headers: {
-      //   'Authorization': `Bearer ${token}`
-      // }
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     });
 
     if (response.ok) {
