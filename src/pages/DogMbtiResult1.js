@@ -1,4 +1,6 @@
-import React , {useEffect, useState} from "react";
+// Test 적용 / 원본 : DogMbtiResult2
+
+import React, { useEffect, useState } from "react";
 import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
@@ -21,76 +23,39 @@ const DogMbtiResult = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const dbtiId = queryParams.get('dbtiId');
-  const [dbtiResult, setDbtiResult] = useState('')
+  const [dbtiResult, setDbtiResult] = useState('CNEA')
   const [resultTest, setResultTest] = useState({
     idx:"dNum1",
     name: "", 
     type: "",
-    typeEx: "", 
+    subTitle: "", 
     img: "",
     sideImg: "",
     detail1: 0, 
     detail2: 0, 
     detail3: 0, 
     detail4: 0,
-    subTitle: [],
-    content: []
+    simpleDes: [],
+    mainDes: []
   })
 
   useEffect(() => {
-    
-    // if (location.state) {
-    //   setDbtiResult(location.state.dbtiName)
-    //   const { step1, step2, step3, step4 } = location.state.dbti;
-    //   setResultTest({
-    //     idx:"dNum1",
-    //     name: location.state.petName, 
-    //     type: dbtiResult,
-    //     typeEx: dbtiDes.simpleDes[dbtiResult], 
-    //     img: `assets/dbti/main/${dbtiResult}.png`,
-    //     sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
-    //     detail1: step1, 
-    //     detail2: step2, 
-    //     detail3: step3, 
-    //     detail4: step4, 
-    //     content: dbtiDes[dbtiResult]
-    //   });
-    if (location.state) {
+    if (true) {
       setDbtiResult("CNEA")
       setResultTest({
         idx:"dNum1",
-        name: location.state.petName, 
+        name: "사랑이", 
         type: dbtiResult,
-        typeEx: dbtiDes.simpleDes[dbtiResult], 
+        subTitle: dbtiDes[dbtiResult].subTitle, 
         img: `assets/dbti/main/${dbtiResult}.png`,
         sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
         detail1: 11, 
         detail2: 20, 
         detail3: 70, 
         detail4: 90, 
-        content: dbtiDes[dbtiResult]
+        simpleDes: dbtiDes[dbtiResult].simpleDes,
+        mainDes: dbtiDes[dbtiResult].mainDes
       });
-    } else {
-      const getData = getResult(dbtiId).then((data) => {
-        let dataObject = dbtiDes[data.dbtiName]
-        for (let i = 0; i < dataObject.subTitle.length; i++){
-          
-        }
-        setResultTest({
-          idx:"dNum1",
-          name: data.dbtiName, 
-          type: data.dbtiName,
-          typeEx: dbtiDes[data.dbtiName].simpleDes, 
-          img: `assets/dbti/main/${data.dbtiName}.png`,
-          sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
-          detail1: data.protoDog, 
-          detail2: data.relationship, 
-          detail3: data.dependence, 
-          detail4: data.activity, 
-          subTitle: dataObject.subTitle,
-          content: dataObject.content
-        })
-      })
     }
   }, [dbtiResult])
 
@@ -162,7 +127,7 @@ const DogMbtiResult = () => {
   }
 
   // 강아지 mbti 결과
-  const {idx,name,type,typeEx,img,sideImg,detail1,detail2,detail3,detail4,content} = resultTest;
+  const {idx,name,type,subTitle,img,sideImg,detail1,detail2,detail3,detail4,simpleDes, mainDes} = resultTest;
   // 프로그레스바 설정
   useEffect(() => {
     const progress_bar1 = document.getElementById("detail1");
@@ -191,7 +156,7 @@ const DogMbtiResult = () => {
             <div className="result-detail-left">
               <p className="result-word">[{name}] 의 성격 유형은 :</p>
               <p className="result-dbti-name">{dbtiResult}</p>
-              <p className="result-dbti-simpleDes">{typeEx}</p>
+              <p className="result-dbti-simpleDes">{subTitle}</p>
               <div className="detail-img">
                 <img src={img} alt="dogDetailImg"/>
               </div>
@@ -236,10 +201,15 @@ const DogMbtiResult = () => {
           <div className="detail-top">
             <img className="side-img" src={sideImg} alt="side img"/>
             <h4>{type.toUpperCase()}</h4>
-            <p>{typeEx}</p>
+            <p>{subTitle}</p>
           </div>
           <div className="detail-content">
-            <p>{content}</p>
+            <p>{simpleDes.map((it, index) => (
+              <div className="content-des-box">
+                <div className="content-simpleDes">{it}</div>
+                <div className="content-mainDes">{mainDes[index]}</div>
+              </div>
+            ))}</p>
           </div>                  
         </div>
         <div className="mbti-all-explanation">

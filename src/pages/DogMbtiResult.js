@@ -1,8 +1,6 @@
-// Test 적용 / 원본 : DogMbtiResult2
-
-import React, { useEffect, useState } from "react";
+import React , {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
-import TopNavigation2 from '../components/TopNavigation2.js';
+import TopNavigation from '../components/TopNavigation.js';
 import { useLocation } from 'react-router-dom';
 import dbtiDes from '../components/DbtiConnection.js';
 import { getResult } from "../api/dbti/index.js";
@@ -23,7 +21,7 @@ const DogMbtiResult = () => {
 
   const queryParams = new URLSearchParams(location.search);
   const dbtiId = queryParams.get('dbtiId');
-  const [dbtiResult, setDbtiResult] = useState('CNEA')
+  const [dbtiResult, setDbtiResult] = useState('')
   const [resultTest, setResultTest] = useState({
     idx:"dNum1",
     name: "", 
@@ -35,27 +33,47 @@ const DogMbtiResult = () => {
     detail2: 0, 
     detail3: 0, 
     detail4: 0,
-    subTitle: [],
-    simpleDes: []
+    simpleDes: [],
+    mainDes: []
   })
 
   useEffect(() => {
-    if (true) {
-      setDbtiResult("CNEA")
+    
+    if (location.state) {
+      setDbtiResult(location.state.dbtiName)
+      const { step1, step2, step3, step4 } = location.state.dbti;
       setResultTest({
         idx:"dNum1",
-        name: "사랑이", 
+        name: location.state.petName, 
         type: dbtiResult,
         subTitle: dbtiDes[dbtiResult].subTitle, 
         img: `assets/dbti/main/${dbtiResult}.png`,
         sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
-        detail1: 11, 
-        detail2: 20, 
-        detail3: 70, 
-        detail4: 90, 
+        detail1: step1, 
+        detail2: step2, 
+        detail3: step3, 
+        detail4: step4,
         simpleDes: dbtiDes[dbtiResult].simpleDes,
         mainDes: dbtiDes[dbtiResult].mainDes
       });
+    } else {
+      getResult(dbtiId).then((data) => {
+        console.log(data)
+        setResultTest({
+          idx:"dNum1",
+          name: data.petName, 
+          type: data.dbtiName,
+          subTitle: dbtiDes[data.dbtiName].subTitle, 
+          img: `assets/dbti/main/${data.dbtiName}.png`,
+          sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
+          detail1: data.protoDog, 
+          detail2: data.relationship, 
+          detail3: data.dependence, 
+          detail4: data.activity, 
+          simpleDes: dbtiDes[data.dbtiName].simpleDes,
+          mainDes: dbtiDes[data.dbtiName].mainDes
+        })
+      })
     }
   }, [dbtiResult])
 
@@ -127,7 +145,7 @@ const DogMbtiResult = () => {
   }
 
   // 강아지 mbti 결과
-  const {idx,name,type,subTitle,img,sideImg,detail1,detail2,detail3,detail4,simpleDes, mainDes} = resultTest;
+  const {idx,name,type,subTitle,img,sideImg,detail1,detail2,detail3,detail4,simpleDes,mainDes} = resultTest;
   // 프로그레스바 설정
   useEffect(() => {
     const progress_bar1 = document.getElementById("detail1");
@@ -149,13 +167,13 @@ const DogMbtiResult = () => {
   return ( 
     <>
       <div className="result-box">
-        <TopNavigation2 />
+        <TopNavigation />
         <p className="result-word">DBTI 분석 완료!</p>
         <div className="result-top">
           <div className="result-container">
             <div className="result-detail-left">
               <p className="result-word">[{name}] 의 성격 유형은 :</p>
-              <p className="result-dbti-name">{dbtiResult}</p>
+              <p className="result-dbti-name">{type.toUpperCase()}</p>
               <p className="result-dbti-simpleDes">{subTitle}</p>
               <div className="detail-img">
                 <img src={img} alt="dogDetailImg"/>
@@ -204,16 +222,13 @@ const DogMbtiResult = () => {
             <p>{subTitle}</p>
           </div>
           <div className="detail-content">
-            <p>{simpleDes.map((it, index) => (
-              <div className="content-des-box">
+            <div>{simpleDes.map((it, index) => (
+              <div className="content-des-box" key={index}>
                 <div className="content-simpleDes">{it}</div>
                 <div className="content-mainDes">{mainDes[index]}</div>
               </div>
-            ))}</p>
+            ))}</div>
           </div>                  
-        </div>
-        <div className="mbti-all-explanation">
-          <button onClick={goDetail}>MBTI 설명 보러가기</button>
         </div>
         <div className="mbit-btn-group">
           <ul>

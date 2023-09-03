@@ -50,9 +50,11 @@ const Main = () => {
 
   // 강아지 정보 불러오기
   useEffect(() => {
-    getPet({setPetList, loginUpdate, navigate, setLoaded});
-    setLoaded(true);
-  }, [ navigate, loaded]);
+    if (loaded === false) {
+      getPet({setPetList, loginUpdate, navigate, setLoaded});
+      setLoaded(true);
+    }
+  }, [navigate, loaded]);
 
   useEffect(() => {
     if (loaded) {

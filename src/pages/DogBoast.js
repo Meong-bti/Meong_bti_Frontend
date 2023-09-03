@@ -4,6 +4,7 @@ import TopNavigation from '../components/TopNavigation';
 import { FaCheck } from 'react-icons/fa'
 import { PetContext } from '../App';
 import { createPost } from '../api/post';
+import { checkDbti } from '../api/pet';
 
 const DogBoast = () => {
 	const { petList } = useContext(PetContext);
@@ -24,10 +25,21 @@ const DogBoast = () => {
 	}, [petList, navigate]);
 
 	// 이미지 에러시 띄워줄 기본 이미지
-	const handleImgError = (e) => {e.target.src = "assets/dog.jpg"};
+	const handleImgError = (e) => { e.target.src = "assets/dog.jpg" };
 
-	const handleClick = (petId) => {
+	const handleClick = async (petId) => {
 		setClickedPet(petId);
+		if (!(await checkDbti({ petId }))) {
+			if (window.confirm(
+`DBTI 테스트를 진행하지 않은 강아지는 자랑하기 이용이 제한됩니다. 
+테스트하러 가시겠습니까? `)) {
+				navigate('/question', {
+					state: { petId: petId, petName: petList.petName }
+				});
+			} else {
+				setClickedPet("");
+			}
+		}
 	};
 
 	const inputRef = useRef(null);

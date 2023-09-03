@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ImageMap from "image-map";
-import TopNavigation2 from '../components/TopNavigation2.js';
+import TopNavigation from '../components/TopNavigation.js';
 import dbtiDes from "../components/DbtiConnection.js";
 
 
@@ -84,7 +84,7 @@ const DogExplanation = () => {
     return (
         <>
             <div className="result-box">
-                <TopNavigation2 />
+                <TopNavigation />
                 <p>MBTI 멍비티아이란?</p>
                 <div className="explain-mbti">
                     <p>{dbtiDes.dbtiDes}</p>

@@ -1,7 +1,5 @@
-import React, { useContext } from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate} from "react-router-dom";
-// import { LoginStateContext } from "../App";
 import { AuthContext } from "./AuthContext";
 import { deleteMember, logoutMember } from "../api/member";
 
@@ -9,42 +7,6 @@ const TopNavigation = () => {
   const navigate = useNavigate();  
   const nickname = localStorage.getItem('nickname');
   const { loginUpdate } = useContext(AuthContext);
-
-  // const logout = async () => {
-
-  //   const token = localStorage.getItem('token');
-  //   console.log(token);
-    
-  //   const response = await fetch(`${domain}/auth/logout`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   });
-
-  //   if (response.ok) {
-  //     localStorage.removeItem('token');
-  //     loginUpdate();
-  //     navigate('/');
-  //   } else if(response.status === 401) {
-  //     alert('logout 실패')
-  //     alert('토큰 재발급')
-  //     const response2 = await fetch(`${domain}/auth/reissueToken`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     });
-
-  //     if (response2.ok) {
-  //       console.log("재발급 성공");
-  //       console.log(response2.accessToken)
-  //     } else {
-  //       console.log("재발급 실패")
-  //       console.log(response2.status);
-  //     }
-  //   }
-  // }
 
   const logout = () => {
     logoutMember({navigate, loginUpdate})
@@ -63,7 +25,15 @@ const TopNavigation = () => {
     navigate(-1);
   };
 
-  
+  const goChangePw = () => {
+    let authType = localStorage.getItem("authType")
+    if (authType === "email") {
+      navigate('/updatePassword')
+    } else {
+      alert("SNS 로그인은 비밀번호 변경이 불가능합니다.")
+    }
+  }
+
 
   return (
     <>
@@ -74,10 +44,6 @@ const TopNavigation = () => {
         <button className="nav-logo" value="2">
             <img src="assets/LOGO.png" onClick={goHome} alt="MbtiLogo"/>
         </button>
-        {/* <button className="nav-home" onClick={goHome}>
-            <span className="material-symbols-outlined">home</span>    
-            home
-        </button>     */}
         <button className="nav-menu" >
           <span className="material-symbols-outlined" onClick={openMenu}>menu</span>
         </button>    
@@ -91,7 +57,7 @@ const TopNavigation = () => {
           <div className="user-box">
             {nickname} 보호자님
           </div>
-          <div className="user-info-box" onClick={() => navigate('/updatePassword')}>
+          <div className="user-info-box" onClick={goChangePw}>
             개인정보 재설정
           </div>
           <div className="user-info-box member-delete-box" onClick={() => deleteMember({loginUpdate, navigate})}>
