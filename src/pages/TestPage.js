@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from "react";
+ import React , {useEffect, useState} from "react";
 import { useNavigate} from "react-router-dom";
 import TopNavigation2 from '../components/TopNavigation2.js';
 import { useLocation } from 'react-router-dom';
@@ -39,7 +39,7 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     if (true) {
-      setDbtiResult("WNIL")
+      setDbtiResult("WTEL")
       setResultTest({
         idx:"dNum1",
         name: "사랑이", 

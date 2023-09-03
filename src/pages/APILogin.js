@@ -9,7 +9,6 @@ const APILogin = () => {
   const { login, loginUpdate } = useContext(AuthContext);
   const [kakaoCode, setKakaoCode] = useState("")
   const [googleCode, setGoogleCode] = useState("")
-  const [kakaoLogin, setKakaoLogin] = useState(false);
 
   useEffect(() => {
     if (login) {
@@ -20,13 +19,16 @@ const APILogin = () => {
     if (OAuthLogin === 'google') {
       setGoogleCode(new URL(window.location.href).searchParams.get("code"));
       if (!!googleCode) {
-        authGoogle({code: googleCode, loginUpdate, navigate})
+        authGoogle({ code: googleCode, loginUpdate, navigate })
+        localStorage.removeItem("OAuthLogin")
       }
     }
+    
     if (OAuthLogin === 'kakao') {
       setKakaoCode(new URL(window.location.href).searchParams.get("code"));
       if (!!kakaoCode) {
         authKakao({ code: kakaoCode, loginUpdate, navigate })
+        localStorage.removeItem("OAuthLogin")
       }
     }
       

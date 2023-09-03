@@ -50,7 +50,7 @@ const DogExplanation = () => {
     };
 
     // const [mbti, setMbti] = useState([]);
-    const [mbti, setMbti] = useState(dogExContent[3].explanation)
+    const [mbti, setMbti] = useState(dogExContent[4].explanation)
     const [title, setTitle] = useState();
     // const [mbEx, setMbEx] = useState();
     
