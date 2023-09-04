@@ -1,6 +1,6 @@
 const domain = "https://api.mungbti.com/api"
 
-export const confirmEmail = async ({ email, setDefaultCheck, setValueCheck, defaultCheck, valueCheck }) => {
+export const confirmEmail = async ({ email, setDefaultCheck }) => {
   console.log(email)
   const response = await fetch(`${domain}/email`, {
     method: 'POST',
@@ -12,8 +12,8 @@ export const confirmEmail = async ({ email, setDefaultCheck, setValueCheck, defa
 
   if (response.ok) {
     alert("이메일로 보낸 인증번호를 확인해주세요.")
-    setDefaultCheck({...defaultCheck, emailCheck: true})
+    setDefaultCheck(prev => ({...prev, emailCheck: true}))
   } else {
-    alert("인증번호 전송 실패")
+    alert("인증번호 전송에 실패했습니다. 잠시 후 다시 시도해주세요")
   }
 }
