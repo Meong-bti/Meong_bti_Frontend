@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import { useState } from "react";
-import { checkingEmail, checkingNickname, registerMember, confirmEmail } from '../api/member/index.js'
+import { checkingEmail, registerMember, confirmEmail } from '../api/member/index.js'
 
 const RegisterMember = () => {
   const navigate = useNavigate();
-  const [certNumber, setCertNumber] = useState()
+  const [certNumber, setCertNumber] = useState("")
   const [memberInfo, setMemberInfo] = useState({
     nickname: "",
     email: "",
@@ -14,9 +14,9 @@ const RegisterMember = () => {
   })
 
   const [defaultCheck, setDefaultCheck] = useState({
-    nickname: false,
-    email: false,
+    nicknameCheck: false,
     emailCheck: false,
+    certNumberCheck: false,
     pw1Check: false,
     pw2Check: false
   })
@@ -24,45 +24,17 @@ const RegisterMember = () => {
   const [valueCheck, setValueCheck] = useState({
     nickname: false,
     email: false,
+    certNumber: false,
     pw1: false,
     pw2: false
   })
 
-  const changeNickname = (e) => {
-    setMemberInfo({ ...memberInfo, nickname: e.target.value });
-    setDefaultCheck(prev => ({
-      ...prev,
-      nickname: false
-    }));
-  }
-
-  const checkNickname = async (event) => {
-    event.preventDefault();
-
-    if (memberInfo.nickname) {
-      checkingNickname(memberInfo.nickname, setDefaultCheck, setValueCheck, valueCheck)
-    } else {
-      alert("닉네임을 입력해주세요");
-    }
-  }
-
   const checkEmail = async (event) => {
     event.preventDefault();
-    validateEmail(memberInfo.email);
-    if(valueCheck.email) {
-      checkingEmail(memberInfo.email, setDefaultCheck, setValueCheck, valueCheck)
-    } else {
-      alert("유효하지 않은 이메일입니다.");
-    }
-  }
-
-  const checkEmail2 = async (event) => {
-    event.preventDefault();
-    validateEmail(memberInfo.email);
-    if (valueCheck.email) {
-      confirmEmail({email: memberInfo.email, setDefaultCheck, setValueCheck, defaultCheck, valueCheck})
-    } else {
-      alert("유효하지 않은 이메일입니다.");
+    if (validateEmail(memberInfo.email)) {
+      if (await checkingEmail(memberInfo.email, setDefaultCheck, setValueCheck, valueCheck)) {
+        confirmEmail({email: memberInfo.email, setDefaultCheck})
+      }
     }
   }
 
@@ -71,34 +43,30 @@ const RegisterMember = () => {
     
   }
 
-  const changeEmail = (e) => {
-    setMemberInfo({...memberInfo, email: e.target.value});
-    setDefaultCheck(prev => ({
-      ...prev,
-      email: false
-    }));
+  
+
+  const validateNickname = (nickname) => {
+    const nicknameRegex = /^[a-zA-Z가-힣0-9._%+-]{2,}$/;
+    if (!nicknameRegex.test(nickname)) {
+      setValueCheck({ ...valueCheck, nickname: false });
+      setDefaultCheck({...defaultCheck, nicknameCheck: true})
+    } else {
+      setValueCheck({ ...valueCheck, nickname: true });
+      setDefaultCheck({...defaultCheck, nicknameCheck: true})
+    }
   }
 
-  const changeCertNumber = (e) => {
-    setCertNumber(e.target.value)
-  }
-
-  // 이메일 유효성 검사
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if(!emailRegex.test(email)) {
-      setValueCheck({...valueCheck, email: false});
+    if (!emailRegex.test(email)) {
+      alert('유효하지 않은 이메일 형식입니다.')
+      return false;
     } else {
-      setValueCheck({...valueCheck, email: true});
+      return true;
     }
-    // setDefaultCheck(prev => ({
-    //   ...prev,
-    //   email: true
-    // }))
   }
 
-  // 비밀번호 유효성 검사
   const validatePassword = (password) => {
     const passwordRegex = /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{9,}$/;
 
@@ -112,6 +80,27 @@ const RegisterMember = () => {
       pw1Check: true
     }));
   };
+
+  const changeNickname = (e) => {
+    setMemberInfo({ ...memberInfo, nickname: e.target.value });
+    setDefaultCheck(prev => ({
+      ...prev,
+      nickname: false
+    }));
+  }
+
+
+  const changeEmail = (e) => {
+    setMemberInfo({...memberInfo, email: e.target.value});
+    setDefaultCheck(prev => ({
+      ...prev,
+      emailCheck: false
+    }));
+  }
+
+  const changeCertNumber = (e) => {
+    setCertNumber(e.target.value)
+  }
 
   const changePw1 = (e) => {
     setMemberInfo({ ...memberInfo, pw1: e.target.value });
@@ -149,11 +138,11 @@ const RegisterMember = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    registerMember({...memberInfo, navigate})
-    // if (nicknameCheck && emailCheck && pw1Check && pw2Check) {
-    // } else {
-    //   alert('중복확인')
-    // }
+    if (!defaultCheck.nicknameCheck) { alert("닉네임을 확인해주세요"); return false; }
+    if (!defaultCheck.emailCheck) { alert("이메일을 확인해주세요"); return false; }
+    if (!defaultCheck.certNumberCheck) { alert("인증번호를 확인해주세요"); return false; }
+    if (!defaultCheck.pw1Check || !defaultCheck.pw2Check) { alert("비밀번호를 확인해주세요"); return false; }
+    registerMember({ ...memberInfo, navigate })
   }
 
   return (
@@ -169,38 +158,44 @@ const RegisterMember = () => {
             type="text"
             value={memberInfo.nickname}
             onChange={changeNickname}
+            onBlur={(e) => validateNickname(e.target.value)}
             placeholder="닉네임"
           />
+          {!defaultCheck.nicknameCheck ? null : ( valueCheck.nickname ? (
+            <span className="material-symbols-outlined check-icon">done</span>
+          ) : (
+            <span className="material-symbols-outlined bad-check-icon">close</span>    
+          ))}
         </div>
+        {defaultCheck.nicknameCheck && !valueCheck.nickname && (
+          <div className="check-message">한글 혹은 영문자를 포함해 2글자 이상</div>
+        )}
         <div className="input-box">
           <input
             className="input input-value"
             type="email"
             value={memberInfo.email}
             onChange={changeEmail}
-            onBlur={(e) => validateEmail(e.target.value)}
             placeholder="이메일"
           />
-          {!defaultCheck.email ? (
-            <button className="nickname-check-btn" onClick={checkEmail}>중복 확인</button>
-          ) : (valueCheck.email ? (
-            <>
-              <button className="nickname-check-btn" onClick={checkEmail2}>인증</button>
-              <span className="material-symbols-outlined check-icon">done</span>
-            </>
+          <button className="nickname-check-btn" onClick={checkEmail}>인증번호 전송</button>
+          {!defaultCheck.emailCheck ? null : ( valueCheck.email ? (
+            <span className="material-symbols-outlined check-icon">done</span>
           ) : (
             <span className="material-symbols-outlined bad-check-icon">close</span>    
           ))}
         </div>
-        {defaultCheck.emailCheck && (
+        {defaultCheck.emailCheck && (valueCheck.email && (
           <div className="input-box">
             <input className="input input-value" type="text" value={certNumber} onChange={changeCertNumber} placeholder="인증번호" />
-            <button className="nickname-check-btn" onClick={checkEmail2}>인증번호 확인</button>
+            <button className="nickname-check-btn" onClick={checkCertNumber}>인증번호 확인</button>
           </div>
-        )}
-        {defaultCheck.email && !valueCheck.email && (
-          <div className="check-message">사용 중인 이메일입니다.</div>
-        )}
+        ))}
+        {!defaultCheck.certNumberCheck ? null : ( valueCheck.certNumber ? (
+            <span className="material-symbols-outlined check-icon">done</span>
+          ) : (
+            <span className="material-symbols-outlined bad-check-icon">close</span>    
+          ))}
         <div className="input-box">
           <input
             className="input input-value"
@@ -238,6 +233,7 @@ const RegisterMember = () => {
           <div className="check-message">비밀번호가 일치하지 않습니다.</div>
         )}
         <div className="login-wrapper">
+          {}
           <MyButton text="회원가입" />
         </div>
       </form>

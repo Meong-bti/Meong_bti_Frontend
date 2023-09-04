@@ -17,33 +17,7 @@ export const registerMember = async ({nickname, email, pw1, pw2, navigate }) => 
   }
 }
 
-export const checkingNickname = async (nickname, setDefaultCheck, setValueCheck, valueCheck) => {
-  const response = await fetch(`${domain}/member/nickname/duplicate-check`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ memberNick: nickname })
-  })
-
-  if (response.ok) {
-    alert("닉네임 중복 확인 성공")
-    setDefaultCheck(prev => ({
-      ...prev,
-      nickname: true
-    }));
-    setValueCheck({...valueCheck, nickname: true});
-  } else {
-    alert("닉네임 중복 확인 실패")
-    setDefaultCheck(prev => ({
-      ...prev,
-      nickname: true
-    }));
-    setValueCheck({...valueCheck, nickname: false});
-  }
-}
-
-export const checkingEmail = async (email, setDefaultCheck, setValueCheck, valueCheck) => {
+export const checkingEmail = async (email, setDefaultCheck, setValueCheck) => {
   const response = await fetch(`${domain}/member/email/duplicate-check`, {
     method: 'POST',
     headers: {
@@ -57,13 +31,22 @@ export const checkingEmail = async (email, setDefaultCheck, setValueCheck, value
       ...prev,
       email: true
     }));
-    setValueCheck({...valueCheck, email: true});
+    setValueCheck(prev => ({
+      ...prev,
+      email: true
+    }));
+
+    return true;
   } else {
-    alert("이메일 중복 확인 실패")
+    alert("이미 사용중인 이메일입니다.")
     setDefaultCheck(prev => ({
       ...prev,
       email: true
     }));
-    setValueCheck({...valueCheck, email: false});
+    setValueCheck(prev => ({
+      ...prev,
+      email: false
+    }));
+    return false;
   }
 }
