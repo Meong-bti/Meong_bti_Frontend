@@ -34,6 +34,14 @@ const TopNavigation = () => {
     }
   }
 
+  const clickDeleteMember = () => {
+    if (window.confirm(
+`탈퇴하시면 복구가 불가능합니다. 
+회원탈퇴를 진행하시겠습니까 ?`)) {
+      deleteMember({loginUpdate, navigate})
+    }
+  }
+
 
   return (
     <>
@@ -60,7 +68,7 @@ const TopNavigation = () => {
           <div className="user-info-box" onClick={goChangePw}>
             개인정보 재설정
           </div>
-          <div className="user-info-box member-delete-box" onClick={() => deleteMember({loginUpdate, navigate})}>
+          <div className="user-info-box member-delete-box" onClick={clickDeleteMember}>
             회원 탈퇴
           </div>
         </div>

@@ -38,6 +38,12 @@ const Post = ({ postData, user, setChange }) => {
       clickLike({postData, setLikeClick, setHeartImg, setHeartSticker});
     }
   };
+
+  const clickDeletePost = () => {
+    if (window.confirm("게시물을 삭제하시겠습니까?")) {
+      deletePost({postData, setChange})
+    }
+  }
   
   return (
     <div className="post-box">
@@ -56,7 +62,7 @@ const Post = ({ postData, user, setChange }) => {
           <div className="dropdown-content">
             {postData.userName === user
                 ? (<><span onClick={() => setContentEdit(true)}>수정</span>
-                  <span onClick={() => deletePost({postData, setChange})}>삭제</span></>)
+                  <span onClick={clickDeletePost}>삭제</span></>)
                 : (<>
                     <span>공유</span>
               </>)
