@@ -9,7 +9,17 @@ export const petRegister = async ({petInfo, navigate}) => {
   formData.append('petGender', petInfo.petGender);
   formData.append('petNtlz', petInfo.petNtlz);
   formData.append('petWeight', petInfo.petWeight);
-  formData.append('petImageFile', petInfo.selectedImage)
+  console.log(petInfo.selectedImage)
+  if (petInfo.selectedImage === "") {
+    const imagePath = `${process.env.PUBLIC_URL}/assets/dog.jpg`
+    fetch(imagePath)
+      .then(response => response.blob())
+      .then(imageBlob => {
+        formData.append('petImageFile', imageBlob)
+      })
+  } else {
+    formData.append('petImageFile', petInfo.selectedImage)
+  }
 
   const response = await fetch(`${domain}/pet/register`, {
     method: 'POST',
