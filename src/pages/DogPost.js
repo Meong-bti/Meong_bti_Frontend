@@ -53,6 +53,7 @@ const DogPost = () => {
           {posts.map((it, index) => (
             <Post postData={it} key={index} user={nickname}  />
           ))}
+          {!posts && (<div>포스트가 없습니다.</div>)}
         </div>
         <div className="btn-wrapper">
           <button className="post-button" onClick={goBoast}>자랑하기</button>
