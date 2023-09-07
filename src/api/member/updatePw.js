@@ -2,7 +2,7 @@ import { domain } from "../domain"
 
 export const updatePw = async ({pw1, pw2, navigate, loginUpdate}) => {
   const token = localStorage.getItem('token');
-  const response = await fetch(`${domain}/member/updatePw`, {
+  const response = await fetch(`${domain}/member/password/change`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
