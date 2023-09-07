@@ -1,8 +1,16 @@
 import { domain } from "../domain"
 
-export const getPost = async ({setPosts, posts}) => {
+export const getPost = async ({ setPosts, posts }) => {
+  let postKey = localStorage.getItem('postKey')
   const token = localStorage.getItem('token');
-  const response = await fetch(`${domain}/post/list`, {
+
+  if (postKey) {
+    postKey += 1;
+  } else {
+    postKey = 1;
+  }
+  
+  const response = await fetch(`${domain}/post/list?key=${postKey}&size=5`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
