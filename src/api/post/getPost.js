@@ -1,17 +1,7 @@
 import { domain } from "../domain"
 
-export const getPost = async ({ setPosts, posts }) => {
-  let postKey = localStorage.getItem('postKey')
+export const getPost = async ({ setPosts, posts, postKey }) => {
   const token = localStorage.getItem('token');
-
-  if (postKey) {
-    console.log("post키 있음")
-    postKey += 1;
-  } else {
-    console.log("post키 없음")
-    localStorage.setItem('postKey', '1')
-    postKey = 1;
-  }
   
   const response = await fetch(`${domain}/post/list?key=${postKey}&size=5`, {
     method: 'GET',
