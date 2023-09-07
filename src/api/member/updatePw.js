@@ -8,7 +8,7 @@ export const updatePw = async ({pw1, pw2, navigate, loginUpdate}) => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }, 
-    body: JSON.stringify({memberPw: pw1, checkPw: pw2})
+    body: JSON.stringify({newPassword: pw1, newPasswordCheck: pw2})
   });
 
   if (response.ok) {
