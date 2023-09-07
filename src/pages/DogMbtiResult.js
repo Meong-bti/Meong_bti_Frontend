@@ -39,26 +39,25 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     
-    if (location.state) {
-      setDbtiResult(location.state.dbtiName)
-      let dbtiName = location.state.dbtiName
-      console.log(location.state.dbtiName)
-      const { step1, step2, step3, step4 } = location.state.dbti;
-      setResultTest({
-        idx:"dNum1",
-        name: location.state.petName, 
-        type: dbtiName,
-        subTitle: dbtiDes[dbtiName].subTitle, 
-        img: `assets/dbti/main/${dbtiName}.png`,
-        sideImg: `assets/dbti/side/right/${dbtiName}.png`,
-        detail1: step1, 
-        detail2: step2, 
-        detail3: step3, 
-        detail4: step4,
-        simpleDes: dbtiDes[dbtiName].simpleDes,
-        mainDes: dbtiDes[dbtiName].mainDes
-      });
-    } else {
+    // if (location.state) {
+    //   setDbtiResult()
+    //   console.log(location.state.dbtiName)
+    //   const { step1, step2, step3, step4 } = location.state.dbti;
+    //   setResultTest({
+    //     idx:"dNum1",
+    //     name: location.state.petName, 
+    //     type: location.state.dbtiName,
+    //     subTitle: dbtiDes[location.state.dbtiName].subTitle, 
+    //     img: `assets/dbti/main/${location.state.dbtiName}.png`,
+    //     sideImg: `assets/dbti/side/right/${location.state.dbtiName}.png`,
+    //     detail1: step1, 
+    //     detail2: step2, 
+    //     detail3: step3, 
+    //     detail4: step4,
+    //     simpleDes: dbtiDes[location.state.dbtiName].simpleDes,
+    //     mainDes: dbtiDes[location.state.dbtiName].mainDes
+    //   });
+    // } else {
       getResult(dbtiId).then((data) => {
         console.log(data)
         setResultTest({
@@ -76,7 +75,7 @@ const DogMbtiResult = () => {
           mainDes: dbtiDes[data.dbtiName].mainDes
         })
       })
-    }
+    // }
   }, [dbtiResult])
 
   const [friendList, setFriendList] = useState(null);
