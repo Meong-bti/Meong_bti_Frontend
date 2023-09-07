@@ -3,12 +3,20 @@ import { getNickname } from "../member"
 
 export const authKakao = async ({ code, loginUpdate, navigate }) => {
   console.log(code)
+  // const response = await fetch(`${domain}/auth/kakao`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ authorizationCode: code })
+  // })
+
   const response = await fetch(`${domain}/auth/kakao`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
     },
-    body: JSON.stringify({ authorizationCode: code })
+    body: { authorizationCode: code }
   })
 
   if (response.ok) {

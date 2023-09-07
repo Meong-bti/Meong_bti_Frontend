@@ -41,6 +41,7 @@ const DogMbtiResult = () => {
     
     if (location.state) {
       setDbtiResult(location.state.dbtiName)
+      console.log(location.state.dbtiName)
       const { step1, step2, step3, step4 } = location.state.dbti;
       setResultTest({
         idx:"dNum1",
