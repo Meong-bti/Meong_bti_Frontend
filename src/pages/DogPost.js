@@ -12,6 +12,7 @@ const DogPost = () => {
   const nickname = localStorage.getItem('nickname');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [postKey, setPostKey] = useState(0)
 
   useEffect(() => {
     // if (!login) {
@@ -24,7 +25,8 @@ const DogPost = () => {
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollTop + windowHeight >= documentHeight) {
-        getPost({setPosts, posts})
+        getPost({ setPosts, posts, postKey })
+        setPostKey(postKey + 1)
       }
     };
 
@@ -37,7 +39,8 @@ const DogPost = () => {
 
 
   useEffect(() => {
-    getPost({setPosts, posts});
+    getPost({ setPosts, posts, postKey });
+    setPostKey(postKey + 1)
   }, [])
 
   const goBoast = () => {
