@@ -41,21 +41,22 @@ const DogMbtiResult = () => {
     
     if (location.state) {
       setDbtiResult(location.state.dbtiName)
+      let dbtiName = location.state.dbtiName
       console.log(location.state.dbtiName)
       const { step1, step2, step3, step4 } = location.state.dbti;
       setResultTest({
         idx:"dNum1",
         name: location.state.petName, 
-        type: dbtiResult,
-        subTitle: dbtiDes[dbtiResult].subTitle, 
-        img: `assets/dbti/main/${dbtiResult}.png`,
-        sideImg: `assets/dbti/side/right/${dbtiResult}.png`,
+        type: dbtiName,
+        subTitle: dbtiDes[dbtiName].subTitle, 
+        img: `assets/dbti/main/${dbtiName}.png`,
+        sideImg: `assets/dbti/side/right/${dbtiName}.png`,
         detail1: step1, 
         detail2: step2, 
         detail3: step3, 
         detail4: step4,
-        simpleDes: dbtiDes[dbtiResult].simpleDes,
-        mainDes: dbtiDes[dbtiResult].mainDes
+        simpleDes: dbtiDes[dbtiName].simpleDes,
+        mainDes: dbtiDes[dbtiName].mainDes
       });
     } else {
       getResult(dbtiId).then((data) => {
