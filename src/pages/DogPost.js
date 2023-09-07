@@ -18,7 +18,6 @@ const DogPost = () => {
     //   alert('로그인이 필요합니다');
     //   navigate('/login');
     // }
-
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -53,7 +52,7 @@ const DogPost = () => {
           {posts.map((it, index) => (
             <Post postData={it} key={index} user={nickname}  />
           ))}
-          {!posts && (<div>포스트가 없습니다.</div>)}
+          {posts.length == 0 && (<div>포스트가 없습니다.</div>)}
         </div>
         <div className="btn-wrapper">
           <button className="post-button" onClick={goBoast}>자랑하기</button>
