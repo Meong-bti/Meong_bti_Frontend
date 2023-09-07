@@ -14,7 +14,7 @@ export const authKakao = async ({ code, loginUpdate, navigate }) => {
   const response = await fetch(`${domain}/auth/kakao`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      'Content-Type': 'application/json'
     },
     body: { authorizationCode: code }
   })
