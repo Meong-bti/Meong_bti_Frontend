@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import { useState } from "react";
-import { checkingEmail, registerMember, confirmEmail } from '../api/member/index.js'
+import { checkingEmail, registerMember, confirmEmail, confirmCertNumber } from '../api/member/index.js'
 
 const RegisterMember = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const RegisterMember = () => {
 
   const checkCertNumber = async (event) => {
     event.preventDefault();
-    
+    confirmCertNumber({email: memberInfo.email, certNumber: certNumber, setDefaultCheck, setValueCheck })
   }
 
   
@@ -138,10 +138,10 @@ const RegisterMember = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!defaultCheck.nicknameCheck) { alert("닉네임을 확인해주세요"); return false; }
-    if (!defaultCheck.emailCheck) { alert("이메일을 확인해주세요"); return false; }
-    if (!defaultCheck.certNumberCheck) { alert("인증번호를 확인해주세요"); return false; }
-    if (!defaultCheck.pw1Check || !defaultCheck.pw2Check) { alert("비밀번호를 확인해주세요"); return false; }
+    if (!defaultCheck.nicknameCheck || !valueCheck.nickname) { alert("닉네임을 확인해주세요"); return false; }
+    if (!defaultCheck.emailCheck || !valueCheck.email) { alert("이메일을 확인해주세요"); return false; }
+    if (!defaultCheck.certNumberCheck || !valueCheck.certNumber) { alert("인증번호를 확인해주세요"); return false; }
+    if (!defaultCheck.pw1Check || !defaultCheck.pw2Check || !valueCheck.pw1 || !valueCheck.pw2) { alert("비밀번호를 확인해주세요"); return false; }
     registerMember({ ...memberInfo, navigate })
   }
 
