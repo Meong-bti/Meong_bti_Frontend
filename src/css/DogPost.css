@@ -8,7 +8,6 @@
   margin-left: 20px;
   /* padding: 0px 15px; */
   padding: 100px 20px;
-
 }
 
 .dog-post .top-nav {
@@ -41,6 +40,13 @@
 .dog-post .post-content {
   display: flex;
   flex-direction: column;
+}
+
+.dog-post .post-content .no-post {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
+  color: #b79e84;
 }
 
 .dog-post .post-box {
