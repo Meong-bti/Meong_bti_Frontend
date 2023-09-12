@@ -38,44 +38,23 @@ const DogMbtiResult = () => {
   })
 
   useEffect(() => {
-    
-    // if (location.state) {
-    //   setDbtiResult()
-    //   console.log(location.state.dbtiName)
-    //   const { step1, step2, step3, step4 } = location.state.dbti;
-    //   setResultTest({
-    //     idx:"dNum1",
-    //     name: location.state.petName, 
-    //     type: location.state.dbtiName,
-    //     subTitle: dbtiDes[location.state.dbtiName].subTitle, 
-    //     img: `assets/dbti/main/${location.state.dbtiName}.png`,
-    //     sideImg: `assets/dbti/side/right/${location.state.dbtiName}.png`,
-    //     detail1: step1, 
-    //     detail2: step2, 
-    //     detail3: step3, 
-    //     detail4: step4,
-    //     simpleDes: dbtiDes[location.state.dbtiName].simpleDes,
-    //     mainDes: dbtiDes[location.state.dbtiName].mainDes
-    //   });
-    // } else {
-      getResult(dbtiId).then((data) => {
-        console.log(data)
-        setResultTest({
-          idx:"dNum1",
-          name: data.petName, 
-          type: data.dbtiName,
-          subTitle: dbtiDes[data.dbtiName].subTitle, 
-          img: `assets/dbti/main/${data.dbtiName}.png`,
-          sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
-          detail1: data.protoDog, 
-          detail2: data.relationship, 
-          detail3: data.dependence, 
-          detail4: data.activity, 
-          simpleDes: dbtiDes[data.dbtiName].simpleDes,
-          mainDes: dbtiDes[data.dbtiName].mainDes
-        })
+    getResult(dbtiId).then((data) => {
+      console.log(data)
+      setResultTest({
+        idx:"dNum1",
+        name: data.petName, 
+        type: data.dbtiName,
+        subTitle: dbtiDes[data.dbtiName].subTitle, 
+        img: `assets/dbti/main/${data.dbtiName}.png`,
+        sideImg: `assets/dbti/side/right/${data.dbtiName}.png`,
+        detail1: data.protoDog, 
+        detail2: data.relationship, 
+        detail3: data.dependence, 
+        detail4: data.activity, 
+        simpleDes: dbtiDes[data.dbtiName].simpleDes,
+        mainDes: dbtiDes[data.dbtiName].mainDes
       })
-    // }
+    })
   }, [dbtiResult])
 
   const [friendList, setFriendList] = useState(null);
