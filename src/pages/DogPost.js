@@ -55,7 +55,7 @@ const DogPost = () => {
           {posts.map((it, index) => (
             <Post postData={it} key={index} user={nickname}  />
           ))}
-          {posts.length == 0 && (<div>포스트가 없습니다.</div>)}
+          {posts.length == 0 && (<div className="no-post">등록된 포스트가 없습니다.</div>)}
         </div>
         <div className="btn-wrapper">
           <button className="post-button" onClick={goBoast}>자랑하기</button>
