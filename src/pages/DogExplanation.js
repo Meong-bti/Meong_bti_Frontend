@@ -11,7 +11,7 @@ const DogExplanation = () => {
   const navigate = useNavigate();
   // 네비게이션
   const goBack = () => {
-    navigate('/DogMbtiResult', {
+    navigate(`/DogMbtiResult?dbtiId=${location.state.petId}`, {
       state: location.state
     });
   };
