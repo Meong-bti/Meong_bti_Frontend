@@ -86,6 +86,7 @@ const Question = () => {
           activity: "L"
         }))
       }
+      setStep(4)
       setFinished(true);
       return;
     }

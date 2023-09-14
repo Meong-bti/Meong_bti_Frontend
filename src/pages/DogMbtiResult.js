@@ -10,9 +10,15 @@ const DogMbtiResult = () => {
   const navigate = useNavigate();
 
   const goDetail = () => {
-    navigate('/DogExplanation', {
-      state: location.state
-    });
+    if (location.state) {
+      navigate('/DogExplanation', {
+        state: location.state
+      });
+    } else {
+      navigate('/DogExplanation', {
+        state: dbtiResult
+      });
+    }
   };
 
   const goTest = () => {
@@ -39,7 +45,7 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     getResult(dbtiId).then((data) => {
-      console.log(data)
+      setDbtiResult(data.dbtiName)
       setResultTest({
         idx:"dNum1",
         name: data.petName, 
@@ -209,6 +215,9 @@ const DogMbtiResult = () => {
               </div>
             ))}</div>
           </div>                  
+        </div>
+        <div className="mbti-all-explanation">
+          <button onClick={goDetail}>MBTI 설명 보러가기</button>
         </div>
         <div className="mbit-btn-group">
           <ul>

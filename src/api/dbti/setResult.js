@@ -24,7 +24,7 @@ export const setResult = async (petId, petName, dbti, navigate) => {
   if (response.ok) {
     alert('dbti 등록 성공')
     navigate(`/DogMbtiResult?dbtiId=${petId}`, {
-      state: { petName: petName, dbti: dbti, dbtiName: dbtiValue.dbtiName }
+      state: { dbtiName: dbtiValue.dbtiName }
     });
   } else {
     alert('DBTI 등록에 에러가 발생했습니다. 잠시 후 다시 시도해주세요');
