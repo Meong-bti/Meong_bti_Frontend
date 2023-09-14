@@ -224,9 +224,11 @@ const DogMbtiResult = () => {
             <li>
               <button onClick={resultShare}>결과 공유하기</button>
             </li>
-            <li>
-              <button onClick={goTest}>다시 테스트하기</button>
-            </li>
+            {location.state.testUser && (
+              <li>
+                <button onClick={goTest}>다시 테스트하기</button>
+              </li>
+            )}
           </ul>
         </div>
         <div className="share-box">
