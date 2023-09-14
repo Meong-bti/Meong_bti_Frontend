@@ -9,7 +9,7 @@ export const editPet1 = async ({ petInfo, navigate }) => {
   formData.append('petBday', petInfo.petBday);
   formData.append('petGender', petInfo.petGender);
   formData.append('petNtlz', petInfo.petNtlz);
-  formData.append('petWeight', petInfo.weight);
+  formData.append('petWeight', petInfo.petWeight);
   formData.append('petImageFile', petInfo.selectedImage);
 
   const response = await fetch(`${domain}/pet/${petInfo.petId}/edit`, {
@@ -53,7 +53,7 @@ export const editPet2 = async ({ petInfo, navigate }) => {
   formData.append('petBday', petInfo.petBday);
   formData.append('petGender', petInfo.petGender);
   formData.append('petNtlz', petInfo.petNtlz);
-  formData.append('petWeight', petInfo.weight);
+  formData.append('petWeight', petInfo.petWeight);
   formData.append('petImageFile', file);
 
   const response = await fetch(`${domain}/pet/${petInfo.petId}/edit`, {
