@@ -12,11 +12,11 @@ const DogMbtiResult = () => {
   const goDetail = () => {
     if (location.state) {
       navigate('/DogExplanation', {
-        state: location.state
+        state: { dbtiName: location.state.dbtiName, petId: dbtiId }
       });
     } else {
       navigate('/DogExplanation', {
-        state: dbtiResult
+        state: { dbtiName: dbtiResult, petId: dbtiId }
       });
     }
   };
