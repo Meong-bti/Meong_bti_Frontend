@@ -32,6 +32,7 @@ export const editPet1 = async ({ petInfo, navigate }) => {
 }
 
 export const editPet2 = async ({ petInfo, navigate }) => {
+  console.log(petInfo)
   const token = localStorage.getItem('token');
   const formData = new FormData();
   const imageUrl = petInfo.petImageFile;
