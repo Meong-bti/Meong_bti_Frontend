@@ -40,6 +40,10 @@ const DogExplanation = () => {
 
   // 이미지맵
   useEffect(() => {
+    if (location.state) {
+      setMbtiDes(dbtiDes[location.state.dbtiName].plusDes)
+      setTitle(location.state.dbtiName)
+    }
     if (isLoaded && mapRef.current) {
       ImageMap('img[useMap]');
     }
@@ -49,8 +53,10 @@ const DogExplanation = () => {
     setIsLoaded(true);
   };
 
-  const [mbtiDes, setMbtiDes] = useState(dbtiDes[location.state.dbtiName].plusDes);
-  const [title, setTitle] = useState(location.state.dbtiName);
+  // const [mbtiDes, setMbtiDes] = useState(dbtiDes[location.state.dbtiName].plusDes);
+  // const [title, setTitle] = useState(location.state.dbtiName);
+  const [mbtiDes, setMbtiDes] = useState("");
+  const [title, setTitle] = useState("");
   
   const imageClick = (title) => {
     const fill = dogExContent.filter(ex => ex.mbti === title);
