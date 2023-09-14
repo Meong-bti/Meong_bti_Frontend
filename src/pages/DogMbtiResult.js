@@ -10,7 +10,7 @@ const DogMbtiResult = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState("share");
   const goDetail = () => {
-    if (location.state.user === "test") {
+    if (location.state && location.state.user === "test") {
       navigate('/DogExplanation', {
         state: { dbtiName: dbtiResult, petId: dbtiId, user: "test" }
       });
@@ -45,7 +45,7 @@ const DogMbtiResult = () => {
 
   useEffect(() => {
     
-    if (location.state.user === "test") {
+    if (location.state && location.state.user === "test") {
       setUser("test")
     }
     getResult(dbtiId).then((data) => {
