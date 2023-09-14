@@ -1,6 +1,7 @@
 import { domain } from "../domain"
 
 export const editPet1 = async ({ petInfo, navigate }) => {
+  console.log(petInfo)
   const token = localStorage.getItem('token');
   const formData = new FormData();
   formData.append('petName', petInfo.petName);
