@@ -44,7 +44,7 @@ const DogMbtiResult = () => {
   })
 
   useEffect(() => {
-    if (location.state.testUser) {
+    if ("testUser" in Object.keys(location.state)) {
       setTestUser(true)
     }
     getResult(dbtiId).then((data) => {
