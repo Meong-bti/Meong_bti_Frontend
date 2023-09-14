@@ -10,9 +10,9 @@ const DogMbtiResult = () => {
   const navigate = useNavigate();
 
   const goDetail = () => {
-    if (location.state) {
+    if (location.state.testUser) {
       navigate('/DogExplanation', {
-        state: { dbtiName: location.state.dbtiName, petId: dbtiId }
+        state: { dbtiName: dbtiResult, petId: dbtiId, testUser: true }
       });
     } else {
       navigate('/DogExplanation', {
