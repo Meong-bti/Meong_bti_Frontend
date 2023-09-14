@@ -40,7 +40,7 @@ import RegisterMember from "./pages/RegisterMember";
 import DogDetail from "./pages/DogDetail";
 import UpdatePassword from "./pages/UpdatePassword";
 
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 import { AuthProvider } from "./components/AuthContext";
 import EditDogInfo from "./pages/EditDogInfo";
@@ -50,6 +50,7 @@ export const PetContext = createContext();
 
 function App() {
 
+  const [loadPet, setLoadPet] = useState(false);
   const [petList, setPetList] = useState([]);
   const [petInfo, setPetInfo] = useState({
     petId: 0,
@@ -66,7 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <PetContext.Provider value={{ petList, setPetList, petInfo, setPetInfo }}>
+        <PetContext.Provider value={{ petList, setPetList, petInfo, setPetInfo, loadPet, setLoadPet }}>
           <AuthProvider >
             <Routes>
               <Route path="/login" element={<APILogin />} />
