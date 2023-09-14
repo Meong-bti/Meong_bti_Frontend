@@ -8,15 +8,15 @@ import { getResult } from "../api/dbti/index.js";
 const DogMbtiResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [testUser, setTestUser] = useState(false);
+  const [user, setUser] = useState("share");
   const goDetail = () => {
-    if (location.state.testUser) {
+    if (location.state.user === "test") {
       navigate('/DogExplanation', {
-        state: { dbtiName: dbtiResult, petId: dbtiId, testUser: true }
+        state: { dbtiName: dbtiResult, petId: dbtiId, user: "test" }
       });
     } else {
       navigate('/DogExplanation', {
-        state: { dbtiName: dbtiResult, petId: dbtiId }
+        state: { dbtiName: dbtiResult, petId: dbtiId, user: "share"}
       });
     }
   };
@@ -44,9 +44,9 @@ const DogMbtiResult = () => {
   })
 
   useEffect(() => {
-    console.log(Object.keys(location.state))
-    if (location.state && "testUser" in Object.keys(location.state)) {
-      setTestUser(true)
+    
+    if (location.state.user === "test") {
+      setUser("test")
     }
     getResult(dbtiId).then((data) => {
       setDbtiResult(data.dbtiName)
@@ -228,7 +228,7 @@ const DogMbtiResult = () => {
             <li>
               <button onClick={resultShare}>결과 공유하기</button>
             </li>
-            {testUser && (
+            {user === "test" && (
               <li>
                 <button onClick={goTest}>다시 테스트하기</button>
               </li>
