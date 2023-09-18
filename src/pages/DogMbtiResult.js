@@ -65,7 +65,7 @@ const DogMbtiResult = () => {
           web_url: url,
           mobile_web_url: url,
         },
-        button_title: '바로 확인',
+        // button_title: '바로 확인',
       });
     }
   }
