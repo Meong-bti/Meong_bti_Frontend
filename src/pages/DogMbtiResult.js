@@ -58,8 +58,8 @@ const DogMbtiResult = () => {
         kakao.init("cc5ebe066875a3d0c3214fc264f06811");
       }
 
-      kakao.Link.sendDefault({
-        object_type: 'text',
+      kakao.Share.sendDefault({
+        objectType: 'text',
         text: 'DBTI 테스트 결과를 확인해봐요',
         link: {
           web_url: url,
