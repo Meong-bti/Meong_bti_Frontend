@@ -16,7 +16,7 @@ export const authKakao = async ({ code, loginUpdate, navigate }) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: { authorizationCode: code }
+    body: JSON.stringify({ authorizationCode: code })
   })
 
   if (response.ok) {
