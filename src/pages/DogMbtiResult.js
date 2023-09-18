@@ -44,6 +44,34 @@ const DogMbtiResult = () => {
   })
 
   useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
+
+  const shareKakao = (url) => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init("cc5ebe066875a3d0c3214fc264f06811");
+      }
+
+      kakao.Link.sendDefault({
+        object_type: 'text',
+        text: 'DBTI 테스트 결과를 확인해봐요',
+        link: {
+          web_url: url,
+          mobile_web_url: url,
+        },
+        button_title: '바로 확인',
+      });
+    }
+  }
+
+
+  useEffect(() => {
     
     if (location.state && location.state.user === "test") {
       setUser("test")
@@ -226,7 +254,8 @@ const DogMbtiResult = () => {
         <div className="mbit-btn-group">
           <ul>
             <li>
-              <button onClick={resultShare}>결과 공유하기</button>
+              {/* <button onClick={resultShare}>결과 공유하기</button> */}
+              <button onClick={() => shareKakao(currentUrl)}>결과 공유하기</button>
             </li>
             {user === "test" && (
               <li>
