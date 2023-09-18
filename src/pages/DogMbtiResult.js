@@ -62,8 +62,8 @@ const DogMbtiResult = () => {
         objectType: 'text',
         text: 'DBTI 테스트 결과를 확인해봐요',
         link: {
-          web_url: url,
-          mobile_web_url: url,
+          webUrl: url,
+          mobileWebUrl: url,
         },
         // button_title: '바로 확인',
       });
