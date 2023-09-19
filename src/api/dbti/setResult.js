@@ -1,6 +1,6 @@
 import { domain } from "../domain"
 
-export const setResult = async (petId, petName, dbti, navigate) => {
+export const setResult = async (petId, dbti, navigate) => {
   const token = localStorage.getItem('token')
   console.log(token)
 

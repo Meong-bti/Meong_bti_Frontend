@@ -22,7 +22,9 @@ const DogMbtiResult = () => {
   };
 
   const goTest = () => {
-    navigate('/Question');
+    navigate('/question', {
+      state: { petId: dbtiId }
+    });
   };
 
   const queryParams = new URLSearchParams(location.search);
@@ -152,67 +154,6 @@ const DogMbtiResult = () => {
     })
   }, [dbtiResult])
 
-  const [friendList, setFriendList] = useState(null);
-
-  const resultShare = async () => {
-    const getFriendListUrl = "https://kapi.kakao.com/v1/api/talk/friends?limit=3"
-    const kakaoUrl = "https://kapi.kakao.com/v1/api/talk/friends/message/default/send";
-    const kakaoAccessToken = localStorage.getItem('kakao_access_token');    
-
-    const templateObject = {
-      object_type: 'text',
-      text: 'DBTI 서비스 준비중입니다.',
-      link: {
-        web_url: 'https://www.naver.com',
-        mobile_web_url: 'https://www.naver.com',
-      },
-      button_title: '바로 확인',
-    };
-
-    try {
-      const kakaoGetFriendList = await fetch(getFriendListUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${kakaoAccessToken}`,
-        }
-      })
-
-      if(kakaoGetFriendList.ok) {
-        const result = kakaoGetFriendList.json()
-        result.then(data => {
-          setFriendList(data.elements)
-        });
-
-        console.log(friendList[0].uuid)
-      }
-      
-    } catch (error) {
-      console.error("친구 목록 가져오기 중 에러 : ", error)
-    }
-
-    try {
-      const kakaoMessageSend = await fetch(kakaoUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': `Bearer ${kakaoAccessToken}`,
-        },
-        // body: `template_object=${encodeURIComponent(JSON.stringify(templateObject))}`,
-        body: new URLSearchParams({
-          receiver_uuids: JSON.stringify([friendList[0].uuid]),
-          template_object: JSON.stringify(templateObject)
-        })
-      })
-
-      if (kakaoMessageSend.ok) {
-        alert('공유 성공');
-      } else {
-        alert('공유 실패 : ', kakaoMessageSend.status);
-      }
-    } catch (error) {
-      console.error('메시지 보내기 요청 중 에러 발생: ', error)
-    }
-  }
 
   const currentUrl = window.location.href;
   const copyUrl = () => {
