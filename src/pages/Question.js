@@ -9,7 +9,7 @@ import { setResult } from "../api/dbti/index.js";
 const Question = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { petId, petName } = state;
+  const { petId } = state;
 
   const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
@@ -111,7 +111,7 @@ const Question = () => {
 
   useEffect(() => {
     if (finished) {
-      setResult(petId, petName, dbti, navigate);
+      setResult(petId, dbti, navigate);
     }
   }, [finished])
 

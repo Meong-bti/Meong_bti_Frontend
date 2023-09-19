@@ -38,7 +38,7 @@ const DogBoast = () => {
       return;
     }
     navigate('/question', {
-      state: { petId: clickedPetId, petName: clickedPetName }
+      state: { petId: clickedPetId }
     });
   }
 
