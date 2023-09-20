@@ -19,6 +19,6 @@ export const emailLogin = async ({email, password, loginUpdate, navigate}) => {
     navigate('/main');
   } else if (response.status === 401) {
     const err = await response.text();
-    alert(err)
+    alert('아이디 혹은 비밀번호를 확인해주세요')
   } else alert('아이디 혹은 비밀번호를 확인해주세요');
 };
