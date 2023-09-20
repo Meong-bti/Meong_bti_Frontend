@@ -189,13 +189,13 @@ const RegisterMember = () => {
           <div className="input-box">
             <input className="input input-value" type="text" value={certNumber} onChange={changeCertNumber} placeholder="인증번호" />
             <button className="nickname-check-btn" onClick={checkCertNumber}>인증번호 확인</button>
+            {!defaultCheck.certNumberCheck ? null : ( valueCheck.certNumber ? (
+              <span className="material-symbols-outlined check-icon">done</span>
+            ) : (
+              <span className="material-symbols-outlined bad-check-icon">close</span>    
+            ))}
           </div>
         ))}
-        {!defaultCheck.certNumberCheck ? null : ( valueCheck.certNumber ? (
-            <span className="material-symbols-outlined check-icon">done</span>
-          ) : (
-            <span className="material-symbols-outlined bad-check-icon">close</span>    
-          ))}
         <div className="input-box">
           <input
             className="input input-value"
