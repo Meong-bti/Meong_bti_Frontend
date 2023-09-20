@@ -43,7 +43,7 @@ const APILogin = () => {
   }
 
   const redirectUri = 'https://www.mungbti.com/login'; // 리다이렉트 URI  
-  const kakaoClientId = '0aae94045a35d65feef8a14ff7e1b4b7'
+  const kakaoClientId = 'ef93abe634b47bc062e23cbd5ccd7405'
   const googleClientId = '1061443135750-pinrgokprfe3m9gs8ev41t3ecrvv7vvo.apps.googleusercontent.com'; // 클라이언트 ID
 
   const handleKakaoLogin = () => {
