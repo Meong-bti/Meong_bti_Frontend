@@ -45,10 +45,13 @@ import { createContext, useContext, useState } from "react";
 import { AuthProvider } from "./components/AuthContext";
 import EditDogInfo from "./pages/EditDogInfo";
 import TestPage from "./pages/TestPage";
+import { PreventReload } from "./hook/preventReload";
 
 export const PetContext = createContext();
 
 function App() {
+
+  PreventReload();
 
   const [loadPet, setLoadPet] = useState(false);
   const [petList, setPetList] = useState([]);
