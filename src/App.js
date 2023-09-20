@@ -44,7 +44,6 @@ import { createContext, useContext, useState } from "react";
 
 import { AuthProvider } from "./components/AuthContext";
 import EditDogInfo from "./pages/EditDogInfo";
-import TestPage from "./pages/TestPage";
 import { PreventReload } from "./hook/preventReload";
 
 export const PetContext = createContext();
@@ -89,7 +88,6 @@ function App() {
               <Route path="/register" element={<RegisterMember />} />
               <Route path="/updatePassword" element={<UpdatePassword />} />
               <Route path="/DogSelect" element={<DogSelect />} />
-              <Route path="/test" element={<TestPage />} />
             </Routes>
           </AuthProvider>
         </PetContext.Provider>
