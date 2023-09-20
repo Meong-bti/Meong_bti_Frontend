@@ -65,7 +65,7 @@ const DogMbtiResult = () => {
         content: {
           title: `${petName}의 DBTI 테스트 결과를 확인해보세요`,
           imageUrl:
-            'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+            'https://meongbti-image.s3.ap-northeast-2.amazonaws.com/default/Default-2.jpg',
           link: {
             mobileWebUrl: currentUrl,
             webUrl: currentUrl,
