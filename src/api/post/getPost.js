@@ -3,7 +3,7 @@ import { domain } from "../domain"
 export const getPost = async ({ setPosts, posts, postKey }) => {
   const token = localStorage.getItem('token');
   
-  const response = await fetch(`${domain}/post/list?key=${postKey}&size=5`, {
+  const response = await fetch(`${domain}/post/list?key=${postKey}&size=10`, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
