@@ -35,7 +35,7 @@ const DogPost = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
-  }, [document.documentElement.scrollHeight, posts])
+  }, [document.documentElement.scrollHeight, posts, postKey])
 
 
   useEffect(() => {
