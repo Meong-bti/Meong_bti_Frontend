@@ -17,6 +17,6 @@ export const deletePet = async ({ petId, petList, navigate }) => {
         navigate('/doginfo');
       }
     } else {
-      console.log("삭제 실패");
+      alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요')
     }
   }

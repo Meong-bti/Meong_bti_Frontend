@@ -14,6 +14,6 @@ export const getPetInfo = async ({petId, setPetInfo}) => {
       const result = await response.json();
       setPetInfo({ ...result.data, petId: petId })
     } else {
-      console.log('pet 상세불러오기 실패');
+      alert("잠시 후 다시 시도해주세요")
     }
   }

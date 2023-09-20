@@ -12,12 +12,12 @@ export const updatePw = async ({pw1, pw2, navigate, loginUpdate}) => {
   });
 
   if (response.ok) {
+    alert("비밀번호 수정을 완료했습니다. 다시 로그인 후 이용해주세요")
     localStorage.removeItem('token');
     loginUpdate();
     navigate('/');
   } else {
     const result = await response.json();
-    console.log(result);
-    alert("실패");
+    alert("잠시 후 다시 시도해주세요");
   }
 }

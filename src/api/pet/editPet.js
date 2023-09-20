@@ -1,7 +1,6 @@
 import { domain } from "../domain"
 
 export const editPet1 = async ({ petInfo, navigate }) => {
-  console.log(petInfo)
   const token = localStorage.getItem('token');
   const formData = new FormData();
   formData.append('petName', petInfo.petName);
@@ -21,19 +20,16 @@ export const editPet1 = async ({ petInfo, navigate }) => {
   })
 
   if (response.ok) {
-    alert("성공")
+    alert("수정을 완료했습니다.")
     navigate('/dogdetail', {
       state: petInfo.petId
     })
   } else {
-    alert('수정 실패');
-    const result = await response.json()
-    console.log(result.status);
+    alert('잠시 후 다시 시도해주세요');
   }
 }
 
 export const editPet2 = async ({ petInfo, navigate }) => {
-  console.log(petInfo)
   const token = localStorage.getItem('token');
   const formData = new FormData();
   const imageUrl = petInfo.petImageFile;
@@ -42,7 +38,7 @@ export const editPet2 = async ({ petInfo, navigate }) => {
     // mode: 'no-cors'
   });
   if (!imageResponse.ok) {
-    console.log("에러")
+    console.log("에러가 발생했습니다. 잠시 후 다시 시도해주세요")
   }
 
   const blob = await imageResponse.blob();
@@ -65,12 +61,12 @@ export const editPet2 = async ({ petInfo, navigate }) => {
   })
 
   if (response.ok) {
-    alert("성공")
+    alert("수정했습니다")
     navigate('/dogdetail', {
       state: petInfo.petId
     })
   } else {
-    alert('수정 실패');
+    alert('잠시 후 다시 시도해주세요');
     const result = await response.json()
     console.log(result.status);
   }

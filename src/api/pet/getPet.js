@@ -29,6 +29,6 @@ export const getPet = async ({setPetList, loginUpdate, navigate, setLoaded}) => 
     navigate('/')
   } else {
     // 수정
-    console.log(response.status);
+    alert("잠시 후 다시 시도해주세요")
   }
 }

@@ -9,7 +9,6 @@ export const petRegister = async ({petInfo, navigate}) => {
   formData.append('petGender', petInfo.petGender);
   formData.append('petNtlz', petInfo.petNtlz);
   formData.append('petWeight', petInfo.petWeight);
-  console.log(petInfo.selectedImage)
   if (petInfo.selectedImage === "") {
     const imagePath = `${process.env.PUBLIC_URL}/assets/dog.jpg`
     fetch(imagePath)
@@ -30,9 +29,8 @@ export const petRegister = async ({petInfo, navigate}) => {
   })
   
   if (response.ok) {
-    alert("성공")
     navigate('/main');
   } else {
-    alert('등록 실패');
+    alert('잠시 후 다시 시도해주세요');
   }
 }

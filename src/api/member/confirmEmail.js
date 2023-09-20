@@ -1,7 +1,6 @@
 const domain = "https://api.mungbti.com/api"
 
 export const confirmEmail = async ({ email, setDefaultCheck }) => {
-  console.log(email)
   const response = await fetch(`${domain}/email`, {
     method: 'POST',
     headers: {
@@ -19,7 +18,6 @@ export const confirmEmail = async ({ email, setDefaultCheck }) => {
 }
 
 export const confirmCertNumber = async ({ email, certNumber, setDefaultCheck, setValueCheck }) => {
-  console.log(certNumber)
   const response = await fetch(`${domain}/email/verifications`, {
     method: 'POST',
     headers: {
