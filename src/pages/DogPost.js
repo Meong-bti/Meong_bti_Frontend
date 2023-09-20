@@ -26,7 +26,7 @@ const DogPost = () => {
 
       if (scrollTop + windowHeight >= documentHeight) {
         getPost({ setPosts, posts, postKey })
-        setPostKey(postKey + 1)
+        setPostKey((key) => key + 1)
       }
     };
 
