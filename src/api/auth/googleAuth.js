@@ -2,7 +2,6 @@ import { domain } from "../domain"
 import { getNickname } from "../member"
 
 export const authGoogle = async ({ code, loginUpdate, navigate }) => {
-  console.log(code)
   const response = await fetch(`${domain}/auth/google`, {
     method: 'POST',
     headers: {
@@ -19,7 +18,6 @@ export const authGoogle = async ({ code, loginUpdate, navigate }) => {
     getNickname();
     navigate('/main');
   } else {
-    alert("google Auth API 실패")
-    console.log(response)
+    alert("잠시 후 다시 시도해주세요")
   }
 }

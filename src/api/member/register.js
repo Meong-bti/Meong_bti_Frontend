@@ -10,10 +10,10 @@ export const registerMember = async ({nickname, email, pw1, pw2, navigate }) => 
   })
   
   if (response.ok) {
-    alert('good');
+    alert('회원가입에 성공했습니다. 로그인 후 이용해주세요');
     navigate('/login')
   } else {
-    console.error(response);
+    alert("잠시 후 다시 시도해주세요")
   }
 }
 

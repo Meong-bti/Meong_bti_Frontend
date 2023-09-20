@@ -12,7 +12,6 @@ export const emailLogin = async ({email, password, loginUpdate, navigate}) => {
 
   if (response.ok) {
     const res = await response.json();
-    console.log(res.data.accessToken)
     localStorage.setItem('token', res.data.accessToken);
     localStorage.setItem('authType', "email");
     loginUpdate();
@@ -20,7 +19,6 @@ export const emailLogin = async ({email, password, loginUpdate, navigate}) => {
     navigate('/main');
   } else if (response.status === 401) {
     const err = await response.text();
-    console.log("실패....")
     alert(err)
-  } else alert('로그인 실패');
+  } else alert('아이디 혹은 비밀번호를 확인해주세요');
 };

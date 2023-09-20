@@ -13,6 +13,6 @@ export const getNickname = async () => {
     const result = await response.json();
     localStorage.setItem('nickname', result.data.memberNick);
   } else {
-    console.log(response.status);
+    alert("닉네임을 가져오는데 실패했습니다. 잠시 후 다시 시도해주세요")
   }
 }

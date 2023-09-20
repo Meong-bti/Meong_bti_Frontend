@@ -2,7 +2,6 @@ import { domain } from "../domain"
 import { getNickname } from "../member"
 
 export const authKakao = async ({ code, loginUpdate, navigate }) => {
-  console.log(code)
   // const response = await fetch(`${domain}/auth/kakao`, {
   //   method: 'POST',
   //   headers: {
@@ -20,7 +19,6 @@ export const authKakao = async ({ code, loginUpdate, navigate }) => {
   })
 
   if (response.ok) {
-    console.log("kakao Auth API 성공")
     const res = await response.json();
     localStorage.setItem('token', res.accessToken);
     localStorage.setItem('authType', "kakao");
@@ -28,6 +26,6 @@ export const authKakao = async ({ code, loginUpdate, navigate }) => {
     getNickname();
     navigate('/main');
   } else {
-    alert("kakao Auth API 실패")
+    alert("잠시 후 다시 시도해주세요")
   }
 }

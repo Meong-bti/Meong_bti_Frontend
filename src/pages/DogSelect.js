@@ -12,7 +12,6 @@ const DogBoast = () => {
 	// 강아지 정보 있는지 확인
 	useEffect(() => {
 		if(petList === null || petList.length === 0){
-			console.log("강아지없다.");
 			alert("강아지 등록을 먼저 해주세요!");
 			navigate('/doginfo');
 		}
