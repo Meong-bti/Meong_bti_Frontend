@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const preventReload = () => {
+export const PreventReload = () => {
   const preventClose = (e) => {
     e.preventDefault();
     e.returnValue = ''; 
