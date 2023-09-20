@@ -50,8 +50,6 @@ export const PetContext = createContext();
 
 function App() {
 
-  PreventReload();
-
   const [loadPet, setLoadPet] = useState(false);
   const [petList, setPetList] = useState([]);
   const [petInfo, setPetInfo] = useState({
