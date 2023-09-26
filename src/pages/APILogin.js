@@ -48,7 +48,7 @@ const APILogin = () => {
 
   const handleKakaoLogin = () => {
     localStorage.setItem('OAuthLogin', 'kakao')
-    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${redirectUri}&response_type=code&scope=account_email`;
+    window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoClientId}&redirect_uri=${redirectUri}&response_type=code&scope=account_email profile_nickname`;
   };
 
   const handleGoogleLogin = () => {
