@@ -65,7 +65,7 @@ const DogPost = () => {
         <div className="btn-wrapper">
           <button className="post-button" onClick={goBoast}>자랑하기</button>
         </div>
-        <div ref={target} style={{backgroundColor: "red", height: "10px"} } />
+        <div ref={target} style={{ height: "10px"} } />
       </div>
     </>
   );
