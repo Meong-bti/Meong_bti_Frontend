@@ -45,7 +45,6 @@ const DogPost = () => {
   }  
 
   useEffect(() => {
-    console.log(postKey)
     getPost({ setPosts, postKey, setPostKey, setLoad });
   }, [postKey])
 
