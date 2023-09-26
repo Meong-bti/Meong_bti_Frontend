@@ -2,7 +2,6 @@ import { domain } from "../domain"
 
 export const getPost = async ({ setPosts, postKey, setPostKey, setLoad }) => {
   if (postKey === 1) {
-    setLoad(true);
     return;
   }
   const token = localStorage.getItem('token'); 
