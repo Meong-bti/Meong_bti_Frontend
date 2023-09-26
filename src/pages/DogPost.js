@@ -12,7 +12,7 @@ const DogPost = () => {
   const nickname = localStorage.getItem('nickname');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [postKey, setPostKey] = useState(11)
+  const [postKey, setPostKey] = useState(1)
   let target = useRef(null);
 
   const observeLastItem = (io, items) => {
@@ -35,7 +35,7 @@ const DogPost = () => {
       })
     }, { threshold: 0.5 });
 
-    if (postKey === 11) {
+    if (postKey === 1) {
       observer.observe(target.current);
     }  
   }, [load])
