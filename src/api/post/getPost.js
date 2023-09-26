@@ -1,8 +1,7 @@
 import { domain } from "../domain"
 
-export const getPost = async ({ setPosts, posts, postKey }) => {
-  const token = localStorage.getItem('token');
-  
+export const getPost = async ({ setPosts, postKey, setPostKey, setLoad }) => {
+  const token = localStorage.getItem('token'); 
   const response = await fetch(`${domain}/post/list?key=${postKey}&size=10`, {
     method: 'GET',
     headers: {
@@ -11,8 +10,7 @@ export const getPost = async ({ setPosts, posts, postKey }) => {
   });
 
   if (response.ok) {
-    const result = await response.json();   
-    setPosts(posts);
+    const result = await response.json();  
     for (let post of result.data.posts) {
       setPosts(prevPost => ([...prevPost, {
         postId: post.postId,
@@ -29,6 +27,7 @@ export const getPost = async ({ setPosts, posts, postKey }) => {
         petDbti: post.petDbti,
       }]))
     }
+    setLoad(true)
   } else {
     alert('실패');
   }

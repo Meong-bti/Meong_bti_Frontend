@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useEffect } from "react";
 import TopNavigation from "../components/TopNavigation";
 import { useNavigate } from "react-router-dom";
@@ -6,42 +6,48 @@ import Post from '../components/Post';
 import { AuthContext } from "../components/AuthContext";
 import { getPost } from "../api/post/getPost";
 
-const DogPost = () => { 
-
+const DogPost = () => {
+  const [load, setLoad] = useState(false);
   const [posts, setPosts] = useState([]);
   const nickname = localStorage.getItem('nickname');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [postKey, setPostKey] = useState(0)
+  const [postKey, setPostKey] = useState(11)
+  let target = useRef(null);
+
+  const observeLastItem = (io, items) => {
+    const lastItem = items[items.length - 1];
+    io.observe(lastItem);
+  };
+
+  
 
   useEffect(() => {
-    // if (!login) {
-    //   alert('로그인이 필요합니다');
-    //   navigate('/login');
-    // }
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      const documentHeight = document.documentElement.scrollHeight;
+    const observer = new IntersectionObserver((entries, io) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          io.unobserve(entry.target)
+          postKeyIncrease()
+          setTimeout(() => {
+            observeLastItem(io, document.querySelectorAll('.post-box'));
+          }, 2000)
+        }
+      })
+    }, { threshold: 0.5 });
 
-      if (scrollTop + windowHeight >= documentHeight) {
-        getPost({ setPosts, posts, postKey })
-        setPostKey((key) => key + 1)
-      }
-    };
+    if (postKey === 11) {
+      observer.observe(target.current);
+    }  
+  }, [load])
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  }, [document.documentElement.scrollHeight, posts, postKey])
-
+  const postKeyIncrease = () => {
+    setPostKey((prevKey) => prevKey + 10)
+  }  
 
   useEffect(() => {
-    getPost({ setPosts, posts, postKey });
-    setPostKey(postKey + 1)
-  }, [])
+    console.log(postKey)
+    getPost({ setPosts, postKey, setPostKey, setLoad });
+  }, [postKey])
 
   const goBoast = () => {
     navigate('/dogBoast');
@@ -60,6 +66,7 @@ const DogPost = () => {
         <div className="btn-wrapper">
           <button className="post-button" onClick={goBoast}>자랑하기</button>
         </div>
+        <div ref={target} style={{backgroundColor: "red", height: "10px"} } />
       </div>
     </>
   );
