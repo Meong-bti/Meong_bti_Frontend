@@ -1,6 +1,10 @@
 import { domain } from "../domain"
 
 export const getPost = async ({ setPosts, postKey, setPostKey, setLoad }) => {
+  if (postKey === 1) {
+    setLoad(true);
+    return;
+  }
   const token = localStorage.getItem('token'); 
   const response = await fetch(`${domain}/post/list?key=${postKey}&size=10`, {
     method: 'GET',
