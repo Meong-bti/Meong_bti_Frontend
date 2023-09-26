@@ -53,7 +53,8 @@ const Post = ({ postData, user, setChange }) => {
         <div className="post-info">
           <div className="post-writer">
             <span className="person-name">{postData.userName }</span>
-            <span className="dog-name">{postData.petName} &nbsp;{postData.petDbti}</span>
+            {/* <span className="dog-name">{postData.petName} &nbsp;{postData.petDbti}</span> */}
+            <span className="dog-name">{postData.postId}&nbsp;{postData.petName} &nbsp;{postData.petDbti}</span>
           </div>
           <div className="post-date">{timeGap}</div>
         </div>
