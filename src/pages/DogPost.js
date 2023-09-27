@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useCallback, useContext, useMemo, useRef, useState } from "react";
 import { useEffect } from "react";
 import TopNavigation from "../components/TopNavigation";
 import { useNavigate } from "react-router-dom";
@@ -7,20 +7,16 @@ import { AuthContext } from "../components/AuthContext";
 import { getPost } from "../api/post/getPost";
 
 const DogPost = () => {
+  const [maxPostId, setMaxPostId] = useState(1);
   const [load, setLoad] = useState(false);
   const [posts, setPosts] = useState([]);
   const nickname = localStorage.getItem('nickname');
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [postKey, setPostKey] = useState(1)
-  let target = useRef(null);
+  const [postKey, setPostKey] = useState(0)
+  const target = useRef(null);
+  const [finishPost, setFinishPost] = useState(false);
 
-  const observeLastItem = (io, items) => {
-    const lastItem = items[items.length - 1];
-    io.observe(lastItem);
-  };
-
-  
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries, io) => {
@@ -35,18 +31,39 @@ const DogPost = () => {
       })
     }, { threshold: 0.5 });
 
-    if (postKey === 1) {
+    if (postKey === 0) {
+      console.log("관찰시작")
       observer.observe(target.current);
-    }  
+    }
+
+
+    return () => { observer.disconnect(); }
+
   }, [load])
 
-  const postKeyIncrease = () => {
-    setPostKey((prevKey) => prevKey + 10)
-  }  
-
   useEffect(() => {
-    getPost({ setPosts, postKey, setPostKey, setLoad });
+    console.log("포스트키: " + postKey + " / maxPostId : " + maxPostId + " / finishPost : " + finishPost)
+    if (!finishPost) {
+      getPost({ setPosts, postKey, setLoad, setMaxPostId, maxPostId, setFinishPost });
+    }
   }, [postKey])
+
+  
+  const postKeyIncrease = () => {
+    console.log("포스트키 증가 ")
+    setPostKey(key => key + 1)
+    setLoad(false)
+  }
+
+  const observeLastItem = (io, items) => {
+    if (items.length === 0) {
+      console.log("아이템 아직 없음")
+      io.observe(target.current)
+      return;
+    } 
+    const lastItem = items[items.length - 1];
+    io.observe(lastItem);
+  };
 
   const goBoast = () => {
     navigate('/dogBoast');
