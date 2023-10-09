@@ -32,17 +32,13 @@ const DogPost = () => {
     }, { threshold: 0.5 });
 
     if (postKey === 0) {
-      console.log("관찰시작")
       observer.observe(target.current);
     }
-
-
     return () => { observer.disconnect(); }
 
   }, [load])
 
   useEffect(() => {
-    console.log("포스트키: " + postKey + " / maxPostId : " + maxPostId + " / finishPost : " + finishPost)
     if (!finishPost) {
       getPost({ setPosts, postKey, setLoad, setMaxPostId, maxPostId, setFinishPost });
     }
@@ -57,8 +53,10 @@ const DogPost = () => {
 
   const observeLastItem = (io, items) => {
     if (items.length === 0) {
-      console.log("아이템 아직 없음")
-      io.observe(target.current)
+      if (target.current !== null) {
+        io.observe(target.current)
+        return;
+      }
       return;
     } 
     const lastItem = items[items.length - 1];

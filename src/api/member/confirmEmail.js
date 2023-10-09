@@ -1,4 +1,4 @@
-const domain = "https://api.mungbti.com/api"
+import { domain } from "../domain"
 
 export const confirmEmail = async ({ email, setDefaultCheck }) => {
   const response = await fetch(`${domain}/email`, {
