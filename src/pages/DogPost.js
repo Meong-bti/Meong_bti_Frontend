@@ -26,7 +26,7 @@ const DogPost = () => {
           postKeyIncrease()
           setTimeout(() => {
             observeLastItem(io, document.querySelectorAll('.post-box'));
-          }, 2000)
+          }, 500)
         }
       })
     }, { threshold: 0.5 });
