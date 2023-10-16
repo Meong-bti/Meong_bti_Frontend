@@ -53,6 +53,7 @@
   position: fixed;
   /* right: -300px; */
   right: 180px;
+  /* right: 0px; */
   top: 0;
   border-radius: 0 0 30px 30px;
   z-index: 2;
@@ -67,6 +68,16 @@
   height: 100vh;
   right: 180px;
   /* width: 60%; */
+}
+
+@media (max-width: 474px) {
+  .show-menu {
+    right: 0px;
+  }
+
+  .toggle-menu {
+    right: 0px;
+  }
 }
 .toggle-menu .toggle-menu-top {
   display: flex;
