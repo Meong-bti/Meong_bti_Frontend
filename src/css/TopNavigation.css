@@ -70,7 +70,7 @@
   /* width: 60%; */
 }
 
-@media (max-width: 474px) {
+@media (max-width: 850px) {
   .show-menu {
     right: 0px;
   }
