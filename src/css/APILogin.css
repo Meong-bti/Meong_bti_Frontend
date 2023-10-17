@@ -2,7 +2,7 @@
 
 .api-login {
   background-color: #665645;
-  padding: 50px;
+  padding: 12%;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   min-height: 100vh;
@@ -31,11 +31,8 @@
 .api-login .api-button {
   cursor: pointer;
   width: 100%;
-
   color: black;
-
   margin: 5px;
-
   font-size: 13px;
   font-weight: 400;
 }

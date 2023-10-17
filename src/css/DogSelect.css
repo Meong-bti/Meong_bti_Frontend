@@ -47,7 +47,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 474px) {
+@media (max-width: 486px) {
   .dog-select-list .swiper-wrapper div.dog-slide {
     height: auto;
     padding: 10px;
