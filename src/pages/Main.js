@@ -82,18 +82,18 @@ const Main = () => {
   return (
     <>
       <TopNavigation />
-      <div className="dog-select-warp">
-        <div className="dog-select-list">
+      <div className="dog-list-box">
+        <div className="dog-img-list">
           <p>MBTI를 검사할 우리 아이를 선택해주세요.</p>
-          {/* 이미지 슬라이드 */}
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={25} slidesPerView={1.5} //간격, 보여질 컨텐츠 수
-            scrollbar={{ draggable: true }} className="dog-select-list" //드래그
+            // spaceBetween={5} slidesPerView={1.5} //간격, 보여질 컨텐츠 수
+            slidesPerView={1.5} //간격, 보여질 컨텐츠 수
+            scrollbar={{ draggable: true }} className="dog-swiper-list" //드래그
           >
-            {/* 강아지 리스트 및 추가하기 */}
+            {/* 강아지 리스트 및 추가하기 박스 */}
             {dogArr} 
-            <SwiperSlide className='new-dog-slide' onClick={goDogAdd}><div><span className="material-symbols-outlined">add_circle</span></div></SwiperSlide> 
+            <SwiperSlide className='add-dog-box' onClick={goDogAdd}><div><span className="material-symbols-outlined">add_circle</span></div></SwiperSlide> 
           </Swiper>
         </div>
         <div className="dog-menu-list">
