@@ -16,6 +16,7 @@ import "./css/DogMbtiResult.css";
 import "./css/TopNavigation2.css";
 import "./css/TopNavigation.css";
 import "./css/DogSelect.css";
+import "./css/DogSelectBox.css";
 import "./css/DogExplanation.css";
 import "./css/DogBoast.css";
 import "./css/RegisterMember.css";

@@ -46,11 +46,11 @@ const DogBoast = () => {
       {/* 탑 네비 */}
       <TopNavigation />
       {/* 분석할 강아지 선택 */}
-      <div className="dog-select-warp boat-box">
+      <div className="dog-list-box dog-select-box">
         <p>
           <span className="material-symbols-outlined">expand_more</span>분석하고 싶은 아이를 선택해주세요.
         </p>
-        <ul className='boast-list'>
+        <ul className='select-list'>
           {dogInfoList.map((item) => (
             <li className="dog-slide" key={item.idx} onClick={() => handleClick(item.idx, item.name)}>
               <img
