@@ -66,7 +66,7 @@ const EmailLogin = () => {
         </div>
         <div className="login-wrapper">
           <MyButton text="로그인" />
-          <button className="forget" onClick={goForgetPw}>비밀번호를 잊어버리셨나요?</button>
+          <button className="forget" onClick={goForgetPw} style={{fontSize: "0.8em"}}>비밀번호를 잊어버리셨나요?</button>
         </div>
       </form>
     </div>

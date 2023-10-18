@@ -1,7 +1,7 @@
 /* EmailLogin */
 
 .email-login {
-  padding: 50px;
+  padding: 2em;
   background-color: #b79e84;
 }
 
@@ -11,23 +11,20 @@
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 50px;
-
-  font-size: 30px;
-  color: white;
+  margin-bottom: 3em;
 }
 
 .email-login .input-box {
   display: flex;
   padding: 5px 0px;
-
   width: 100%;
 }
 
 .login-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  /* height: 50%; */
+  margin-top: 1em;
 }
 
 .forget {
@@ -35,7 +32,12 @@
   border: none;
   background-color: #b79e84;
   color: white;
+  padding: 0px;
+}
 
-  font-size: 15px;
-  margin: 10px;
+@media (max-width: 486px) {
+  .login-wrapper>button{
+    height: 3em;
+    font-size: 1em;
+  }
 }
