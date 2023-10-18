@@ -1,177 +1,363 @@
 /* dog-post */
 
-.dog-post {
-  display: flex;
-  flex-direction: column;
-  background-color: #f5f3f2;
-  min-height: 100vh;
-  margin-left: 20px;
-  /* padding: 0px 15px; */
-  padding: 100px 20px;
+
+
+
+@media (max-width: 486px) {
+  .dog-post {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f3f2;
+    min-height: 100vh;
+    /* padding: 0px 15px; */
+    padding: 6em 1em;
+  }
+
+  .dog-post .top-nav {
+    width: 80%;
+    position: absolute;
+    top: 0;
+    background-color: #f5f3f2;
+  }
+
+  .dog-post .btn-wrapper {
+    position: fixed;
+    /* width: 80px; */
+    height: 2.5em;
+    top: 3em;
+    right: 1em;
+    margin: 1em 1em;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .dog-post .btn-wrapper .post-button {
+    border: none;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #fff3e7;
+    background-color: #b79e84;
+    padding: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .dog-post .post-box {
+    padding: 0px 10px;
+    border-bottom: 1px solid gray;
+    margin: 1em 0px 2em;
+  }
+
+  .dog-post .post-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-bottom: 50px;
+  }
+
+  .dog-post .post-content .no-post {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: #b79e84;
+  }
+
+  /* post-head */
+  .dog-post .post-head {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0px 20px;
+  }
+
+  /* 임시 이미지 */
+  .dog-post .post-head .pet-img {
+    background-color: #373636;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin-right: 1em;
+  }
+
+  .dog-post .post-head .post-info {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+
+  .dog-post .post-head .post-writer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dog-post .post-head .person-name {
+    font-size: 1em;
+    padding-bottom: 0.2em;
+  }
+
+  .dog-post .post-head .dog-name {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #b79e84;
+
+    padding-bottom: 0.2em;
+  }
+
+  .dog-post .post-head .menu-box {
+    /* display: flex; */
+    position: relative;
+    display: inline-block;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    color: #b79e84;
+    cursor: pointer;
+  }
+
+  .dog-post .post-head .dropdown-content {
+    display: none;
+    position: absolute;
+    left: -50%;
+    transform: translate(-20%);
+    min-width: 5em;
+    z-index: 1;
+  }
+
+  .dog-post .post-head .dropdown-content span {
+    display: block;
+    /* text-decoration: none; */
+
+    color: #b79e84;
+    background-color: #f5f3f2;
+
+    padding: 0.3em 0.3em;
+    border: 1px solid #b79e84;
+    border-radius: 50px;
+    margin: 5px;
+
+    text-align: center;
+  }
+
+  .dog-post .post-head .dropdown-content span:hover {
+    color: #f5f3f2;
+    background-color: #b79e84;
+  }
+
+  .dog-post .post-head .menu-box:hover .dropdown-content {
+    display: block;
+  }
+
+  .dog-post .post-date {
+    font-size: 0.8em;
+    margin-top: auto;
+  }
+
+  /* post-image */
+
+  .dog-post .post-image {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .dog-post .post-image .pet-post-image{
+    height: auto;
+    width: 100%;
+    /* height: 380px; */
+    border-radius: 6%;
+  }
+
+  .dog-post .post-image .heart-sticker {
+    /* display: none; */
+    position: relative;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, -180%);
+    width: 4em;
+    height: auto;
+  }
+
+  /* post-content */
+  .dog-post .post-like {
+    display: flex;
+    padding: 0px 0px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
 }
 
-.dog-post .top-nav {
-  position: absolute;
-  top: 0;
-  background-color: #f5f3f2;
-}
+@media (min-width: 486px) {
+  .dog-post {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f3f2;
+    min-height: 100vh;
+    margin-left: 20px;
+    /* padding: 0px 15px; */
+    padding: 6em 1em;
+  }
 
-.dog-post .btn-wrapper {
-  position: sticky;
-  /* width: 80px; */
-  bottom: 80px;
-  /* left: 900px; */
-  margin: 20px 20px;
-  display: flex;
-  justify-content: flex-end;
-}
+  .dog-post .top-nav {
+    width: 80%;
+    position: absolute;
+    top: 0;
+    background-color: #f5f3f2;
+    padding-right: 1em;
+  }
 
-.dog-post .btn-wrapper .post-button {
-  border: none;
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff3e7;
-  background-color: #b79e84;
-  padding: 10px;
-  border-radius: 30px;
-  cursor: pointer;
-}
+  .dog-post .btn-wrapper {
+    position: sticky;
+    /* width: 80px; */
+    height: 2.5em;
+    bottom: 5em;
+    right: 3em;
+    margin: 20px 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
 
-.dog-post .post-content {
-  display: flex;
-  flex-direction: column;
-}
+  .dog-post .btn-wrapper .post-button {
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff3e7;
+    background-color: #b79e84;
+    padding: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
 
-.dog-post .post-content .no-post {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bolder;
-  color: #b79e84;
-}
+  .dog-post .post-box {
+    padding: 0px 20px;
+    border-bottom: 1px solid gray;
+    margin: 10px 0px 25px;
+  }
+    
+  .dog-post .post-content {
+    padding: 0px 15px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+  }
 
-.dog-post .post-box {
-  padding: 0px 20px;
-  border-bottom: 1px solid gray;
-  margin: 10px 0px 25px;
-}
+  .dog-post .post-content .no-post {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: #b79e84;
+  }
 
-/* post-head */
-.dog-post .post-head {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 15px 20px;
-}
 
-/* 임시 이미지 */
-.dog-post .post-head .pet-img {
-  background-color: #373636;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-}
+  /* post-head */
+  .dog-post .post-head {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 15px 20px;
+  }
 
-.dog-post .post-head .post-info {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-}
+  /* 임시 이미지 */
+  .dog-post .post-head .pet-img {
+    background-color: #373636;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+  }
 
-.dog-post .post-head .person-name {
-  font-size: 18px;
-}
+  .dog-post .post-head .post-info {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
 
-.dog-post .post-head .dog-name {
-  margin-left: 10px;
+  .dog-post .post-head .person-name {
+    font-size: 18px;
+  }
 
-  font-size: 14px;
-  font-weight: 500;
-  color: #b79e84;
-}
+  .dog-post .post-head .dog-name {
+    margin-left: 0.8em;
 
-.dog-post .post-head .menu-box {
-  /* display: flex; */
-  position: relative;
-  display: inline-block;
-  /* flex-direction: column; */
-  align-items: center;
-  justify-content: center;
-  color: #b79e84;
-  cursor: pointer;
-}
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #b79e84;
+  }
 
-.dog-post .post-head .dropdown-content {
-  display: none;
-  position: absolute;
-  left: -50%;
-  transform: translate(-50%);
-  
-  min-width: 100px;
-  z-index: 1;
-}
+  .dog-post .post-head .menu-box {
+    /* display: flex; */
+    position: relative;
+    display: inline-block;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    color: #b79e84;
+    cursor: pointer;
+  }
 
-.dog-post .post-head .dropdown-content span {
-  display: block;
-  /* text-decoration: none; */
+  .dog-post .post-head .dropdown-content {
+    display: none;
+    position: absolute;
+    left: -50%;
+    transform: translate(-50%);
+    min-width: 100px;
+    z-index: 1;
+  }
 
-  color: #b79e84;
-  background-color: #f5f3f2;
+  .dog-post .post-head .dropdown-content span {
+    display: block;
+    /* text-decoration: none; */
 
-  padding: 12px 16px;
-  border: 1px solid #b79e84;
-  border-radius: 50px;
-  margin: 5px;
+    color: #b79e84;
+    background-color: #f5f3f2;
 
-  text-align: center;
-}
+    padding: 1em 1.2em;
+    border: 1px solid #b79e84;
+    border-radius: 50px;
+    margin: 5px;
 
-.dog-post .post-head .dropdown-content span:hover {
-  color: #f5f3f2;
-  background-color: #b79e84;
-}
+    text-align: center;
+  }
 
-.dog-post .post-head .menu-box:hover .dropdown-content {
-  display: block;
-}
+  .dog-post .post-head .dropdown-content span:hover {
+    color: #f5f3f2;
+    background-color: #b79e84;
+  }
 
-.dog-post .post-date {
-  font-size: 12px;
-  margin-top: auto;
-}
+  .dog-post .post-head .menu-box:hover .dropdown-content {
+    display: block;
+  }
 
-/* post-image */
+  .dog-post .post-date {
+    font-size: 0.8em;
+    margin-top: auto;
+  }
 
-.dog-post .post-image {
-  height: 380px;
-  margin-bottom: 20px;
-}
+  /* post-image */
 
-.dog-post .post-image .pet-post-image{
-  height: 380px;
-  border-radius: 6%;
-}
+  .dog-post .post-image {
+    height: 24em;
+    margin-bottom: 20px;
+  }
 
-.dog-post .post-image .heart-sticker {
-  /* display: none; */
-  position: relative;
-  left: 50%;
-  top: 0%;
-  transform: translate(-50%, -250%);
-  width: 100px;
-  height: 100px;
-}
+  .dog-post .post-image .pet-post-image{
+    height: 24em;
+    /* height: 380px; */
+    border-radius: 6%;
+  }
 
-/* post-content */
-.dog-post .post-like {
-  display: flex;
-  padding: 0px 15px;
-  margin-bottom: 20px;
-  align-items: center;
-}
+  .dog-post .post-image .heart-sticker {
+    /* display: none; */
+    position: relative;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, -250%);
+    width: 100px;
+    height: 100px;
+  }
 
-.dog-post .post-content {
-  display: flex;
-  padding: 0px 15px;
-  margin-bottom: 50px;
+  /* post-content */
+  .dog-post .post-like {
+    display: flex;
+    padding: 0px 15px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
 }
 
 .dog-post .post-content .edit-btn {
@@ -207,11 +393,9 @@
 .dog-post .post-content textarea:focus {
     outline: none;
 }
-.dog-post .post-content .post-content-img {
+/* .dog-post .post-content .post-content-img {
     width: 45px;
     height: 100px;
     display: block;
     position: absolute;
-    /* top: -34px;
-    left: 20px; */
-}
+} */

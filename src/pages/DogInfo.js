@@ -120,7 +120,7 @@ const DogInfo = () => {
   
   const _ = require("lodash");
 
-    // 연도 선택 select box에 보여질 데이터 : range(시작 연도, 끝 연도, 연도 간격)
+  // 연도 선택 select box에 보여질 데이터 : range(시작 연도, 끝 연도, 연도 간격)
   const years = _.range(getYear(new Date()), 1980, -1);
 
   // 월 선택 select box에 보여질 데이터
@@ -184,55 +184,55 @@ const DogInfo = () => {
               생년월일
               <span className="material-symbols-outlined calendar" onClick={handleIconClick}>calendar_month</span>
               <DatePicker
-                  renderCustomHeader={({
-                    date,
-                    changeYear,
-                    changeMonth,
-                    decreaseMonth,
-                    increaseMonth,
-                    prevMonthButtonDisabled,
-                    nextMonthButtonDisabled,
-                 }) => (
+                renderCustomHeader={({
+                  date,
+                  changeYear,
+                  changeMonth,
+                  decreaseMonth,
+                  increaseMonth,
+                  prevMonthButtonDisabled,
+                  nextMonthButtonDisabled,
+                }) => (
                   <div className="custom-react-datepicker__select-wrapper">
-                  {/* 이전 월로 이동하는 버튼 */}
-                  <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-                    <span className="material-symbols-outlined">arrow_back_ios</span>
-                  </button>
-                  <div className="custom-react-datepicker__select-item">
-                    {/* 연도 선택 select box */}
-                    <select
-                      value={getYear(date)}
-                      onChange={({ target: { value } }) => changeYear(Number(value))}
-                    >
-                      {years.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    <span>년</span>
+                    {/* 이전 월로 이동하는 버튼 */}
+                    <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                      <span className="material-symbols-outlined">arrow_back_ios</span>
+                    </button>
+                    <div className="custom-react-datepicker__select-item">
+                      {/* 연도 선택 select box */}
+                      <select
+                        value={getYear(date)}
+                        onChange={({ target: { value } }) => changeYear(Number(value))}
+                      >
+                        {years.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <span>년</span>
+                    </div>
+                    <div className="custom-react-datepicker__select-item">
+                      {/* 월 선택 select box */}
+                      <select
+                        value={months[getMonth(date)]}
+                        onChange={({ target: { value } }) =>
+                          changeMonth(months.indexOf(value))
+                        }
+                      >
+                        {months.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                      <span>월</span>
+                    </div>
+                    {/* 다음 월로 이동하는 버튼 */}
+                    <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                      <span className="material-symbols-outlined">arrow_forward_ios</span>
+                    </button>
                   </div>
-                  <div className="custom-react-datepicker__select-item">
-                    {/* 월 선택 select box */}
-                    <select
-                      value={months[getMonth(date)]}
-                      onChange={({ target: { value } }) =>
-                        changeMonth(months.indexOf(value))
-                      }
-                    >
-                      {months.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    <span>월</span>
-                  </div>
-                  {/* 다음 월로 이동하는 버튼 */}
-                  <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                    <span className="material-symbols-outlined">arrow_forward_ios</span>
-                  </button>
-                </div>
                 )}  
                 selected={null}
                 locale={ko}
