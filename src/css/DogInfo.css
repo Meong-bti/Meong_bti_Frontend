@@ -1,315 +1,644 @@
-/* DogInfo */
+@media (max-width: 486px) {
+  /* DogInfo */
 
-.pet-info {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  .pet-info {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .pet-info .main {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    padding: 0px 0.5em;
+    margin-top: 2em;
+  }
+
+  .pet-info .input-box {
+    display: flex;
+    margin-bottom: 0.4em;
+  }
+
+  .pet-info .input-box input{
+    display: flex;
+    margin-bottom: 0.8em;
+    font-size: 0.8em;
+    padding: 0.7em 0.8em;
+  }
+
+  /* step1 */
+
+  .pet-info .input-box .select-wrapper {
+    display: flex;
+
+    align-items: center;
+    width: 100%;
+
+    border-radius: 12px;
+    background-color: #efe7e0;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+
+  .pet-info .pet-breed-box {
+    display: flex;
+
+    align-items: center;
+    width: 97%;
+    height: 2.5em;
+    padding: 0.5em 0.5em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+
+    font-size: 0.8em;
+    font-weight: 700;
+
+    background-color: #efe7e0;
+    color: black;
+  }
+
+  .pet-info .pet-breed-box {
+    color: gray;
+  }
+
+  .pet-info .pet-breed-box option {
+    font-size: 0.8em;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Inter';
+    font-weight: 700;
+    color: black;
+  }
+
+  .pet-info .pet-breed-box:focus {
+    outline: none;
+  }
+
+  /* step2 */
+
+  /* .pet-info .date-input {
+    display: none;
+  } */
+
+  .pet-info .calendar {
+    color: rgb(89, 83, 103);
+    font-size: 0.8em;
+    margin: 0px 3px;
+    cursor: pointer;
+  }
+
+  .pet-info .input-title {
+    margin: 0px 0px 5px 5px;
+    color: #766b63;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+
+  /* 2023-8-26 */
+  .pet-info .input-box .input-date {
+    text-align: center;
+  }
+
+  /* datepicker */
+
+  /* step2 - check */
+
+  .pet-info .check-container {
+    display: flex;
+    width: 100%;
+  }
+
+  .pet-info .check-box {
+    margin: 0.5em 0.5em;
+    padding: 0.8em;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    cursor: pointer;
+
+    background-color: #efe7e0;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: #837e70;
+  }
+
+  .pet-info .check-container input:checked ~ .check-box {
+    background-color: #665645;
+    color: #efe7e0;
+  }
+
+  .pet-info .check-container .check-box:hover {
+    background-color: #665645;
+  }
+
+  /* step2 - weight box */
+
+  .pet-info .weight-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 70%;
+  }
+
+  .pet-info .weight-box input {
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: 300;
+  }
+
+  /* number 화살표 제거 */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .pet-info .weight-text {
+    margin-top: auto;
+
+    color: #5d524a;
+    font-weight: 500;
+    font-size: 15px;
+  }
+
+  .pet-info .btn-wrapper {
+    display: flex;
+    margin-bottom: 200px;
+    padding: 0px 35px;
+  }
+
+  /* step3 */
+
+  .pet-info .pet-info-box {
+    background-color: #efe7e0;
+    margin: 0.3em;
+    padding: 0.3em 0.6em;
+    border-radius: 8px;
+
+    color: #837E70;
+    font-size: 0.8em;
+    /* font-weight: 600; */
+  }
+
+  .pet-info .pet-info-box .box-top-part {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 0.5em;
+  }
+
+  .pet-info .pet-info-box .box-top-part .btn-box {
+    display: flex;
+  }
+
+  .pet-info .pet-info-box .box-top-part .control-button {
+    border: 1px solid #5d524a;
+    color: #5d524a;
+    border-radius: 5px;
+    padding: 0.2em;
+    margin: 0px 0.4em;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .pet-info .pet-name-box {
+    /* margin-top: 8px;
+    margin-bottom: 5px; */
+    /* line-height: -100px; */
+    display: flex;
+    align-items: center;
+    
+  }
+
+  .pet-info .pet-info-box .pet-detail-info {
+    display: flex;
+    flex-direction: column;
+    margin: 0.3em 0px;
+  }
+
+  .pet-info .pet-info-box .pet-image {
+    width: 6em;
+    height: 8em;
+    border-radius: 20px;
+  }
+
+  .pet-info .pet-info-box .no-pet-image {
+    width: 6em;
+    height: 8em;
+    border-radius: 20px;
+
+    background-color: #5d524a;
+  }
+
+  .pet-info .pet-info-box .pet-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* height: 110px; */
+  }
+
+  .pet-info .pet-info-box .pet-detail div {
+    margin: 0.2em 0em;
+  }
+
+  .pet-info .pet-info-box .pet-info-value {
+    font-size: 0.8em;
+    color: #5d524a;
+    font-weight: 700;
+  }
+
+  /* check-message */
+
+  .pet-info .check-message {
+    display: flex;
+    justify-content: center;
+
+    color: #efe7e0;
+    font-size: 14px;
+  }
+
+  /* input-image */
+
+  /* input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: none;
+    appearance: none;
+  } */
+
+  /* 파일 선택 버튼 숨기기 */
+  /* input[type="file"]::-webkit-file-upload-button {
+    display: none;
+  }
+
+  input[type="file"]::-moz-file-upload-button {
+    display: none;
+  } */
+
+  .react-datepicker-wrapper,
+  .react-datepicker-wrapper > * {
+    width: 0px !important;
+  }
+
+  .react-datepicker-wrapper input {
+    width: 12px;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: -15px;
+    right: 3px;
+  }
+
+  .react-datepicker-wrapper input:focus {
+    outline: none;
+    caret-color: transparent;
+  }
+
+  .react-datepicker-wrapper input:hover {
+    cursor: pointer;
+  }
+
+  .react-datepicker__triangle {
+    display: none;
+  }
+
+  .react-datepicker {
+    position: absolute;
+    right: 130px;
+    bottom: 10px;
+  }
+
+  .custom-react-datepicker__select-wrapper {
+    display: flex;
+    font-display: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .custom-react-datepicker__select-wrapper button {
+    border: none;
+    margin-left: 10px;
+  }
 }
 
-.pet-info .main {
-  display: flex;
-  flex-direction: column;
-  height: 60vh;
-  padding: 0px 35px;
-  margin-top: 60px;
-}
+@media (min-width: 486px) {
+  /* DogInfo */
 
-.pet-info .input-box {
-  display: flex;
-  margin-bottom: 15px;
-}
+  .pet-info {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-/* step1 */
+  .pet-info .main {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    padding: 0px 35px;
+    margin-top: 60px;
+  }
 
-.pet-info .input-box .select-wrapper {
-  display: flex;
+  .pet-info .input-box {
+    display: flex;
+    margin-bottom: 15px;
+  }
 
-  align-items: center;
-  width: 100%;
+  /* step1 */
 
-  border-radius: 12px;
-  background-color: #efe7e0;
-  margin-left: 10px;
-  margin-right: 10px;
-}
+  .pet-info .input-box .select-wrapper {
+    display: flex;
 
-.pet-info .pet-breed-box {
-  display: flex;
+    align-items: center;
+    width: 100%;
 
-  align-items: center;
-  width: 97%;
-  height: 35px;
+    border-radius: 12px;
+    background-color: #efe7e0;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-  padding: 10px 10px;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
+  .pet-info .pet-breed-box {
+    display: flex;
 
-  font-size: 13.5px;
-  font-weight: 700;
+    align-items: center;
+    width: 97%;
+    height: 35px;
 
-  background-color: #efe7e0;
-  color: black;
-}
+    padding: 10px 10px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
 
-.pet-info .pet-breed-box {
-  color: gray;
-}
+    font-size: 13.5px;
+    font-weight: 700;
 
-.pet-info .pet-breed-box option {
-  font-size: 13.5px;
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: 'Inter';
-  font-weight: 700;
-  color: black;
-}
+    background-color: #efe7e0;
+    color: black;
+  }
 
-.pet-info .pet-breed-box:focus {
-  outline: none;
-}
+  .pet-info .pet-breed-box {
+    color: gray;
+  }
 
-/* step2 */
+  .pet-info .pet-breed-box option {
+    font-size: 13.5px;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: 'Inter';
+    font-weight: 700;
+    color: black;
+  }
 
-/* .pet-info .date-input {
-  display: none;
-} */
+  .pet-info .pet-breed-box:focus {
+    outline: none;
+  }
 
-.pet-info .calendar {
-  color: rgb(89, 83, 103);
-  font-size: 15px;
-  margin: 0px 3px;
-  cursor: pointer;
-}
+  /* step2 */
 
-.pet-info .input-title {
-  margin: 0px 0px 5px 5px;
-  color: #766b63;
-  font-size: 15px;
-  font-weight: 600;
-}
+  /* .pet-info .date-input {
+    display: none;
+  } */
 
-/* 2023-8-26 */
-.pet-info .input-box .input-date {
-  text-align: center;
-}
+  .pet-info .calendar {
+    color: rgb(89, 83, 103);
+    font-size: 15px;
+    margin: 0px 3px;
+    cursor: pointer;
+  }
 
-/* datepicker */
+  .pet-info .input-title {
+    margin: 0px 0px 5px 5px;
+    color: #766b63;
+    font-size: 15px;
+    font-weight: 600;
+  }
 
-/* step2 - check */
+  /* 2023-8-26 */
+  .pet-info .input-box .input-date {
+    text-align: center;
+  }
 
-.pet-info .check-container {
-  display: flex;
-  width: 100%;
-}
+  /* datepicker */
 
-.pet-info .check-box {
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  border: none;
-  border-radius: 12px;
-  width: 100%;
-  cursor: pointer;
+  /* step2 - check */
 
-  background-color: #efe7e0;
-  font-size: 14.5px;
-  font-weight: 600;
-  color: #837e70;
-}
+  .pet-info .check-container {
+    display: flex;
+    width: 100%;
+  }
 
-.pet-info .check-container input:checked ~ .check-box {
-  background-color: #665645;
-  color: #efe7e0;
-}
+  .pet-info .check-box {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    cursor: pointer;
 
-.pet-info .check-container .check-box:hover {
-  background-color: #665645;
-}
+    background-color: #efe7e0;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #837e70;
+  }
 
-/* step2 - weight box */
+  .pet-info .check-container input:checked ~ .check-box {
+    background-color: #665645;
+    color: #efe7e0;
+  }
 
-.pet-info .weight-box {
-  display: flex;
-  justify-content: flex-start;
-  width: 55%;
-}
+  .pet-info .check-container .check-box:hover {
+    background-color: #665645;
+  }
 
-.pet-info .weight-box input {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 300;
-}
+  /* step2 - weight box */
 
-/* number 화살표 제거 */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
+  .pet-info .weight-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 55%;
+  }
 
-.pet-info .weight-text {
-  margin-top: auto;
+  .pet-info .weight-box input {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+  }
 
-  color: #5d524a;
-  font-weight: 500;
-  font-size: 15px;
-}
+  /* number 화살표 제거 */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 
-.pet-info .btn-wrapper {
-  display: flex;
-  margin-bottom: 200px;
-  padding: 0px 35px;
-}
+  .pet-info .weight-text {
+    margin-top: auto;
 
-/* step3 */
+    color: #5d524a;
+    font-weight: 500;
+    font-size: 15px;
+  }
 
-.pet-info .pet-info-box {
-  background-color: #efe7e0;
-  margin: 3px;
-  padding: 10px 20px;
-  border-radius: 8px;
+  .pet-info .btn-wrapper {
+    display: flex;
+    margin-bottom: 200px;
+    padding: 0px 35px;
+  }
 
-  color: #837E70;
-  font-size: 15px;
-  /* font-weight: 600; */
-}
+  /* step3 */
 
-.pet-info .pet-info-box .box-top-part {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  margin-bottom: 15px;
-}
+  .pet-info .pet-info-box {
+    background-color: #efe7e0;
+    margin: 3px;
+    padding: 10px 20px;
+    border-radius: 8px;
 
-.pet-info .pet-info-box .box-top-part .btn-box {
-  display: flex;
-}
+    color: #837E70;
+    font-size: 15px;
+    /* font-weight: 600; */
+  }
 
-.pet-info .pet-info-box .box-top-part .control-button {
-  border: 1px solid #5d524a;
-  color: #5d524a;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 0px 5px;
-  cursor: pointer;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-}
+  .pet-info .pet-info-box .box-top-part {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
 
-.pet-info .pet-name-box {
-  /* margin-top: 8px;
-  margin-bottom: 5px; */
-  /* line-height: -100px; */
-  display: flex;
-  align-items: center;
-  
-}
+  .pet-info .pet-info-box .box-top-part .btn-box {
+    display: flex;
+  }
 
-.pet-info .pet-info-box .pet-detail-info {
-  display: flex;
-  margin: 8px 0px;
-}
+  .pet-info .pet-info-box .box-top-part .control-button {
+    border: 1px solid #5d524a;
+    color: #5d524a;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0px 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
 
-.pet-info .pet-info-box .pet-image {
-  width: 100px;
-  height: 120px;
-  border-radius: 20px;
-  margin-right: 15px;
-}
+  .pet-info .pet-name-box {
+    /* margin-top: 8px;
+    margin-bottom: 5px; */
+    /* line-height: -100px; */
+    display: flex;
+    align-items: center;
+    
+  }
 
-.pet-info .pet-info-box .no-pet-image {
-  width: 100px;
-  height: 120px;
-  border-radius: 20px;
-  margin-right: 15px;
+  .pet-info .pet-info-box .pet-detail-info {
+    display: flex;
+    margin: 8px 0px;
+  }
 
-  background-color: #5d524a;
-}
+  .pet-info .pet-info-box .pet-image {
+    width: 100px;
+    height: 120px;
+    border-radius: 20px;
+    margin-right: 15px;
+  }
 
-.pet-info .pet-info-box .pet-detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* height: 110px; */
-}
+  .pet-info .pet-info-box .no-pet-image {
+    width: 100px;
+    height: 120px;
+    border-radius: 20px;
+    margin-right: 15px;
 
-.pet-info .pet-info-box .pet-info-value {
-  font-size: 15px;
-  color: #5d524a;
-  font-weight: 700;
-}
+    background-color: #5d524a;
+  }
 
-/* check-message */
+  .pet-info .pet-info-box .pet-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* height: 110px; */
+  }
 
-.pet-info .check-message {
-  display: flex;
-  justify-content: center;
+  .pet-info .pet-info-box .pet-info-value {
+    font-size: 15px;
+    color: #5d524a;
+    font-weight: 700;
+  }
 
-  color: #efe7e0;
-  font-size: 14px;
-}
+  /* check-message */
 
-/* input-image */
+  .pet-info .check-message {
+    display: flex;
+    justify-content: center;
 
-/* input[type="file"] {
-  position: absolute;
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: none;
-  appearance: none;
-} */
+    color: #efe7e0;
+    font-size: 14px;
+  }
 
-/* 파일 선택 버튼 숨기기 */
-/* input[type="file"]::-webkit-file-upload-button {
-  display: none;
-}
+  /* input-image */
 
-input[type="file"]::-moz-file-upload-button {
-  display: none;
-} */
+  /* input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: none;
+    appearance: none;
+  } */
 
-.react-datepicker-wrapper,
-.react-datepicker-wrapper > * {
-  width: 0px !important;
-}
+  /* 파일 선택 버튼 숨기기 */
+  /* input[type="file"]::-webkit-file-upload-button {
+    display: none;
+  }
 
-.react-datepicker-wrapper input {
-  width: 12px;
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: -15px;
-  right: 3px;
-}
+  input[type="file"]::-moz-file-upload-button {
+    display: none;
+  } */
 
-.react-datepicker-wrapper input:focus {
-  outline: none;
-  caret-color: transparent;
-}
+  .react-datepicker-wrapper,
+  .react-datepicker-wrapper > * {
+    width: 0px !important;
+  }
 
-.react-datepicker-wrapper input:hover {
-  cursor: pointer;
-}
+  .react-datepicker-wrapper input {
+    width: 12px;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: -15px;
+    right: 3px;
+  }
 
-.react-datepicker__triangle {
-  display: none;
-}
+  .react-datepicker-wrapper input:focus {
+    outline: none;
+    caret-color: transparent;
+  }
 
-.react-datepicker {
-  right: 130px;
-  bottom: 10px;
-}
+  .react-datepicker-wrapper input:hover {
+    cursor: pointer;
+  }
 
-.custom-react-datepicker__select-wrapper {
-  display: flex;
-  font-display: row;
-  justify-content: space-between;
-  align-items: center;
-}
+  .react-datepicker__triangle {
+    display: none;
+  }
 
-.custom-react-datepicker__select-wrapper button {
-  border: none;
-  margin-left: 10px;
+  .react-datepicker {
+    right: 130px;
+    bottom: 10px;
+  }
+
+  .custom-react-datepicker__select-wrapper {
+    display: flex;
+    font-display: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .custom-react-datepicker__select-wrapper button {
+    border: none;
+    margin-left: 10px;
+  }
 }

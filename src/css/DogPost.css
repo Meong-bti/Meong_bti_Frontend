@@ -156,10 +156,11 @@
   .dog-post .post-image {
     height: auto;
     margin-bottom: 20px;
+    position: relative;
   }
 
   .dog-post .post-image .pet-post-image{
-    height: auto;
+    height: 75vw;
     width: 100%;
     /* height: 380px; */
     border-radius: 6%;
@@ -167,10 +168,10 @@
 
   .dog-post .post-image .heart-sticker {
     /* display: none; */
-    position: relative;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, -180%);
+    position: absolute;
+    left: calc(50% - 2em);
+    top: calc(50% - 2em);
+    /* transform: translate(-50%, -250%); */
     width: 4em;
     height: auto;
   }
