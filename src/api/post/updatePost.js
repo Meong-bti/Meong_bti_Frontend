@@ -17,7 +17,7 @@ export const updatePost = async ({postData, content, setContentEdit}) => {
   formData.append('content', content)
 
   const token = localStorage.getItem('token');
-  const response = await fetch(`${domain}/post/${postData.petId}/edit`, {
+  const response = await fetch(`${domain}/post/${postData.postId}/edit`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`
