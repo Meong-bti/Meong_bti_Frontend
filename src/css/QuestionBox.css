@@ -15,6 +15,10 @@
     opacity: 0.3;
   }
 
+  .question-box h2 {
+    padding: 0em 2em;
+  }
+
   /* question-radio */
   .question .check-container {
     display: flex;
