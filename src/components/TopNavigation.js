@@ -59,7 +59,7 @@ const TopNavigation = () => {
       <div className={isOpen ? `toggle-menu show-menu` : `toggle-menu`}>
         <div className="toggle-menu-top">
           <div className="logout-btn" onClick={logout}><div className="text-box">로그아웃</div></div>
-          <button className="menu-close-btn" onClick={openMenu}><span className="material-symbols-outlined">expand_less</span>닫힘</button>
+          <button className="menu-close-btn" onClick={openMenu}><span className="material-symbols-outlined">expand_less</span></button>
         </div>
         <div className="toggle-menu-content">
           <div className="user-box">
