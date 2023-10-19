@@ -144,12 +144,13 @@
   .toggle-menu .toggle-menu-top button span{
     color: black;
     font-size: 2em;
+    justify-content: right;
   }
 
   .toggle-menu .toggle-menu-top .logout-btn{
     display: flex;
-    justify-content: flex-end;
-    width: 70%; 
+    justify-content: flex-start;
+    width: 100%; 
     align-items: center;
   }
 
@@ -191,7 +192,7 @@
     display: inline;
     border-radius: 10px;
     position: absolute;
-    top: 60vh;
+    bottom: 3em;
     right: 10px;
     border: 2px solid #2E2A27
   }
