@@ -94,7 +94,9 @@ const Post = ({ postData, user, setChange }) => {
           <span className="material-symbols-outlined menu" style={{marginTop: "10px"}}>more_vert</span>
           <div className="dropdown-content">
             {postData.userName === user
-                ? (<><span onClick={() => setContentEdit(true)}>수정</span>
+              ? (<>
+                  <span onClick={shareKakao}>공유</span>
+                  <span onClick={() => setContentEdit(true)}>수정</span>
                   <span onClick={clickDeletePost}>삭제</span></>)
                 : (<>
                     <span onClick={shareKakao}>공유</span>
