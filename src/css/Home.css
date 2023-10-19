@@ -21,6 +21,7 @@
     min-height: 441px;
     background-image: url('/public/assets/Component26.png');
     background-size: contain;
+    background-repeat: no-repeat;
     margin: auto;
     width: 100%;
 }
