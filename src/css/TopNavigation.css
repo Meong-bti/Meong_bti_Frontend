@@ -224,12 +224,13 @@
   .toggle-menu .toggle-menu-top button span{
     color: black;
     font-size: 35px;
+    text-align: right;
   }
 
   .toggle-menu .toggle-menu-top .logout-btn{
     display: flex;
-    justify-content: flex-end;
-    width: 70%; 
+    justify-content: flex-start;
+    width: 100%; 
     align-items: center;
   }
 
