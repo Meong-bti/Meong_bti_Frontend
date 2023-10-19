@@ -38,8 +38,8 @@ export const editPet2 = async ({ petInfo, navigate }) => {
     mode: 'no-cors'
   });
   if (!imageResponse.ok) {
-    console.log(imageResponse)
-    console.log("에러가 발생했습니다. 잠시 후 다시 시도해주세요")
+    // console.log(imageResponse)
+    console.log("잠시 기다려주세요.")
   }
 
   const blob = await imageResponse.blob();
