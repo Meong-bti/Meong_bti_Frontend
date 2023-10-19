@@ -227,8 +227,9 @@
   }
 
   .react-datepicker {
-    right: 130px;
+    right: 10% !important;
     bottom: 10px;
+    top: 10px !important;
   }
 
 }
