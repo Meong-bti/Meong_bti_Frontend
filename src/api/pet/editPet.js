@@ -35,14 +35,16 @@ export const editPet2 = async ({ petInfo, navigate }) => {
   const imageUrl = petInfo.petImageFile;
   const imageResponse = await fetch(imageUrl, {
     method: 'GET',
-    // mode: 'no-cors'
+    mode: 'no-cors'
   });
   if (!imageResponse.ok) {
+    console.log(imageResponse)
     console.log("에러가 발생했습니다. 잠시 후 다시 시도해주세요")
   }
 
   const blob = await imageResponse.blob();
   const file = new File([blob], "petImage.jpg", { type: blob.type });
+  console.log(file)
 
   formData.append('petName', petInfo.petName);
   formData.append('petBreed', petInfo.petBreed);
