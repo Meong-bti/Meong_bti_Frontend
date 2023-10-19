@@ -308,8 +308,9 @@
 
   .react-datepicker {
     position: absolute;
-    right: 130px;
+    right: 10% !important;
     bottom: 10px;
+    top: 10px !important;
   }
 
   .custom-react-datepicker__select-wrapper {
