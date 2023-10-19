@@ -17,6 +17,14 @@ const DogPost = () => {
   const target = useRef(null);
   const [finishPost, setFinishPost] = useState(false);
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://developers.kakao.com/sdk/js/kakao.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries, io) => {
