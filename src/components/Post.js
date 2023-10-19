@@ -22,6 +22,38 @@ const Post = ({ postData, user, setChange }) => {
   const [contentEdit, setContentEdit] = useState(false);
   const [content, setContent] = useState(postData.content);
   // const navigate = useNavigate();
+
+  const shareKakao = (url) => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init("cc5ebe066875a3d0c3214fc264f06811");
+      }
+      kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: `나의 강아지 자랑합니다~`,
+          imageUrl: postData.imageUrl,
+          link: {
+            mobileWebUrl: 'www.mungbti.com',
+            webUrl: 'www.mungbti.com',
+          },
+        },
+        social: {
+          likeCount: postData.like,
+        },
+        buttons: [
+          {
+            title: '멍BTI 테스트하고 자랑하자!',
+            link: {
+              mobileWebUrl: 'www.mungbti.com',
+              webUrl: 'www.mungbti.com',
+            },
+          },
+        ],
+      });
+    }
+  }
   
   useEffect(() => {
     if (likeClick === true) {
@@ -65,7 +97,7 @@ const Post = ({ postData, user, setChange }) => {
                 ? (<><span onClick={() => setContentEdit(true)}>수정</span>
                   <span onClick={clickDeletePost}>삭제</span></>)
                 : (<>
-                    <span>공유</span>
+                    <span onClick={shareKakao}>공유</span>
               </>)
             }
           </div>
