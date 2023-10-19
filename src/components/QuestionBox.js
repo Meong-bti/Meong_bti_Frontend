@@ -21,7 +21,7 @@ const QuestionBox = ({ text, num, percentIncrease, step, QuesType }) => {
       <div className="label-for-check">
         <div className="left-child">
           절대 <br />
-          그러지 않아요
+          그러지 <br />않아요
         </div>
         <div className="right-child">
           항상 <br />
