@@ -35,7 +35,7 @@ export const editPet2 = async ({ petInfo, navigate }) => {
   const imageUrl = petInfo.petImageFile;
   const imageResponse = await fetch(imageUrl, {
     method: 'GET',
-    // mode: 'no-cors'
+    mode: 'no-cors'
   });
   if (!imageResponse.ok) {
     // console.log(imageResponse)
