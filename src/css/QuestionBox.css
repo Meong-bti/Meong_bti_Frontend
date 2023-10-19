@@ -76,26 +76,28 @@
   /* check-text */
   .question-box .label-for-check {
     display: flex;
-    width: 80%;
+    width: 100%;
   }
 
   .question-box .label-for-check .left-child {
     display: flex;
     justify-content: flex-start;
     width: 50%;
-    margin-left: 4px;
     text-align: center;
+    margin-left: calc(90% - 66vw);
   }
 
   .question-box .label-for-check .right-child {
     display: flex;
     justify-content: flex-end;
     width: 50%;
-    margin-right: 20px;
     text-align: center;
+    margin-right: calc(90% - 66vw);
   }
 
 }
+
+/* @media (max-width: 3) */
 
 @media (min-width: 486px) {
 
@@ -173,13 +175,14 @@
   .question-box .label-for-check {
     display: flex;
     width: 80%;
+    line-height: 12px;
   }
 
   .question-box .label-for-check .left-child {
     display: flex;
     justify-content: flex-start;
     width: 50%;
-    margin-left: 4px;
+    margin-left: 25px;
     text-align: center;
   }
 
@@ -187,7 +190,7 @@
     display: flex;
     justify-content: flex-end;
     width: 50%;
-    margin-right: 20px;
+    margin-right: 25px;
     text-align: center;
   }
 
